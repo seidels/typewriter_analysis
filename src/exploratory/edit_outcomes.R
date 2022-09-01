@@ -172,7 +172,7 @@ ggsave("insert_freq_targetBC_no_na.pdf",path="/Users/azwaans/typewriter_analysis
 
 edits_melted = melt(edit_table_by_5, id.vars = c("Cell", "TargetBC", "nUMI"))
 
-# plot only first 3 sites where most edits occur
+# plot only first 3 sites
 g_3_sites =
   ggplot(data = subset(x = edits_melted, edits_melted$variable %in% c("Site1", "Site2", "Site3")), aes(x=value)) +
   facet_grid(variable ~.)+
@@ -195,24 +195,31 @@ ggsave(plot = g_5_sites, filename = paste0(plot_path, "edit_outcomes_sites_15.jp
 
 ## ---------------------------
 
-## Check edit outcome probability conditional on previous site
-g_cond_21 = ggplot(data = subset(edit_table_by_5),
-       aes(x=Site2))+
+## Joint counts of edits at site 1 and 2
+g_count_2_and_1 = ggplot(data = edit_table_by_5)+
   facet_grid(Site1 ~.) +
-  geom_bar()+
+  geom_bar(aes(x=Site2))+
   theme_classic()+
   theme(axis.text.x = element_text(angle = 90))
+g_count_2_and_1
+ggsave(plot = g_count_2_and_1, filename = paste0(plot_path, "count_edit_2_and_1.jpg"))
 
-ggsave(plot = g_cond_21, filename = paste0(plot_path, "conditional_edit_21.jpg"))
+## Conditional probabilities
 
+### site 2 given 1
+p_2_given_1 = conditional_a_given_b(edit_table = edit_table_by_5, site_number_a = 2, site_number_b = 1)
+g_cond_21 = plot_conditional_a_given_b(conditional = p_2_given_1, site_a = "Site2", site_b = "Site1")
+g_cond_21
+ggsave(plot = g_cond_21, filename = paste0(plot_path, "prob_edit_2_given_1.jpg"))
 
-g_cond_31 = ggplot(data = subset(edit_table_by_5),
-       aes(x=Site3))+
-  facet_grid(Site1 ~.) +
-  geom_bar()+
-  theme_classic()+
-  theme(axis.text.x = element_text(angle = 90))
+### site 3 given 2
+p_3_given_2 = conditional_a_given_b(edit_table = edit_table_by_5, site_number_a = 3, site_number_b = 2)
+g_cond_32 = plot_conditional_a_given_b(conditional = p_3_given_2, site_a = "Site3", site_b = "Site2")
+g_cond_32
+ggsave(plot = g_cond_32, filename = paste0(plot_path, "prob_edit_3_given_2.jpg"))
 
-ggsave(plot = g_cond_31, filename = paste0(plot_path, "conditional_edit_31.jpg"))
-
-
+### site 3 given 1
+p_3_given_1 = conditional_a_given_b(edit_table = edit_table_by_5, site_number_a = 3, site_number_b = 1)
+g_cond_31 = plot_conditional_a_given_b(conditional = p_3_given_1, site_a = "Site3", site_b = "Site1")
+g_cond_31
+ggsave(plot = g_cond_31, filename = paste0(plot_path, "prob_edit_3_given_1.jpg"))
