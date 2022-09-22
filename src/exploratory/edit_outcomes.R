@@ -108,6 +108,18 @@ chisq.test(t(table(insert_count_site)))
 ggplot(insert_count_site, aes(x=site,fill=sequence)) + geom_bar() + xlab("Site") + ylab("Total counts")+ theme(legend.title = element_blank())
 ggsave("bulk_insert_count_site_no_na.pdf",path="/Users/azwaans/typewriter_analysis/results/exploratory", width=25,height= 18, units = "cm")
 
+#same figure without coloured insert ditributions
+ggplot(insert_count_site, aes(x=site)) + geom_bar() + xlab("Site") + ylab("Total counts")+ theme(legend.title = element_blank())
+ggsave("bulk_count_site_no_na.pdf",path="/Users/azwaans/typewriter_analysis/results/exploratory", width=25,height= 18, units = "cm")
+
+counts_per_site <- count(insert_count_site,site)
+
+diffs <- c()
+for(i in 2:length(counts_per_site$n)-1) {
+  diffs <- c(diffs,(counts_per_site$n[i+1]-counts_per_site$n[i])/counts_per_site$n[i])
+  
+}
+diffs <- (diffs* (-1)) *100
 
 # insert frequency - site 
 insert_freq_site  <- data.frame(edit_table_by_5[,3:7]) %>% gather(site, sequence,1:5)
@@ -164,7 +176,7 @@ cells_per_targetBC <- data.frame(targetBC= unique(cell_count_targBC$`insert_coun
 ggplot(cells_per_targetBC,aes(x=targetBC,y=unique_cells)) + geom_bar(stat = "identity") + theme(axis.text.x = element_text(angle = 90)) +
   xlab("TargetBC") + ylab("Number of cells") 
 ggsave("cells_per_targetBC.pdf",path="/Users/azwaans/typewriter_analysis/results/exploratory", width=25,height= 18, units = "cm")
-
+## divide by total number of integrations (not cells)
 
 
 # insert frequencies - TargetBC 
@@ -267,7 +279,7 @@ differences <- function(data, indices) {
   counts <- count(insert_count_site,site)
   count_diff <- c()
   for (i in 1:length(counts$n)-1) {
-    count_diff <- c(count_diff,counts$n[i]-counts$n[i+1])
+    count_diff <- c(count_diff,(counts$n[i]-counts$n[i+1])/counts$n[i])
   }
   return(count_diff) 
 }
@@ -276,8 +288,37 @@ results <- boot(data=edit_table_by_5, statistic=differences,R=1000)
 steps_bootstrap <- data.frame(results$t)
 colnames(steps_bootstrap) <- c("step_1_2","step_2_3","step_3_4","step_4_5")
 steps_bootstrap <- gather(steps_bootstrap,Step)
-ggplot(data=steps_bootstrap,aes(x=value,color=Step)) + geom_histogram(stat = "density")
-ggsave("bootstrap_step.pdf",path="/Users/azwaans/typewriter_analysis/results/exploratory", width=25,height= 18, units = "cm")
+p0 <- ggplot(data=steps_bootstrap,aes(x=value*100,fill=Step)) + geom_histogram(aes(y=..count../sum(..count..)),bins=250) + xlab("Percent change edited sites") + ylab("Density")+ theme(legend.position = "none")
+ggsave("bootstrap_step_norm.pdf",path="/Users/azwaans/typewriter_analysis/results/exploratory", width=25,height= 18, units = "cm") 
+
+data_1_2 <- steps_bootstrap[steps_bootstrap$Step=="step_1_2",]
+p1 <- ggplot(data=data_1_2,aes(x=value*100)) + geom_histogram(aes(y=..count../sum(..count..)),bins=100,color="coral") + xlab("Percent change sites 1 to 2") + ylab("Density")+ 
+theme(legend.position = "none") + geom_vline(xintercept = mean(data_1_2$value)*100) +
+geom_vline(xintercept = sort(data_1_2$value)[975]*100,linetype = "dashed") +
+geom_vline(xintercept = sort(data_1_2$value)[25]*100,linetype = "dashed") 
+
+data_2_3 <- steps_bootstrap[steps_bootstrap$Step=="step_2_3",]
+p2 <- ggplot(data=data_2_3,aes(x=value*100)) + geom_histogram(aes(y=..count../sum(..count..)),bins=100,color="limegreen") + xlab("Percent change sites 2 to 3") + ylab("Density")+ 
+  theme(legend.position = "none") + geom_vline(xintercept = mean(data_2_3$value)*100) +
+  geom_vline(xintercept = sort(data_2_3$value)[975]*100,linetype = "dashed") +
+  geom_vline(xintercept = sort(data_2_3$value)[25]*100,linetype = "dashed")
+
+data_3_4 <- steps_bootstrap[steps_bootstrap$Step=="step_3_4",]
+p3 <- ggplot(data=data_3_4,aes(x=value*100)) + geom_histogram(aes(y=..count../sum(..count..)),bins=100,color="turquoise") + xlab("Percent change sites 3 to 4") + ylab("Density")+ 
+  theme(legend.position = "none") + geom_vline(xintercept = mean(data_3_4$value)*100) +
+  geom_vline(xintercept = sort(data_3_4$value)[975]*100,linetype = "dashed") +
+  geom_vline(xintercept = sort(data_3_4$value)[25]*100,linetype = "dashed")
+
+data_4_5 <- steps_bootstrap[steps_bootstrap$Step=="step_4_5",]
+p4 <- ggplot(data=data_4_5,aes(x=value*100)) + geom_histogram(aes(y=..count../sum(..count..)),bins=100,color="magenta") + xlab("Percent change sites 4 to 5") + ylab("Density")+ 
+  theme(legend.position = "none") + geom_vline(xintercept = mean(data_4_5$value)*100) +
+  geom_vline(xintercept = sort(data_4_5$value)[975]*100,linetype = "dashed") +
+  geom_vline(xintercept = sort(data_4_5$value)[25]*100,linetype = "dashed")
+
+
+bottom_row <- plot_grid(p1, p2, p3,p4, nrow=1)
+plot_grid(p0, bottom_row, nrow=2)
+ggsave("bootstrap_detailed.pdf",path="/Users/azwaans/typewriter_analysis/results/exploratory", width=25,height= 18, units = "cm") 
 
 
 ## ---------------------------
