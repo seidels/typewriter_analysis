@@ -5,7 +5,7 @@
 ## Purpose of script: Plot the number of edits introduced at different sites
 ## based on data in https://doi.org/10.1038/s41586-022-04922-8
 ##
-## Author: Sophie Seidel & Antoine Zwaans
+## Author: Sophie Seidel
 ##
 ## Date Created: 2022-08-22
 ##
@@ -53,35 +53,3 @@ g_5_sites =ggplot(data = edits_melted, aes(x=value)) +
   theme(axis.text.x = element_text(angle = 90))
 
 ggsave(plot = g_5_sites, filename = paste0(plot_path, "edit_outcomes_sites_15.jpg"))
-
-
-## ---------------------------
-
-## Joint counts of edits at site 1 and 2
-g_count_2_and_1 = ggplot(data = edit_table_by_5)+
-  facet_grid(Site1 ~.) +
-  geom_bar(aes(x=Site2))+
-  theme_classic()+
-  theme(axis.text.x = element_text(angle = 90))
-g_count_2_and_1
-ggsave(plot = g_count_2_and_1, filename = paste0(plot_path, "count_edit_2_and_1.jpg"))
-
-## Conditional probabilities
-
-### site 2 given 1
-p_2_given_1 = conditional_a_given_b(edit_table = edit_table_by_5, site_number_a = 2, site_number_b = 1)
-g_cond_21 = plot_conditional_a_given_b(conditional = p_2_given_1, site_a = "Site2", site_b = "Site1")
-g_cond_21
-ggsave(plot = g_cond_21, filename = paste0(plot_path, "prob_edit_2_given_1.jpg"))
-
-### site 3 given 2
-p_3_given_2 = conditional_a_given_b(edit_table = edit_table_by_5, site_number_a = 3, site_number_b = 2)
-g_cond_32 = plot_conditional_a_given_b(conditional = p_3_given_2, site_a = "Site3", site_b = "Site2")
-g_cond_32
-ggsave(plot = g_cond_32, filename = paste0(plot_path, "prob_edit_3_given_2.jpg"))
-
-### site 3 given 1
-p_3_given_1 = conditional_a_given_b(edit_table = edit_table_by_5, site_number_a = 3, site_number_b = 1)
-g_cond_31 = plot_conditional_a_given_b(conditional = p_3_given_1, site_a = "Site3", site_b = "Site1")
-g_cond_31
-ggsave(plot = g_cond_31, filename = paste0(plot_path, "prob_edit_3_given_1.jpg"))
