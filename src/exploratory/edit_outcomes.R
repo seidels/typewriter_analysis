@@ -4,7 +4,7 @@
 ##
 ## Purpose of script: Analyze the editing outcomes of the lineage tracing experiment in https://doi.org/10.1038/s41586-022-04922-8
 ##
-## Author: Sophie Seidel & Antoine Zwaans
+## Author: Antoine Zwaans
 ##
 ## Date Created: 2022-08-22
 ##
