@@ -20,7 +20,7 @@
 
 ## set working directory for Mac
 
-setwd("/Users/azwaans/typewriter_analysis/")      # Sophie's working directory (mac)
+setwd("/Users/azwaans/typewriter_analysis/")    
 library(dplyr) 
 library(ggplot2)
 library(tidyr)
