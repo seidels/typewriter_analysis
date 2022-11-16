@@ -35,6 +35,7 @@ edit_table = edit_table[which(!(is.na(edit_table$Cell))), ]
 frequency_of_target_bcs = as.data.frame(table(edit_table$TargetBC, useNA = "ifany"))
 frequency_of_target_bcs = frequency_of_target_bcs[order(frequency_of_target_bcs$Freq, decreasing = T), ]
 frequent_target_bcs = frequency_of_target_bcs[1:13, "Var1"]
+write.csv(x = frequent_target_bcs, file = "./src/exploratory/13_frequent_TargetBCs.csv")
 
 for (cell in unique(edit_table$Cell)){
 
