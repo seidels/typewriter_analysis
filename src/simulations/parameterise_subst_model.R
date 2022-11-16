@@ -28,9 +28,13 @@ library(reshape2)
 # load the preprocessed data ---------
 edit_table_filtered = readRDS(file = "data/edit_table_filtered.RDS")
 
+#--------------
+# subset by most frequent TargetBCs
+frequent_barcodes = read.csv(file = "src/exploratory/13_frequent_TargetBCs.csv")
+edit_table_subset = edit_table_filtered[edit_table_filtered$TargetBC %in% frequent_barcodes$x, ]
 
 ## --------
-edit_outcomes_site_1 = as.data.frame(table(as.character(edit_table_filtered$Site1), useNA = "ifany"))
+edit_outcomes_site_1 = as.data.frame(table(as.character(edit_table_subset$Site1), useNA = "ifany"))
 
 nr_of_edited = sum(edit_outcomes_site_1[which(!(is.na(edit_outcomes_site_1$Var1))), "Freq"])
 nr_of_unedited = edit_outcomes_site_1[which(is.na(edit_outcomes_site_1$Var1)), "Freq"]
@@ -45,19 +49,19 @@ get_rate_from_fraction_edited(fraction_edited, edit_duration)
 mean_number_edits_for_25d = get_rate_from_fraction_edited(fraction_edited, edit_duration) * 25
 
 
-edit_table_filtered$nrOfEdits = get_nr_of_edits(edit_table_filtered)
+edit_table_subset$nrOfEdits = get_nr_of_edits(edit_table_subset)
 
-ggplot(edit_table_filtered, aes(x=nrOfEdits)) +
+ggplot(edit_table_subset, aes(x=nrOfEdits)) +
   geom_histogram()
 ## NOTE: This histogram looks like it is the overlay of several distributions
 
 ## Idea: separate out TargetBCs that show limited editing
-target_barcodes = unique(edit_table_filtered$TargetBC)
+target_barcodes = unique(edit_table_subset$TargetBC)
 edits_per_target_barcode = data.frame(target_barcode = target_barcodes, max_edits = 0)
 
 for (target_barcode in target_barcodes){
   print(target_barcode)
-  target_barcode_data = edit_table_filtered[which(edit_table_filtered$TargetBC == target_barcode), ]
+  target_barcode_data = edit_table_subset[which(edit_table_subset$TargetBC == target_barcode), ]
   edits_per_target_barcode[which(edits_per_target_barcode$target_barcode == target_barcode), "max_edits"] = max(target_barcode_data$nrOfEdits)
 }
 
@@ -66,19 +70,24 @@ edits_per_target_barcode[which(edits_per_target_barcode$max_edits < 5), ]
 ##... which has at max 3 introductions
 
 ## Hence split the histogram with the number of edits per target bc
-g = ggplot(edit_table_filtered, aes(x=nrOfEdits)) +
+g = ggplot(edit_table_subset, aes(x=nrOfEdits)) +
   facet_wrap(~ TargetBC)+
   geom_histogram()+
   theme_minimal()
 g
-## TODO Control for the number of cells by duplication
-edit_table_filtered_reduced = unique(edit_table_filtered[, 2:7])
-edit_table_filtered_reduced$nrOfEdits = get_nr_of_edits(edit_table_filtered_reduced)
+ggsave("./results/exploratory/nr_edit_per_targetBC.pdf")
 
-g = ggplot(edit_table_filtered_reduced, aes(x=nrOfEdits)) +
+## TODO Control for the number of cells by duplication
+edit_table_subset_reduced = unique(edit_table_subset[, 2:7])
+edit_table_subset_reduced$nrOfEdits = get_nr_of_edits(edit_table_subset_reduced)
+
+g = ggplot(edit_table_subset_reduced, aes(x=nrOfEdits)) +
   facet_wrap(~ TargetBC)+
   geom_histogram()+
   theme_minimal()
+g
+
+ggsave("./results/exploratory/nr_unique_edits_per_targetBC.pdf")
 
 get_rate_from_fraction_edited = function(fraction_edited, edit_duration){
 
