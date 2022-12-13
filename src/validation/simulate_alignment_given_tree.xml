@@ -1,0 +1,67 @@
+<beast version="2.0"
+       namespace="beast.core
+                 :beast.core.util
+                 :beast.core.parameter
+                 :beast.evolution.alignment
+                 :beast.evolution.likelihood
+                 :beast.evolution.tree
+                 :beast.evolution.tree.coalescent
+                 :beast.evolution.sitemodel
+                 :beast.evolution.substitutionmodel
+                 :beast.evolution.operators
+                 :beast.math.distributions
+                 :feast.simulation
+                 :bdmmprime.distribution
+                 :bdmmprime.parameterization
+                 :bdmmprime.mapping">
+
+
+  <!-- insert rate and clock rate -->
+  <parameter id="insertRates"
+	     spec="RealParameter" 
+	     name="stateNode" value="0.5 0.5" />
+  
+  <parameter id="clockRate" spec="RealParameter" name="stateNode" value="$(clockRate)"/>
+    <!-- get simulated tree -->
+    <stateNode id="simulatedTree"
+               spec="feast.fileio.TreeFromNewickFile" IsLabelledNewick='true' adjustTipHeights='false'
+               fileName="/Users/seidels/Projects/typewriter_analysis/results/simulation/simulate_tree/simulate_tree.4.newick"
+    />
+    <origin id="origin" spec="RealParameter" value="25"/> <!-- Length of simulation -->
+
+
+
+  <run spec="GPSimulator" nSims="1">
+
+      <!-- simulate sequence -->
+    <simulationObject id="seqAlign" spec="lineageTree.simulation.SimulatedAlignment"
+		      outputFileName="$(outputDir)/$(filebase).clockRate=$(clockRate).seed=$(seed).alignment.nexus"
+		      sequenceLength="1" nrOfInsertionsPerSite="5"
+		      tree="@simulatedTree" origin="@origin">
+      
+      <userDataType spec="beast.evolution.datatype.IntegerData"/>
+
+      <siteModel spec="beast.evolution.sitemodel.SiteModel">
+
+        <mutationRate idref="clockRate"/>
+
+        <substModel id="TypeWriterSubstModel"
+		    spec="lineageTree.substitutionmodel.TypewriterSubstitutionModel"
+		    rates="@insertRates" >
+          <frequencies id="freq"
+		       spec="beast.evolution.substitutionmodel.Frequencies"
+		       frequencies="1.0 0 0" estimate="false"/> 
+  </substModel>
+  </siteModel>
+  <branchRateModel id="StrictClock.c:h3n2_2deme" spec="beast.evolution.branchratemodel.StrictClockModel" clock.rate="1.0"/>
+
+    </simulationObject>
+
+
+    <!-- <logger spec="Logger" logEvery="1" fileName="$(filebase).$(seed).traj"> -->
+    <!--   <log id="trajectory" spec="bdmmprime.trajectories.simulation.SimulatedTrajectoryLogger"> -->
+    <!--     <simulatedTree idref="simulatedTree"/> -->
+    <!--   </log> -->
+    <!-- </logger> -->
+  </run>
+</beast>
