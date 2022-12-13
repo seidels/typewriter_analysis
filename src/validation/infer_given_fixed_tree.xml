@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='MultiTypeBirthDeath' beautistatus='' namespace="lineageTree.substitutionmodel.ScarringLoss:beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.evolution.likelihood" required="" version="2.6">
+
+
+    <data  id="alignment" spec="feast.fileio.AlignmentFromNexus" name="alignment" fileName="$(input_alignment)">
+        <userDataType spec="beast.evolution.datatype.IntegerData" />
+    </data>
+
+<map name="Uniform" >beast.math.distributions.Uniform</map>
+<map name="Exponential" >beast.math.distributions.Exponential</map>
+<map name="LogNormal" >beast.math.distributions.LogNormalDistributionModel</map>
+<map name="Normal" >beast.math.distributions.Normal</map>
+<map name="Beta" >beast.math.distributions.Beta</map>
+<map name="Gamma" >beast.math.distributions.Gamma</map>
+<map name="LaplaceDistribution" >beast.math.distributions.LaplaceDistribution</map>
+<map name="prior" >beast.math.distributions.Prior</map>
+<map name="InverseGamma" >beast.math.distributions.InverseGamma</map>
+<map name="OneOnX" >beast.math.distributions.OneOnX</map>
+
+<!-- set all tip dates, time points of sampling to 25 time units --> 
+<traitSet id="dateTrait.t:alignment"
+          spec="beast.evolution.tree.TraitSet"
+          taxa="@TaxonSet.0" traitname="date-forward" value="0=25"
+	  />
+<!-- set of all cells -->
+<taxa id="TaxonSet.0" spec="TaxonSet">
+  <alignment idref="alignment"/>
+</taxa>
+
+<!-- run MCMC with 10^9 steps --> 
+<run id="mcmc" spec="MCMC" chainLength="1000000000">
+    <state id="state" spec="State" storeEvery="5000">
+
+      <!-- build starting tree -->
+      <stateNode id="simulatedTree"
+               spec="feast.fileio.TreeFromNewickFile"
+	       IsLabelledNewick='true' adjustTipHeights='false'
+               fileName="/Users/seidels/Projects/typewriter_analysis/results/simulation/simulate_tree/simulate_tree.4.newick"
+	       />
+
+      <!-- editing model parameters -->
+      <parameter id="insertRates" spec="parameter.RealParameter"
+		   dimension="1" lower="0.0" name="stateNode"
+		   upper="1000"> 
+	0.261 0.063 0.047 0.384 0.030 0.170 0.283 0.944 0.066 0.980
+	0.461 0.838 1.326 
+      </parameter>
+
+      <parameter id="clockRate" spec="parameter.RealParameter"
+			   dimension="1" lower="0.0" name="stateNode"
+			   upper="1000"> 0.001 </parameter>
+
+      <!-- population process parameters -->
+      <parameter id="birthRate" spec="parameter.RealParameter" dimension="1" lower="0.0" name="stateNode" upper="Infinity">0.5</parameter>
+
+      <parameter id="deathRate" spec="parameter.RealParameter"
+		   dimension="1" lower="0.0" name="stateNode"
+		   upper="Infinity">0.4</parameter>
+
+	<!-- The sampling rate through time is set to 0 as we only
+	     sample at the end of the experiment with sampling
+	     proportion rho -->
+        <parameter id="samplingRate" spec="parameter.RealParameter"
+		   dimension="1" lower="0.0" name="stateNode"
+		   upper="1.0">0.0</parameter>
+
+	<!--fix origin to experiment duration, e.g. 25 -->
+        <parameter id="origin"
+		   spec="parameter.RealParameter" name="stateNode">25
+	</parameter>
+
+	<!-- fix sampling proportion to truth -->
+        <parameter id="samplingProportion"
+		   spec="parameter.RealParameter" lower="0.0"
+		   name="stateNode" upper="1.0">0.0003 </parameter>
+	
+        <parameter id="freqParameter.s:alignment"
+		   spec="parameter.RealParameter" dimension="4"
+		   lower="0.0" name="stateNode"
+		   upper="1.0">0.25</parameter> 
+    </state> 
+
+    <!-- define posterior -->
+    <distribution id="posterior" spec="util.CompoundDistribution">
+
+      <!-- tree prior or phylodynamic model. Here, we use a birth-death sampling
+      model -->
+        <distribution id="prior" spec="util.CompoundDistribution">
+            <distribution id="birthDeathMigration.t:alignment" spec="beast.evolution.speciation.BirthDeathSkylineModel"
+                          birthRate="@birthRate" deathRate="@deathRate" samplingRate="@samplingRate"
+                          contemp="true" origin="@origin" rho="@samplingProportion"
+                           tree="@Tree.t:alignment"
+			   conditionOnSurvival="true">
+            </distribution>
+	    
+            <!-- prior distribution on phylogenetic parameters -->
+            <prior spec="bdmmprime.util.priors.SmartZeroExcludingPrior"
+		   id="insertRatesPrior" name="distribution"
+		   x="@insertRates">
+                <Exponential name="distr">
+                    <parameter  spec="parameter.RealParameter"
+				estimate="false"
+				name="mean">2.0</parameter> 
+                </Exponential>
+            </prior>
+
+	    <!-- 95% HPD [0.06, 0.13, 0.3] -->
+	    <prior id="ClockPrior.c:alignment" name="distribution" x="@clockRate">
+              <LogNormal name="distr" M="-2" S="0.5"/>
+            </prior>
+
+            <!-- prior distributions on phylodynamic parameters -->
+	    <!-- 95% HPD [0.1, 0.5, 2.8] -->
+            <prior id="birthRatePrior" name="distribution" x="@birthRate">
+              <LogNormal name="distr">
+                <parameter spec="parameter.RealParameter"
+			   estimate="false" name="M">-0.6</parameter> 
+                <parameter spec="parameter.RealParameter"
+			   estimate="false"  name="S">1</parameter> 
+                </LogNormal>
+            </prior>
+
+	    <!-- 95% HPD [0.03, 0.14, 0.7] --> 
+	    <prior id="deathRatePrior" name="distribution" x="@deathRate">
+              <LogNormal  name="distr">
+                <parameter spec="parameter.RealParameter"
+			   estimate="false" name="M">-2</parameter> 
+                <parameter spec="parameter.RealParameter"
+			   estimate="false"  name="S">1</parameter> 
+                </LogNormal>
+            </prior>
+        </distribution>
+	
+        <!-- TiDeTree tree likelihood -->
+        <distribution id="likelihood" spec="util.CompoundDistribution">
+
+	  <distribution id="treeLikelihood"
+			  spec="lineageTree.distributions.TypeWriterTreeLikelihood"
+			  data="@alignment" tree="@Tree.t:alignment"
+			  origin="@origin">
+	      <!-- add some kind of origin / origin height parameter
+		   here -->
+	      
+                <siteModel id="SiteModel.s:alignment" spec="SiteModel">
+                    <mutationRate idref="clockRate"/>
+                    <parameter id="proportionInvariant.s:alignment"
+			       spec="parameter.RealParameter"
+			       estimate="false" lower="0.0"
+			       name="proportionInvariant"
+			       upper="1.0">0.0
+		    </parameter>
+		    
+                    <substModel
+			spec="lineageTree.substitutionmodel.TypewriterSubstitutionModelHomogeneous"
+			insertFrequencies="@insertRates"> 
+                      <frequencies id="freq" spec="beast.evolution.substitutionmodel.Frequencies" frequencies="1.0 0 0" estimate="false"/>
+                    </substModel>
+		    
+                </siteModel>
+                <branchRateModel id="StrictClock.c:alignment" spec="beast.evolution.branchratemodel.StrictClockModel" clock.rate="1.0"/>
+            </distribution>
+        </distribution>
+    </distribution>
+
+    <!-- tree operators-->
+   <operator id="treeWB" spec="WilsonBalding"
+              tree="@Tree.t:alignment" weight="30.0"/>
+
+    <operator id="Unif" spec="Uniform" tree="@Tree.t:alignment" weight="3.0"/>
+
+    <operator id="SubtreeSlideOperator" spec="SubtreeSlide" tree="@Tree.t:alignment" weight="3.0"/>
+    <operator id="BDSKY_ContempWide.t:input_alignment" spec="Exchange" isNarrow="false" tree="@Tree.t:alignment" weight="30.0"/>
+    <operator id="updown_tbr" spec="UpDownOperator" scaleFactor="0.9" weight="10.0">
+      <up idref="birthRate"/>
+      <up idref="Tree.t:alignment"/>
+      <down idref="samplingProportion"/>
+    </operator>
+
+    <!-- phylogenetic operators -->
+    <operator id="scarRateScaler"
+	      spec="bdmmprime.util.operators.SmartScaleOperator"
+	      parameter="@scarringRate" scaleFactor="0.8"
+	      weight="3.0" classToExclude="1.0"/>
+
+    <operator id="clockRateScaler" spec="ScaleOperator"
+	      parameter="@clockRate" scaleFactor="0.8" weight="3.0"/>
+
+
+    <!-- Phylodynamic operators -->
+    <operator id="birthRateScaler" spec="ScaleOperator" parameter="@birthRate" scaleFactor="0.8" weight="3.0"/>
+
+    <!--operator id="deathRateScaler" spec="ScaleOperator" optimise="false" parameter="@deathRate" scaleAll="true" scaleFactor="0.9" weight="3.0"/-->
+
+    <operator id="samplingScaler" spec="ScaleOperator" parameter="@samplingProportion" scaleFactor="0.8" weight="3.0"/>
+
+    <operator id="updownBR" spec="UpDownOperator" scaleFactor="0.9" weight="3.0">
+        <up idref="birthRate"/>
+        <down idref="samplingProportion"/>
+    </operator>
+
+    <!-- Loggers -->
+    <logger id="tracelog" spec="Logger" fileName="$(filebase).$(seed).log" logEvery="5000">
+        <log idref="posterior"/>
+        <log idref="likelihood"/>
+        <log idref="prior"/>
+        <log idref="treeLikelihood"/>
+        <log id="treeHeight.t:alignment" spec="beast.evolution.tree.TreeHeightLogger" tree="@Tree.t:alignment"/>
+        <log id="treeLength.t:alignment" spec="multitypetree.util.TreeLengthLogger" tree="@Tree.t:alignment"/>
+        <log idref="scarringRate"/>
+        <log idref="lossRate" />
+        <log idref="birthRate"/>
+        <log idref="samplingProportion"/>
+        <log idref="deathRate"/>
+        <log idref="clockRate"/>
+    </logger>
+
+    <logger id="screenlog" spec="Logger" logEvery="1000">
+        <log idref="posterior"/>
+        <log id="ESS.0" spec="util.ESS" arg="@posterior"/>
+        <log idref="likelihood"/>
+        <log idref="prior"/>
+    </logger>
+
+    <logger id="treelog.t:alignment" spec="Logger" fileName="$(filebase).$(tree).$(seed).trees" logEvery="5000" mode="tree">
+        <log idref="Tree.t:alignment" printMetaData="true"/>
+    </logger>
+
+
+</run>
+
+</beast>
