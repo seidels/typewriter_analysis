@@ -51,10 +51,7 @@ length(unique(unlist(edit_table_by_5[,3:7])))
 
 #total cells:
 
-
-
-## Check edit outcome probability site-independent
-
+length(unique(edit_table_by_5$Cell))
 
 ## histograms of insert frequencies/counts -------------------------
 

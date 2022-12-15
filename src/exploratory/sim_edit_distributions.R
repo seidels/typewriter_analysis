@@ -42,7 +42,7 @@ library(dplyr)
 ##getting the edit frequencies and edit types for simulations
 edit_table_by_5 = read.csv("data/Supplementary_File_2_DataTableMOI19.csv", stringsAsFactors = F, header = T, na.strings=c("","NA"))
 
-bulk_insert_count <- data.frame(table(unlist(edit_table_by_5[,3:7]))) %>% arrange(desc(Freq))
+editbulk_insert_count <- data.frame(table(unlist(edit_table_by_5[,3:7]))) %>% arrange(desc(Freq))
 bulk_insert_count$Var1 <- substring(bulk_insert_count$Var1, 1,3)
 bulk_insert_count$Freq <- bulk_insert_count$Freq/sum(bulk_insert_count$Freq)
 
@@ -57,12 +57,12 @@ tree_present <- sim.rateshift.taxa(n=500,numbsim=1,c(10,1),c(0,0.3),
                    c(0.6,0.1),c(0,0.3),complete=FALSE)[[1]]
 
 #tree with higher birth rate in the past
-tree_past <- sim.rateshift.taxa(n=500,numbsim=1,c(1,10),c(0.3,0.3),
+tree_past <- sim.rateshift.taxa(n=500,numbsim=1,c(1,100),c(0,0.3),
                             c(0.6,0.1),c(0,0.3),complete=FALSE)[[1]]
 #first 500 tips
 #tree with a constant birth rate
-tree_even <- sim.rateshift.taxa(n=3257,numbsim=1,c(10,10),c(0,0.3),
-                                c(0.6,0.1),c(0,0.3),complete=FALSE)[[1]]
+tree_even <- sim.rateshift.taxa(n=3257,numbsim=1,c(10,10),c(0.3,0.3),
+                                c(0.6,0.6),c(0.3,0.3),complete=FALSE)[[1]]
 
 # find tree root age (coulnd not find function)
 
@@ -413,10 +413,10 @@ for(i in 1:13) {
   
 }
 v2_final_attempt <- data.frame(edits=total_present)
-density_plot_past <- ggplot(data=v2_final_attempt,aes(x=edits)) + geom_histogram(alpha = 0.2,fill="orange") + xlab("Number of edits") + ylab("Number of cells") + geom_vline(xintercept = mean(v2_final_attempt$edits)) +
-  geom_vline(xintercept =  mean(v2_final_attempt$edits) 
+density_plot_past <- ggplot(data=v2_final_attempt,aes(x=edits)) + geom_histogram(alpha = 0.2,fill="orange") + xlab("Number of edits") + ylab("Number of cells") + geom_vline(xintercept = mean(v2_final_attempt$edits)) + geom_vline(xintercept =  mean(v2_final_attempt$edits)) 
 
 #geom_density(alpha=.2, fill="#FF6666") 
+
 plot_grid(ggtree(tree_present),density_plot_past)
 ggsave("ditribution_edit_present_branching.pdf",path="/Users/azwaans/typewriter_analysis/results/exploratory", width=25,height= 18, units = "cm") 
 
@@ -438,11 +438,11 @@ tree_even$edge.length <- tree_even$edge.length * (25/even_height)
 total_dataset <- rep(0,3257)
 
 #the matrix for normal full barcodes is the following:
-s1 <- 0.068
-s2 <- 0.068
-s3 <- 0.068
-s4 <- 0.068
-s5 <- 0.068
+s1 <- 0.13
+s2 <- 0.13
+s3 <- 0.13
+s4 <- 0.13
+s5 <- 0.13
 matrix_data <- c(-s1,0,0,0,0,0 ,s1,-s2,0,0,0,0, 0,s2,-s3,0,0,0, 0,0,s3,-s4,0,0, 0,0,0,s4,-s5,0, 0,0,0,0,s5,0)
 Qmat <- matrix(matrix_data,nrow=6,ncol=6)
 
@@ -548,10 +548,10 @@ total_dataset <- total_dataset + total_tips
 
 #we modify the matrix to model that! s5 = 0 
 
-s1 <- 0.068
-s2 <- 0.068
-s3 <- 0.068
-s4 <- 0.068
+s1 <- 0.13
+s2 <- 0.13
+s3 <- 0.13
+s4 <- 0.13
 s5 <- 0.000
 matrix_data <- c(-s1,0,0,0,0,0 ,s1,-s2,0,0,0,0, 0,s2,-s3,0,0,0, 0,0,s3,-s4,0,0, 0,0,0,s4,-s5,0, 0,0,0,0,s5,0)
 Qmat <- matrix(matrix_data,nrow=6,ncol=6)
@@ -593,10 +593,10 @@ total_dataset <- total_dataset + total_tips
 #barcode 13 only 2 positions
 
 #only 2 positions
-s1 <- 0.068
-s2 <- 0.068
-s3 <- 0.000
-s4 <- 0.000
+s1 <- 0.13
+s2 <- 0.13
+s3 <- 0.00
+s4 <- 0.00
 s5 <- 0.000
 matrix_data <- c(-s1,0,0,0,0,0 ,s1,-s2,0,0,0,0, 0,s2,-s3,0,0,0, 0,0,s3,-s4,0,0, 0,0,0,s4,-s5,0, 0,0,0,0,s5,0)
 Qmat <- matrix(matrix_data,nrow=6,ncol=6)
@@ -612,7 +612,7 @@ total_dataset <- total_dataset + total_tips
 
 #barcode total number of edits 
 total_dataset <- data.frame(edits=total_dataset)
-density_plot_past <- ggplot(data=total_dataset,aes(x=edits)) + geom_histogram(alpha = 0.2,fill="orange") + xlab("Number of edits") + ylab("Number of cells") 
+density_plot_past <- ggplot(data=total_dataset,aes(x=edits)) + geom_histogram(alpha = 0.2,fill="orange") + xlab("Number of edits") + ylab("Number of cells") + geom_vline(xintercept = mean(total_dataset$edits)) + geom_vline(xintercept = mean(total_dataset$edits) +1.96*sd(total_dataset$edits),linetype = "dashed") + geom_vline(xintercept = mean(total_dataset$edits) - 1.96*sd(total_dataset$edits),linetype = "dashed")
 #geom_density(alpha=.2, fill="#FF6666") 
 plot_grid(ggtree(tree_even),density_plot_past)
 
@@ -670,4 +670,4 @@ diff <- c(9.71,26.33,28.18,69.34)
 diff <- 100 - diff
 
 
-)
+
