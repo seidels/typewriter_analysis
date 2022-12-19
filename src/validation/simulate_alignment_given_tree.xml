@@ -18,15 +18,19 @@
 
   <!-- insert rate and clock rate -->
   <parameter id="insertRates"
-	     spec="RealParameter" 
-	     name="stateNode" value="0.5 0.5" />
-  
-  <parameter id="clockRate" spec="RealParameter" name="stateNode" value="$(clockRate)"/>
-    <!-- get simulated tree -->
-    <stateNode id="simulatedTree"
-               spec="feast.fileio.TreeFromNewickFile" IsLabelledNewick='true' adjustTipHeights='false'
-               fileName="/Users/seidels/Projects/typewriter_analysis/results/simulation/simulate_tree/simulate_tree.4.newick"
-    />
+	     spec="feast.fileio.RealParameterFromXSV" 
+	     name="stateNode"
+	     fileName="/Users/seidels/Projects/typewriter_analysis/results/validation/simulation_parameters/simParams_$(seed).csv"
+	     sep="," startRow="1" rowCount="13"
+	     startCol="1" colCount="1" /> 
+
+    <parameter id="clockRate"
+	     spec="feast.fileio.RealParameterFromXSV" 
+	     name="stateNode"
+	     fileName="/Users/seidels/Projects/typewriter_analysis/results/validation/simulation_parameters/simParams_$(seed).csv"
+	     sep="," startRow="13" rowCount="1"
+	     startCol="1" colCount="1" /> 
+
     <origin id="origin" spec="RealParameter" value="25"/> <!-- Length of simulation -->
 
 
