@@ -33,7 +33,7 @@ for (seed in 1:100){
   # 1. Substitution Model
   set.seed(seed)
 
-  edit_probabilities = extraDistr::rdirichlet(n = 1, alpha = rep(1,13))
+  edit_probabilities = extraDistr::rdirichlet(n = 1, alpha = rep(1.5,13))
 
   clockRate = round(rlnorm(n = 1, meanlog = -2, sdlog = 0.5), digits = 3)
 
