@@ -28,18 +28,22 @@
 	     spec="feast.fileio.RealParameterFromXSV" 
 	     name="stateNode"
 	     fileName="/Users/seidels/Projects/typewriter_analysis/results/validation/simulation_parameters/simParams_$(seed).csv"
-	     sep="," startRow="13" rowCount="1"
+	     sep="," startRow="14" rowCount="1"
 	     startCol="1" colCount="1" /> 
 
     <origin id="origin" spec="RealParameter" value="25"/> <!-- Length of simulation -->
 
-
+    <parameter id="simulatedTree"
+               spec="feast.fileio.TreeFromNexusFile"
+               IsLabelledNewick='true' adjustTipHeights='false'
+               fileName="/Users/seidels/Projects/typewriter_analysis/results/simulation/simulate_tree/simulate_tree.4.trees"
+               />
 
   <run spec="GPSimulator" nSims="1">
 
       <!-- simulate sequence -->
-    <simulationObject id="seqAlign" spec="lineageTree.simulation.SimulatedAlignment"
-		      outputFileName="$(outputDir)/$(filebase).clockRate=$(clockRate).seed=$(seed).alignment.nexus"
+    <simulationObject id="seqAlign" spec="lineageTree.simulation.SimulatedTypeWriterAlignment"
+		      outputFileName="../../results/validation/simulated_alignments/$(filebase).seed=$(seed).alignment.nexus"
 		      sequenceLength="1" nrOfInsertionsPerSite="5"
 		      tree="@simulatedTree" origin="@origin">
       
@@ -50,11 +54,11 @@
         <mutationRate idref="clockRate"/>
 
         <substModel id="TypeWriterSubstModel"
-		    spec="lineageTree.substitutionmodel.TypewriterSubstitutionModel"
-		    rates="@insertRates" >
+		    spec="lineageTree.substitutionmodel.TypewriterSubstitutionModelHomogeneous"
+		    editfrequencies="@insertRates" >
           <frequencies id="freq"
 		       spec="beast.evolution.substitutionmodel.Frequencies"
-		       frequencies="1.0 0 0" estimate="false"/> 
+		       frequencies="1.0 0 0 0 0 0 0 0 0 0 0 0 0 0" estimate="false"/> 
   </substModel>
   </siteModel>
   <branchRateModel id="StrictClock.c:h3n2_2deme" spec="beast.evolution.branchratemodel.StrictClockModel" clock.rate="1.0"/>
