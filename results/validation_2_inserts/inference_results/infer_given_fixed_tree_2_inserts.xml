@@ -2,8 +2,8 @@
 
 
     <data  id="alignment" spec="feast.fileio.AlignmentFromNexus" name="alignment"
-           fileName="/Users/seidels/Projects/typewriter_analysis/results/validation_2_inserts/simulated_alignments/simulate_alignment_given_tree.seed=$(seed).alignment.nexus">
-        <userDataType spec="beast.evolution.datatype.ScarData" nrOfStates="14"/>
+           fileName="../simulated_alignments/simulate_alignment_given_tree.seed=$(seed).alignment.nexus">
+        <userDataType spec="beast.evolution.datatype.ScarData" nrOfStates="3"/>
     </data>
 
 <map name="Uniform" >beast.math.distributions.Uniform</map>
@@ -56,11 +56,11 @@
 			   upper="1000"> 0.1 </parameter>
 
       <!-- population process parameters -->
-      <parameter id="birthRate" spec="parameter.RealParameter" dimension="1" lower="0.0" name="stateNode" upper="Infinity">0.5</parameter>
+      <parameter id="birthRate" spec="parameter.RealParameter" dimension="1" lower="0.0" name="stateNode" upper="Infinity">0.8</parameter>
 
       <parameter id="deathRate" spec="parameter.RealParameter"
 		   dimension="1" lower="0.0" name="stateNode"
-		   upper="Infinity">0.4</parameter>
+		   upper="Infinity">0.2</parameter>
 
 	<!-- The sampling rate through time is set to 0 as we only
 	     sample at the end of the experiment with sampling
@@ -205,20 +205,20 @@
 
 
     <!-- Phylodynamic operators -->
-    <operator id="birthRateScaler" spec="ScaleOperator" parameter="@birthRate" scaleFactor="0.8" weight="1.0"/>
+    <!--operator id="birthRateScaler" spec="ScaleOperator" parameter="@birthRate" scaleFactor="0.8" weight="1.0"/-->
 
     <!--operator id="deathRateScaler" spec="ScaleOperator" optimise="false" parameter="@deathRate" scaleAll="true" scaleFactor="0.9" weight="3.0"/-->
 
-    <operator id="deathRateScaler" spec="ScaleOperator" parameter="@deathRate" scaleFactor="0.8" weight="1.0"/>
+    <!-- <operator id="deathRateScaler" spec="ScaleOperator" parameter="@deathRate" scaleFactor="0.8" weight="1.0"/> -->
 
-    <operator id="downBR" spec="UpDownOperator" scaleFactor="0.9" weight="1.0">
-        <down idref="birthRate"/>
-        <down idref="deathRate"/>
-    </operator>
-    <operator id="upBR" spec="UpDownOperator" scaleFactor="0.9" weight="1.0">
-        <up idref="birthRate"/>
-        <up idref="deathRate"/>
-    </operator>
+    <!-- <operator id="downBR" spec="UpDownOperator" scaleFactor="0.9" weight="1.0"> -->
+    <!--     <down idref="birthRate"/> -->
+    <!--     <down idref="deathRate"/> -->
+    <!-- </operator> -->
+    <!-- <operator id="upBR" spec="UpDownOperator" scaleFactor="0.9" weight="1.0"> -->
+    <!--     <up idref="birthRate"/> -->
+    <!--     <up idref="deathRate"/> -->
+    <!-- </operator> -->
 
     <!-- Loggers -->
     <logger id="tracelog" spec="Logger" fileName="$(filebase).$(seed).log" logEvery="1000">
