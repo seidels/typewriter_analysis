@@ -26,6 +26,7 @@ library(ggplot2)
 library(tidyr)
 library(boot)
 library(cowplot)
+library(stringr)
 
 ## ---------------------------
 
@@ -46,13 +47,13 @@ for(i in 3:7) {
 # 2nd, map these to an integer: 
 
 # get this from the frequencies: 
-bulk_insert_count <- data.frame(table(unlist(edit_table_by_5[,3:7]),useNA = "always")) %>% arrange(desc(Freq))
+bulk_insert_count <- data.frame(table(unlist(edit_table_by_5[,3:7]))) %>% arrange(desc(Freq))
 bulk_insert_count$Var1 <- substring(bulk_insert_count$Var1, 1,3)
-bulk_insert_count$codes <- as.character(seq(0,20))
-bulk_insert_count <- data.frame(bulk_insert_count$Var1, code=as.character(seq(0,20)))
+bulk_insert_count$codes <- as.character(seq(0,19))
+bulk_insert_count <- data.frame(edit=bulk_insert_count$Var1, code=as.character(seq(0,19)))
 
 pick_code <- function(edit,code_map) {
-  code <- code_map[which(code_map$codes==edit),2]
+  code <- code_map[which(code_map$edit==edit),2]
   return(code)
   
 }
@@ -89,11 +90,19 @@ sample_dataset_for_BEAST <- function(size,dataset,targetBC_index =1) {
 # here we sample 30 sequences from the 1st TargetBC available (default)
 
 
-sampled <- sample_dataset_for_BEAST(30,edit_table_by_5)
-for(i in 1:30) {
+sampled <- sample_dataset_for_BEAST(size=317,dataset=edit_table_by_5)
+
+
+sink("output_xml.txt")
+
+for(i in 1:317) {
   cat(paste0("<sequence id=\"",i-1,"\" spec=\"Sequence\" taxon=\"",i-1,"\"  value=\"",sampled[i],"\"/>"))
+  
+  #cat(paste0("<sequence id=\"",i-1,"\" spec=\"Sequence\" taxon=\"",i-1,"\"  value=\"",sampled[i],"\"/>"))
   cat("\n")
 }
+
+#close(fileConn)
 
 #copy/paste this from the console for insert frequencies
 bulk_insert_count <- data.frame(table(unlist(edit_table_by_5[,3:7]),useNA = "always")) %>% arrange(desc(Freq))
