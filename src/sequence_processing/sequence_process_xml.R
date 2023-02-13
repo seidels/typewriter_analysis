@@ -70,41 +70,40 @@ for(i in 3:7) {
 # concatenate them, adding commas: 
 edit_table_by_5$beast_seq <- apply(edit_table_by_5[,3:7],1,function(x) {str_flatten(x,collapse = ",")})
 
-sample_dataset_for_BEAST(100,4,edit_table_by_5)
+#extract 100 cells from all targetBCs:
 
-
+all_tbcs <- unique(edit_table_by_5$TargetBC)
+all_tbcs <- all_tbcs[1:17]
+sample_dataset_for_BEAST(100,all_tbcs,edit_table_by_5)
 
 
 ##################
 #helper functions#
 ##################
 
-sample_dataset_for_BEAST <- function(n_cells,n_targetBCs,data,name="typewriter_data.txt") {
-  
-sink(name)
-for(i in 1:n_targetBCs) {
-sampled <- sample_targetBCs(size=n_cells,dataset=data,targetBC_index=i)
-cat(paste0("<data  id=\"data_",i,"\" spec=\"Alignment\" name=\"alignment\" >
-            <userDataType spec=\"beast.evolution.datatype.ScarData\" nrOfStates=\"14\"/>"))
-cat("\n")
+sample_dataset_for_BEAST <- function(n_cells,targetBCs,data,name="typewriter_data.txt") {
+
+
+for(i in 1:length(targetBCs)) {
+targetBC <- targetBCs[i]  
+sampled <- sample_targetBCs(size=n_cells,dataset=data,targetBC)
+write( paste0("<data  id=\"data_",targetBC,"\" spec=\"Alignment\" name=\"alignment\" >
+            <userDataType spec=\"beast.evolution.datatype.ScarData\" nrOfStates=\"20\"/>"),name,append = TRUE)
 for(j in 1:n_cells) {
-  cat(paste0("            <sequence spec=\"Sequence\" taxon=\"",j-1,"\"  value=\"",sampled[j],"\"/>"))
-  cat("\n")
-}
-cat("</data>")
-cat("\n")
-cat("\n")
+  write(paste0("            <sequence spec=\"Sequence\" taxon=\"",j-1,"\"  value=\"",sampled[j],"\"/>"),name,append=TRUE)
 
 }
-sink()
+write("</data>",name,append=TRUE)
+
+
+}
+
 }
 
 # sample based on TargetBC 
 # to do check: can there be several copies of the same targetBC per cell? 
 
-sample_targetBCs <- function(size,dataset,targetBC_index =1) {
-  #select all sequences with a specific target BC
-  targetBC <- dataset$TargetBC[targetBC_index]
+sample_targetBCs <- function(size,dataset,targetBC) {
   
   #sample from sequences from this particular TargetBC
   sample <- sample(dataset$beast_seq[which(dataset$TargetBC == targetBC)],size)
@@ -116,9 +115,6 @@ sample_targetBCs <- function(size,dataset,targetBC_index =1) {
 
 
 
-
-
-#close(fileConn)
 
 #copy/paste this from the console for insert frequencies
 bulk_insert_count <- data.frame(table(unlist(edit_table_by_5[,3:7]),useNA = "always")) %>% arrange(desc(Freq))
