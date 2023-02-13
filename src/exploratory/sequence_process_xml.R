@@ -34,6 +34,11 @@ library(stringr)
 
 edit_table_by_5 = read.csv("data/Supplementary_File_2_DataTableMOI19.csv", stringsAsFactors = F, header = T, na.strings=c("","NA"))
 
+
+### process the dataset to a txt format for beast input: trinucleotides are mapped to an integer
+### this dataset is subsampled and saved as txt file as a BEAST Alignment with ScarData 
+
+
 # 1st remove all trinucleotides and convert NAs with NA
 
 for(i in 3:7) {
@@ -41,8 +46,6 @@ for(i in 3:7) {
   edit_table_by_5[which(is.na(edit_table_by_5[,i])),i] <- "NA"
   
 }
-
-
 
 # 2nd, map these to an integer: 
 
@@ -64,15 +67,42 @@ for(i in 3:7) {
   
 }
 
-
 # concatenate them, adding commas: 
 edit_table_by_5$beast_seq <- apply(edit_table_by_5[,3:7],1,function(x) {str_flatten(x,collapse = ",")})
 
+sample_dataset_for_BEAST(100,4,edit_table_by_5)
+
+
+
+
+##################
+#helper functions#
+##################
+
+sample_dataset_for_BEAST <- function(n_cells,n_targetBCs,data,name="typewriter_data.txt") {
+  
+sink(name)
+for(i in 1:n_targetBCs) {
+sampled <- sample_targetBCs(size=n_cells,dataset=data,targetBC_index=i)
+cat(paste0("<data  id=\"data_",i,"\" spec=\"Alignment\" name=\"alignment\" >
+            <userDataType spec=\"beast.evolution.datatype.ScarData\" nrOfStates=\"14\"/>"))
+cat("\n")
+for(j in 1:n_cells) {
+  cat(paste0("            <sequence spec=\"Sequence\" taxon=\"",j-1,"\"  value=\"",sampled[j],"\"/>"))
+  cat("\n")
+}
+cat("</data>")
+cat("\n")
+cat("\n")
+
+}
+sink()
+}
 
 # sample based on TargetBC 
-# can there be several copies of the same targetBC per cell? 
+# to do check: can there be several copies of the same targetBC per cell? 
 
-sample_dataset_for_BEAST <- function(size,dataset,targetBC_index =1) {
+sample_targetBCs <- function(size,dataset,targetBC_index =1) {
   #select all sequences with a specific target BC
   targetBC <- dataset$TargetBC[targetBC_index]
   
@@ -84,23 +114,9 @@ sample_dataset_for_BEAST <- function(size,dataset,targetBC_index =1) {
   
 }
 
-########
-
-#copy/paste the following output from the console for sequences in xml
-# here we sample 30 sequences from the 1st TargetBC available (default)
 
 
-sampled <- sample_dataset_for_BEAST(size=317,dataset=edit_table_by_5)
 
-
-sink("output_xml.txt")
-
-for(i in 1:317) {
-  cat(paste0("<sequence id=\"",i-1,"\" spec=\"Sequence\" taxon=\"",i-1,"\"  value=\"",sampled[i],"\"/>"))
-  
-  #cat(paste0("<sequence id=\"",i-1,"\" spec=\"Sequence\" taxon=\"",i-1,"\"  value=\"",sampled[i],"\"/>"))
-  cat("\n")
-}
 
 #close(fileConn)
 
