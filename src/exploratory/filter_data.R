@@ -81,3 +81,21 @@ edit_table = edit_table[! (is.na(edit_table[, 6]) &
 
 ## Here, we have 3221 cells
 saveRDS(object = edit_table, file = "data/edit_table_filtered.RDS")
+
+
+targetBCs_from_paper = c("ATGGTAAG", "ATTTATAT",
+                         "ATTTGGTT", "GCAGGGTG",
+                         "GTAAAGAT", "TAGATTTT",
+                         "TGCGATTT", "TGGACGAC",
+                         "TGGTTTTG", "TTAGATTG",
+                         "TTCACGTA", "TTGAGGTG",
+                         "TTTCGTGA")
+
+#sort(frequent_target_bcs)
+# Make sure that we get the same 13 TargetBCs as Choi in his paper
+assertthat::are_equal(length(intersect(frequent_target_bcs, targetBCs_from_paper)), 13)
+
+# Save edit table excluding the targetBC that is saturated at the 2nd site
+target_2site = "TTCACGTA"
+edit_table_exclude_2site_target = edit_table[which(! edit_table$TargetBC == target_2site), ]
+saveRDS(object = edit_table_exclude_2site_target, file = "data/edit_table_filtered_exclude2siteTarget.RDS")
