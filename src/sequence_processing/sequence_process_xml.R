@@ -34,7 +34,6 @@ library(stringr)
 
 edit_table_by_5 = read.csv("data/Supplementary_File_2_DataTableMOI19.csv", stringsAsFactors = F, header = T, na.strings=c("","NA"))
 
-
 ### process the dataset to a txt format for beast input: trinucleotides are mapped to an integer
 ### this dataset is subsampled and saved as txt file as a BEAST Alignment with ScarData 
 
@@ -70,18 +69,25 @@ for(i in 3:7) {
 # concatenate them, adding commas: 
 edit_table_by_5$beast_seq <- apply(edit_table_by_5[,3:7],1,function(x) {str_flatten(x,collapse = ",")})
 
-#extract 100 cells from all targetBCs:
+#extract 100 cells from all targetBCs (except the one that only has 2 edits) from paper:
+targetBCs = c("ATGGTAAG","ATTTATAT",
+                         "ATTTGGTT", "GCAGGGTG",
+                         "GTAAAGAT", "TAGATTTT",
+                         "TGCGATTT", "TGGACGAC",
+                         "TGGTTTTG", "TTAGATTG",
+                         "TTGAGGTG",
+                         "TTTCGTGA")
 
-all_tbcs <- unique(edit_table_by_5$TargetBC)
-all_tbcs <- all_tbcs[1:17]
-sample_dataset_for_BEAST(100,all_tbcs,edit_table_by_5)
+
+#here, change all_tbcs with desired vector of targetBCs.
+sample_dataset_for_BEAST(100,targetBCs,edit_table_by_5,"results/analysis_cell_culture_data/simple_100cells_12tbcs/alignment.txt")
 
 
 ##################
 #helper functions#
 ##################
 
-sample_dataset_for_BEAST <- function(n_cells,targetBCs,data,name="typewriter_data.txt") {
+sample_dataset_for_BEAST <- function(n_cells,targetBCs,data,name="alignment.txt") {
 
 
 for(i in 1:length(targetBCs)) {
@@ -106,6 +112,8 @@ write("</data>",name,append=TRUE)
 sample_targetBCs <- function(size,dataset,targetBC) {
   
   #sample from sequences from this particular TargetBC
+  print(targetBC)
+  print(length(dataset$beast_seq[which(dataset$TargetBC == targetBC)]))
   sample <- sample(dataset$beast_seq[which(dataset$TargetBC == targetBC)],size)
   
   #return the sample
