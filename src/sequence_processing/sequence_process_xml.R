@@ -32,7 +32,10 @@ library(stringr)
 
 # load the preprocessed data ---------
 
-edit_table_by_5 = read.csv("data/Supplementary_File_2_DataTableMOI19.csv", stringsAsFactors = F, header = T, na.strings=c("","NA"))
+#edit_table_by_5 = read.csv("data/Supplementary_File_2_DataTableMOI19.csv", stringsAsFactors = F, header = T, na.strings=c("","NA"))
+#load the filtered data: 
+
+edit_table_by_5 = readRDS("data/edit_table_filtered.RDS")
 
 ### process the dataset to a txt format for beast input: trinucleotides are mapped to an integer
 ### this dataset is subsampled and saved as txt file as a BEAST Alignment with ScarData 
@@ -69,7 +72,7 @@ for(i in 3:7) {
 # concatenate them, adding commas: 
 edit_table_by_5$beast_seq <- apply(edit_table_by_5[,3:7],1,function(x) {str_flatten(x,collapse = ",")})
 
-#extract 100 cells from all targetBCs (except the one that only has 2 edits) from paper:
+#extract 100/500 cells from all targetBCs (except the one that only has 2 edits, total 12) from paper:
 targetBCs = c("ATGGTAAG","ATTTATAT",
                          "ATTTGGTT", "GCAGGGTG",
                          "GTAAAGAT", "TAGATTTT",
@@ -81,6 +84,9 @@ targetBCs = c("ATGGTAAG","ATTTATAT",
 
 #here, change all_tbcs with desired vector of targetBCs.
 sample_dataset_for_BEAST(100,targetBCs,edit_table_by_5,"results/analysis_cell_culture_data/simple_100cells_12tbcs/alignment.txt")
+sample_dataset_for_BEAST(500,targetBCs,edit_table_by_5,"results/analysis_cell_culture_data/simple_500cells_12tbcs/alignment.txt")
+sample_dataset_for_BEAST(1000,targetBCs,edit_table_by_5,"results/analysis_cell_culture_data/simple_1000cells_12tbcs/alignment.txt")
+
 
 
 ##################
