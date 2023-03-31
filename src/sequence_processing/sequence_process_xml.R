@@ -126,7 +126,7 @@ if(targetBC == "TGGACGAC" || targetBC == "TGGTTTTG" || targetBC == "TTTCGTGA" ) 
   write( paste0("<data  id=\"data_",targetBC,"\" spec=\"Alignment\" name=\"alignment\" >
             <userDataType spec=\"beast.evolution.datatype.ScarData\" nrOfStates=\"20\"/>"),alignment_name,append = TRUE)
   for(j in 1:n_cells) {
-    write(paste0("            <sequence spec=\"Sequence\" taxon=\"",j-1,"\"  value=\"",str_sub(sampled$beast_seq[j],end =-2),"\"/>"),alignment_name,append=TRUE)
+    write(paste0("            <sequence spec=\"Sequence\" taxon=\"",j-1,"\"  value=\"",str_sub(sampled$beast_seq[j],end =-3),"\"/>"),alignment_name,append=TRUE)
     
   }
 }
