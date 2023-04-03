@@ -79,7 +79,7 @@ targetBCs = c("ATGGTAAG","ATTTATAT",
                          "TGCGATTT", "TGGACGAC",
                          "TGGTTTTG", "TTAGATTG",
                          "TTGAGGTG",
-                         "TTTCGTGA")
+                         "TTTCGTGA","TTCACGTA")
 
 #targetBCs identified as having truncation to 4, they will be processed as such in the sampling
 #TODO IMPLEMENT THIS DIFFERENTLY
@@ -89,20 +89,20 @@ targetBCs = c("ATGGTAAG","ATTTATAT",
 
 #here, SAMPLE WITH 4 SEEDS FOR EACH DATASET SIZE. 
 #this saves a list of cell IDs in the same order as the taxon numbers in the alignments
-sample_dataset_for_BEAST(100,targetBCs,edit_table_by_5,"rerun_sampling/simple_100cells_12tbcs/",1)
-sample_dataset_for_BEAST(100,targetBCs,edit_table_by_5,"rerun_sampling/simple_100cells_12tbcs/",2)
-sample_dataset_for_BEAST(100,targetBCs,edit_table_by_5,"rerun_sampling/simple_100cells_12tbcs/",3)
-sample_dataset_for_BEAST(100,targetBCs,edit_table_by_5,"rerun_sampling/simple_100cells_12tbcs/",4)
+sample_dataset_for_BEAST(100,targetBCs,edit_table_by_5,"/Users/azwaans/typewriter_analysis/results/analysis_cell_culture_data/full_sampling/simple_100cells_13tbcs/",1)
+sample_dataset_for_BEAST(100,targetBCs,edit_table_by_5,"/Users/azwaans/typewriter_analysis/results/analysis_cell_culture_data/full_sampling/simple_100cells_13tbcs/",2)
+sample_dataset_for_BEAST(100,targetBCs,edit_table_by_5,"/Users/azwaans/typewriter_analysis/results/analysis_cell_culture_data/full_sampling/simple_100cells_13tbcs/",3)
+sample_dataset_for_BEAST(100,targetBCs,edit_table_by_5,"/Users/azwaans/typewriter_analysis/results/analysis_cell_culture_data/full_sampling/simple_100cells_13tbcs/",4)
 
-sample_dataset_for_BEAST(500,targetBCs,edit_table_by_5,"rerun_sampling/simple_500cells_12tbcs/",1)
-sample_dataset_for_BEAST(500,targetBCs,edit_table_by_5,"rerun_sampling/simple_500cells_12tbcs/",2)
-sample_dataset_for_BEAST(500,targetBCs,edit_table_by_5,"rerun_sampling/simple_500cells_12tbcs/",3)
-sample_dataset_for_BEAST(500,targetBCs,edit_table_by_5,"rerun_sampling/simple_500cells_12tbcs/",4)
+sample_dataset_for_BEAST(500,targetBCs,edit_table_by_5,"/Users/azwaans/typewriter_analysis/results/analysis_cell_culture_data/full_sampling/simple_500cells_13tbcs/",1)
+sample_dataset_for_BEAST(500,targetBCs,edit_table_by_5,"/Users/azwaans/typewriter_analysis/results/analysis_cell_culture_data/full_sampling/simple_500cells_13tbcs/",2)
+sample_dataset_for_BEAST(500,targetBCs,edit_table_by_5,"/Users/azwaans/typewriter_analysis/results/analysis_cell_culture_data/full_sampling/simple_500cells_13tbcs/",3)
+sample_dataset_for_BEAST(500,targetBCs,edit_table_by_5,"/Users/azwaans/typewriter_analysis/results/analysis_cell_culture_data/full_sampling/simple_500cells_13tbcs/",4)
 
-sample_dataset_for_BEAST(1000,targetBCs,edit_table_by_5,"rerun_sampling/simple_1000cells_12tbcs/",1)
-sample_dataset_for_BEAST(1000,targetBCs,edit_table_by_5,"rerun_sampling/simple_1000cells_12tbcs/",2)
-sample_dataset_for_BEAST(1000,targetBCs,edit_table_by_5,"rerun_sampling/simple_1000cells_12tbcs/",3)
-sample_dataset_for_BEAST(1000,targetBCs,edit_table_by_5,"rerun_sampling/simple_1000cells_12tbcs/",4)
+sample_dataset_for_BEAST(1000,targetBCs,edit_table_by_5,"/Users/azwaans/typewriter_analysis/results/analysis_cell_culture_data/full_sampling/simple_1000cells_13tbcs/",1)
+sample_dataset_for_BEAST(1000,targetBCs,edit_table_by_5,"/Users/azwaans/typewriter_analysis/results/analysis_cell_culture_data/full_sampling/simple_1000cells_13tbcs/",2)
+sample_dataset_for_BEAST(1000,targetBCs,edit_table_by_5,"/Users/azwaans/typewriter_analysis/results/analysis_cell_culture_data/full_sampling/simple_1000cells_13tbcs/",3)
+sample_dataset_for_BEAST(1000,targetBCs,edit_table_by_5,"/Users/azwaans/typewriter_analysis/results/analysis_cell_culture_data/full_sampling/simple_1000cells_13tbcs/",4)
 
 
 
@@ -114,8 +114,8 @@ sample_dataset_for_BEAST <- function(n_cells,targetBCs,data,output_folder="sampl
   set.seed(seednr)
 alignment_name <- paste0(output_folder,"alignment_seed",seednr,".txt")
 cell_ID_name <- paste0(output_folder,"cell_ids_seed",seednr,".txt")
-
 cell_sample <- sample_cells(size=n_cells,dataset=data)
+
 for(i in 1:length(cell_sample)) {
   write(cell_sample[i],cell_ID_name,append=TRUE)
 }
@@ -129,7 +129,14 @@ if((targetBC == "TGGACGAC") | (targetBC == "TGGTTTTG") | (targetBC == "TTTCGTGA"
     write(paste0("            <sequence spec=\"Sequence\" taxon=\"",j-1,"\"  value=\"",str_sub(sampled$beast_seq[j],end =-3),"\"/>"),alignment_name,append=TRUE)
     
   }
-}else{
+} else if (targetBC == "TTCACGTA") {
+  write( paste0("<data  id=\"data_",targetBC,"\" spec=\"Alignment\" name=\"alignment\" >
+            <userDataType spec=\"beast.evolution.datatype.ScarData\" nrOfStates=\"20\"/>"),alignment_name,append = TRUE)
+  for(j in 1:n_cells) {
+    write(paste0("            <sequence spec=\"Sequence\" taxon=\"",j-1,"\"  value=\"",str_sub(sampled$beast_seq[j],end =-7),"\"/>"),alignment_name,append=TRUE)
+    
+  }
+} else{
   write( paste0("<data  id=\"data_",targetBC,"\" spec=\"Alignment\" name=\"alignment\" >
             <userDataType spec=\"beast.evolution.datatype.ScarData\" nrOfStates=\"20\"/>"),alignment_name,append = TRUE)
   for(j in 1:n_cells) {
@@ -138,6 +145,7 @@ if((targetBC == "TGGACGAC") | (targetBC == "TGGTTTTG") | (targetBC == "TTTCGTGA"
   }
   
   
+
 }
 
 write("</data>",alignment_name,append=TRUE)
