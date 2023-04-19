@@ -1,8 +1,9 @@
 ## ---------------------------
 ##
-## Script name:
+## Script name: Filter by selected barcodes
 ##
-## Purpose of script:
+## Purpose of script: Keep only cells that have all selected
+## barcodes.
 ##
 ## Author: Sophie Seidel
 ##
@@ -22,21 +23,9 @@
 
 setwd("~/Projects/typewriter_analysis/")      # Sophie's working directory (mac)
 
-## ---------------------------
-
-options(scipen = 6, digits = 4) # I prefer to view outputs in non-scientific notation
-
-## ---------------------------
-
-## load up the packages we will need:  (uncomment as required)
-
-require(tidyverse)
-
-## ---------------------------
-
 ## load up our functions into memory
 
-# source("functions/summarise_data.R")
+source("src/preliminary_gastruloid/filtering/helper_functions.R")
 
 ## ---------------------------
 
@@ -45,7 +34,7 @@ output_file = "data/preliminary_gastruloid/mGASv2_Lane2_CellByTape_filtered_for_
 ## read files
 
 dat_file = "data/preliminary_gastruloid/mGASv2_Lane2_CellByTape_10X_bamExtractV2_t3_collapse.csv"
-dat = read.csv(datFile)
+dat = read.csv(dat_file)
 
 selected_barcode_file = "data/preliminary_gastruloid/mGASv2_TargetBC_selected8.csv"
 selected_barcodes_dat = read.csv(selected_barcode_file)
