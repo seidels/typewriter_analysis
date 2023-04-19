@@ -65,5 +65,7 @@ dat_filtered_cells = dat[which(dat$Cell %in% cells_filtered), ]
 
 dat_filtered_cells_barcodes = dat_filtered_cells[which(dat_filtered_cells$TargetBC %in% selected_barcodes), ]
 
+
+## save output
 saveRDS(object = dat_filtered_cells_barcodes, file = output_file)
 
