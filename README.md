@@ -7,3 +7,4 @@ tracing data. Find the publication [here](https://doi.org/10.1038/s41586-022-049
 2) simulation: Code for simulating the tree; Code/Ideas on how to get priors on parameters based on the HEK data and paper 
 3) validations: well-calibrated simulations on a fixed tree for improving versions of the model implementation
 4) cell culture analysis: Code analysing the HEK cell culture data
+5) preliminary gastruloid analysis
