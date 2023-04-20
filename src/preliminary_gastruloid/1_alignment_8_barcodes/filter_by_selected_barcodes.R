@@ -25,7 +25,7 @@ setwd("~/Projects/typewriter_analysis/")      # Sophie's working directory (mac)
 
 ## load up our functions into memory
 
-source("src/preliminary_gastruloid/filtering/helper_functions.R")
+source("src/useful_scripts_across_categories.R")
 
 ## ---------------------------
 
