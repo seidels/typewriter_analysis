@@ -1,8 +1,8 @@
 ## ---------------------------
 ##
-## Script name:
+## Script name: write alignments
 ##
-## Purpose of script:
+## Purpose of script: write alignments given targets per cell input data
 ##
 ## Author: Sophie Seidel
 ##
