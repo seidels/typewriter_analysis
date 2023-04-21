@@ -1,0 +1,66 @@
+---
+title: "explore_gastruloid_data"
+author: "Sophie Seidel"
+date: "2023-04-21"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "~/Projects/typewriter_analysis/")
+## load up the packages we will need:  (uncomment as required)
+library(ggplot2)
+library(reshape2)
+## ---------------------------
+
+## load up our functions into memory
+source("src/useful_scripts_across_categories.R")
+```
+
+```{r io}
+# output dir
+plot_dir = "results/preliminary_gastruloid/0_explore_dataset/"
+
+# input file
+filtered_dat_file = "data/preliminary_gastruloid/mGASv2_Lane2_CellByTape_filtered_for_8barcodes.RDS"
+filtered_dat = readRDS(filtered_dat_file)
+```
+
+```{r different_sequences}
+# Reduce to cells with different sequences
+filtered_dat_unique_cells = unique(filtered_dat[, 2:7])
+```
+
+
+```{r edit outcomes all sequences}
+### plot edit outcomes at sites 1 - 5
+edits_melted = melt(filtered_dat, id.vars = c("Cell", "TargetBC"))
+edits_melted = edits_melted[edits_melted$value != "None", ]
+
+g =
+  ggplot(data = subset(x = edits_melted, edits_melted$variable %in% c("Site1", "Site2", "Site3", "Site4", "Site5")), aes(x=value)) +
+  facet_grid(variable ~ TargetBC)+
+  geom_bar()+
+  theme_minimal()+
+  
+  theme(axis.text.x = element_blank())
+g
+
+```
+
+```{r edit outcomes unique sequences}
+
+### plot edit outcomes at sites 1 - 5
+edits_melted = melt(filtered_dat_unique_cells, id.vars = c("TargetBC"))
+edits_melted = edits_melted[edits_melted$value != "None", ]
+
+g =
+  ggplot(data = subset(x = edits_melted, edits_melted$variable %in% c("Site1", "Site2", "Site3", "Site4", "Site5")), aes(x=value)) +
+  facet_grid(variable ~ TargetBC)+
+  geom_bar()+
+  theme_minimal()+
+  theme(axis.text.x = element_blank())
+g
+```
+
+

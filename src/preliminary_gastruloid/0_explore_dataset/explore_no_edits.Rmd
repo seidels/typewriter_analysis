@@ -1,0 +1,66 @@
+---
+title: "explore_gastruloid_data"
+author: "Sophie Seidel"
+date: "2023-04-21"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "~/Projects/typewriter_analysis/")
+## load up the packages we will need:  (uncomment as required)
+library(ggplot2)
+library(reshape2)
+## ---------------------------
+
+## load up our functions into memory
+source("src/useful_scripts_across_categories.R")
+```
+
+```{r io}
+# output dir
+plot_dir = "results/preliminary_gastruloid/0_explore_dataset/"
+
+# input file
+filtered_dat_file = "data/preliminary_gastruloid/mGASv2_Lane2_CellByTape_filtered_for_8barcodes.RDS"
+filtered_dat = readRDS(filtered_dat_file)
+```
+
+```{r different_sequences}
+# Reduce to cells with different sequences
+filtered_dat_unique_cells = unique(filtered_dat[, 2:7])
+```
+
+
+```{r n edits all seqs}
+filtered_dat$nrOfEdits = get_nr_of_edits(filtered_dat[, 1:7], unedited_symbol = "None")
+
+g = ggplot(filtered_dat, aes(x=nrOfEdits)) +
+  facet_wrap(~ TargetBC)+
+  geom_histogram()+
+  theme_minimal() +
+  ggtitle("Number of edits per targetBC", subtitle = "For all sequences")
+g
+```
+
+Next, we only keep sequences that are unique.
+
+
+```{r n edits unique seqs}
+## plot number of edits at different targetBCs
+filtered_dat_unique_cells$nrOfEdits = get_nr_of_edits(filtered_dat_unique_cells, unedited_symbol = "None")
+
+g = ggplot(filtered_dat_unique_cells, aes(x=nrOfEdits)) +
+  facet_wrap(~ TargetBC)+
+  geom_histogram()+
+  theme_minimal()+
+  ggtitle("Number of edits per targetBC", subtitle = "For unique sequences")
+g
+```
+
+
+We can make two observations from the above plots:
+
+ - the distribution of the number of edits shifts when filtering cell with identical sequences. These difference are most likely a consequence of the population process.
+ - Some targets (e.g. TAACGAAGATTT, TTGATAACGTGA) show notable difference to the edit distributions in other targets. Hence, we will use a clock per target.
+ 
