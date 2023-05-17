@@ -1,0 +1,176 @@
+---
+title: "typewriter_plots_gastruloids"
+output: html_document
+---
+```{r setup, include=FALSE}
+library(tidyverse)
+library(lubridate)
+library(dirmult)
+library(coda)
+
+setwd("/Users/azwaans/typewriter_analysis/results/preliminary_gastruloid/skyline_gastruloid_100/")
+typewriter_file <- "prelim_gastruloid_8targetBCs_running_100.1.log"
+trinucleotides_file <- "/Users/azwaans/typewriter_analysis/src/preliminary_gastruloid/1_alignment_8_barcodes_100/conversion_table_100.csv"
+selected_barcode_file = "/Users/azwaans/typewriter_analysis/data/mGASv2_TargetBC_selected8.csv"
+
+```
+
+```{r}
+#Read in typewriter log and trim 10% burn-in
+typewriter <- read.table(typewriter_file, header = T) %>% slice_tail(prop = 0.10)
+
+#Tell coda that this is an mcmc file, and calculate 95% HPD values
+typewriter_mcmc <- as.mcmc(typewriter)
+summary_data <- as.data.frame(HPDinterval(typewriter_mcmc))
+
+#simple-built-in plot
+plot(typewriter_mcmc)
+
+#plot violin plots for specific parameter
+typewriter_long <- pivot_longer(typewriter,cols = seq(2,ncol(typewriter)))
+
+#plotting only insert rates: 
+insert_rates <- typewriter[,c(14:42)]
+
+##find trinucleotide mapping:
+trinucleotides <- read.csv(file=trinucleotides_file,header = TRUE)
+trinucleotides <- substr(trinucleotides$edits,1,3)
+trinucleotides <- trinucleotides[1:29]
+trinucleotides_names <- paste0(trinucleotides,"_Prob") 
+names(insert_rates) <- trinucleotides_names
+
+##add a column with prior
+insert_rates <- bind_cols(insert_rates,Prior=rdirichlet(nrow(insert_rates), rep(1.5,29))[,2])
+insert_rates_long <- pivot_longer(insert_rates,seq(1,ncol(insert_rates)))
+insert_rates_long$name <- factor(insert_rates_long$name, levels = c(trinucleotides_names,"Prior")) 
+
+p <- ggplot(insert_rates_long,aes(x=name,value,fill=name)) +
+    geom_violin() + 
+    xlab("Clock rate estimates") + 
+    ylab("Value") + 
+    scale_fill_manual(values=c(rep("coral",29),"orange")) + 
+    theme_bw() + 
+    theme(legend.position = "none" ,axis.text.x = element_text(angle = 90)) 
+p
+```
+
+```{r}
+#plotting only birth rates:
+birth_rates <- typewriter[,43:45]
+
+##add a column with prior
+birth_rates <- bind_cols(birth_rates,Prior=rlnorm(nrow(birth_rates), meanlog = 0.1, sdlog = 1.0))
+birth_rates_long <- pivot_longer(birth_rates,seq(1,ncol(birth_rates)))
+
+p <- ggplot(birth_rates_long,aes(x=name,value,fill=name)) +
+     geom_violin() + 
+     xlab("Birth rate estimates") + 
+     theme(axis.text.x = element_text(angle = 90)) + 
+     ylab("Value") + theme_bw() + 
+     scale_fill_manual(values=c(rep("coral",3),"orange")) +
+     theme(legend.position = "none" ,axis.text.x = element_text(angle = 90))
+p
+```
+```{r}
+#plotting only death rates:
+death_rates <- typewriter[,47:49]
+
+##add a column with prior
+death_rates <- bind_cols(death_rates,Prior=rlnorm(nrow(death_rates), meanlog = -0.4, sdlog = 1.0))
+death_rates_long <- pivot_longer(death_rates,seq(1,ncol(death_rates)))
+
+p <- ggplot(death_rates_long,aes(x=name,value,fill=name)) +
+     geom_violin() + 
+     xlab("Death rate estimates") + 
+     theme(axis.text.x = element_text(angle = 90)) + 
+     ylab("Value") + theme_bw() + 
+     scale_fill_manual(values=c(rep("coral",3),"orange")) +
+     theme(legend.position = "none" ,axis.text.x = element_text(angle = 90))
+p
+```
+```{r}
+#plotting only death rates:
+birth_rates <- typewriter[,43:45]
+death_rates <- typewriter[,47:49]
+
+growth_rates <- birth_rates - death_rates
+
+##add a column with prior
+growth_rates <- bind_cols(growth_rates,Prior=rlnorm(nrow(growth_rates), meanlog = 0.1, sdlog = 1.0) - rlnorm(nrow(growth_rates), meanlog = -0.4, sdlog = 1.0))
+names(growth_rates) <- c("growthRate.1","growthRate.2","growthRate.3","Prior")
+growth_rates_long <- pivot_longer(growth_rates,seq(1,ncol(growth_rates)))
+
+p <- ggplot(growth_rates_long,aes(x=name,value,fill=name)) +
+     geom_violin() + 
+     xlab("Growth rate estimates") + 
+     theme(axis.text.x = element_text(angle = 90)) + 
+     ylab("Value") + theme_bw() + 
+     scale_fill_manual(values=c(rep("coral",3),"orange")) +
+     theme(legend.position = "none" ,axis.text.x = element_text(angle = 90))
+p
+```
+
+
+
+```{r}
+#plotting only clock rates:
+insert_rates <- typewriter[,c(50:57)]
+
+##find targetBC names:
+selected_barcodes_dat = read.csv(selected_barcode_file)
+selected_barcodes = selected_barcodes_dat$TargetBC
+targetBCs <- selected_barcodes
+targetBCs_names <- paste0(targetBCs,"_Rate") 
+names(insert_rates) <- targetBCs_names
+
+##add a column with prior
+insert_rates <- bind_cols(insert_rates,Prior=rlnorm(nrow(insert_rates), meanlog = -2, sdlog = 0.5))
+insert_rates_long <- pivot_longer(insert_rates,seq(1,ncol(insert_rates)))
+insert_rates_long$name <- factor(insert_rates_long$name, levels = c(targetBCs_names,"Prior")) 
+
+p <- ggplot(insert_rates_long,aes(x=name,value,fill=name)) +
+     geom_violin() + 
+     xlab("Clock rate estimates") + 
+     theme(axis.text.x = element_text(angle = 90)) + 
+     ylab("Value") + theme_bw() + 
+     scale_fill_manual(values=c(rep("coral",27),"orange")) +
+     theme(legend.position = "none" ,axis.text.x = element_text(angle = 90))
+p
+```
+
+
+
+
+```{r}
+#plotting the growth rate
+growth <- typewriter_mcmc[,c("birthRate.1","birthRate.2","birthRate.3")] - typewriter_mcmc[,c("deathRate.1","deathRate.2","deathRate.3")]
+HPD <- HPDinterval(growth)
+
+mean <- as.numeric(sapply( data.frame(growth),mean))
+up_bd <- as.numeric(HPD[,"upper"])
+low_bd <- as.numeric(HPD[,"lower"])
+
+mean <- c(mean,mean[3])
+up_bd <- c(up_bd,up_bd[3])
+low_bd <- c(low_bd,low_bd[3])
+
+#fromatting the timeline into dates:
+timeline_format <- c(0,3.33,6.66,10) 
+
+#creating a dataframe and formatting for step plot
+data_growth <- data.frame(timeline_format,mean,low_bd,up_bd)
+colnames(data_growth) <- c("Date","Mean","95% HPI lower","95% HPI upper")
+df_growth <- pivot_longer(data_growth,c("Mean","95% HPI lower","95% HPI upper"),names_to = "stat",values_to = "value")
+
+p_growth <- ggplot(df_growth, aes(x=Date, y = value, key = stat, linetype = stat )) +
+            scale_color_manual(values=c("coral","coral","coral")) +
+            scale_linetype_manual(values=c("dotted","dotted","solid")) + 
+            geom_step() + 
+            xlab("Time") + 
+            ylab("Growth rate estimate") + 
+            theme_bw()
+
+p_growth 
+```
+
+
