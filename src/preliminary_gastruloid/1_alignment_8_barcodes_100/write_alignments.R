@@ -2,11 +2,11 @@
 ##
 ## Script name: write alignments
 ##
-## Purpose of script: write alignments given targets per cell input data
+## Purpose of script: subsample and write alignments given targets per cell input data filtered
 ##
-## Author: Sophie Seidel
+## Author: Sophie Seidel/Antoine Zwaans
 ##
-## Date Created: 2023-04-19
+## Date Created: 2023-05-16
 ##
 ## Copyright (c) Sophie Seidel, 2023
 ## Email: sophie.seidel@posteo.de
@@ -33,12 +33,12 @@ source("src/useful_scripts_across_categories_with_annotations.R")
 ## ---------------------------
 
 # output files
-alignment_file = "alignment_filtered_for_8barcodes_100.xml"
-integers_dat_file = "edits_to_integer_map_100.csv"
-conversion_table_file = "conversion_table_100.csv"
+alignment_file = "results/preliminary_gastruloid/1_alignment_8_barcodes_100/alignment_filtered_for_8barcodes_100.xml"
+integers_dat_file = "results/preliminary_gastruloid/1_alignment_8_barcodes_100/edits_to_integer_map_100.csv"
+conversion_table_file = "results/preliminary_gastruloid/1_alignment_8_barcodes_100/conversion_table_100.csv"
 
 # input file
-filtered_dat_file = "gastruloid_subsample.RDS"
+filtered_dat_file = "data/preliminary_gastruloid/mGASv2_Lane2_CellByTape_filtered_for_8barcodes.RDS"
 filtered_dat = readRDS(filtered_dat_file)
 
 #subsample 100 cells:
@@ -68,10 +68,8 @@ write.csv(x = integers_dat, file = integers_dat_file)
 # write alignment
 for (targetBC in unique(integers_dat$TargetBC)){
 
-  print(targetBC)
   write_targetBC_alignment_to_xml(targets_per_cell_dat = integers_dat,
                                   filename = alignment_file,
                                   targetBC = targetBC)
 }
 
-integers_dat
