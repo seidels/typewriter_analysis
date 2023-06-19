@@ -1,0 +1,77 @@
+---
+title: "typewriter_gastruloid_plots"
+output: html_document
+---
+
+```{r, setup, include=FALSE}
+library(tidyverse)
+library(lubridate)
+library(dirmult)
+library(tidyverse)
+library(coda)
+```
+
+
+```{r include=FALSE}
+typewriter_file <- "../../../results/analysis_cell_culture_data/inference_results/single_clock/typewriter_model_real_13_100_seed1.1.log"
+#Read in typewriter log and trim 10% burn-in
+typewriter <- read.table(typewriter_file, header = T) %>% slice_tail(prop = 0.10)
+```
+
+
+```{r}
+#plotting only insert rates: 
+insert_rates <- typewriter[,c(7:25)]
+trinucleotides <- c("CAT","CCG","GCC","ATA","GAT","ACG","ACA","TCG","TAT","GCT","CTA","TGT","AGA","TAA","CAG","TAG","GAG","ACC","GCG")
+trinucleotides_names <- paste0(trinucleotides,"_Prob") 
+names(insert_rates) <- trinucleotides_names
+insert_rates <- bind_cols(insert_rates,Prior=rdirichlet(nrow(insert_rates), rep(1.5,19))[,2])
+
+insert_rates_long <- pivot_longer(insert_rates,seq(1,ncol(insert_rates)))
+
+insert_rates_long$name <- factor(insert_rates_long$name, levels = c(trinucleotides_names,"Prior")) 
+
+p_insert <- ggplot(insert_rates_long,aes(x=name,value,fill=name)) + theme_bw() + ylim(c(0,0.2)) +
+    geom_violin() + xlab("Insert probability estimates") + theme(axis.text.x = element_text(angle = 90)) + ylab("Value")+  theme(legend.position = "none" ) + scale_fill_manual(values=c(rep("coral",19),"orange"))
+p_insert
+```
+
+```{r}
+#plotting the clock rate estimate:
+clock_rate <- typewriter[,"clockRate"]
+  
+#data.frame(name=rep("clockRate",nrow(typewriter)),value=typewriter[,"clockRate"])
+clock_rate <- bind_cols(clockRate=clock_rate,Prior=rlnorm(length(clock_rate), meanlog = -2, sdlog = 0.5))
+clock_rate_long <- pivot_longer(clock_rate,seq(1,ncol(clock_rate)))
+
+p_clock <- ggplot(clock_rate_long,aes(x=name,value,fill=name)) + theme_bw() + ylim(c(0,0.5)) +
+     geom_violin() + xlab("Clock rate estimate") + ylab("Value") + theme(legend.position = "none" ) +      scale_fill_manual(values=c("coral","orange"))
+p_clock
+```
+
+
+```{r}
+#plotting the apoptosis rate estimate: 
+d_rate <- typewriter[,"deathRate"] 
+d_rate <- bind_cols(ApoptosisRate=d_rate,PriorApoptosisRate=rlnorm(length(d_rate), meanlog = -2, sdlog = 1))
+d_rate_long <- pivot_longer(d_rate,seq(1,ncol(d_rate)))
+#d_rate_long$name <- factor(d_rate_long$name, levels = c("divisionRate","PriorDivisionRate"))
+
+p_death <- ggplot(d_rate_long, aes(x=name,value,fill=name)) + theme_bw() +
+    geom_violin() + theme(legend.position = "none" ) + xlab("Apoptosis rate estimate") + ylab("Value") +  scale_fill_manual(values=c("coral","orange"))
+
+p_death
+```
+
+
+```{r}
+#plotting the division rate estimate:
+b_rate <- typewriter[,"birthRate"]
+b_rate <- bind_cols(DivisionRate=b_rate,PriorDivisionRate=rlnorm(length(b_rate), meanlog = -0.6, sdlog = 1))
+b_rate_long <- pivot_longer(b_rate,seq(1,ncol(b_rate)))
+#b_rate_long$name <- factor(b_rate_long$name, levels = c("divisionRate","PriorDivisionRate"))
+
+p_birth <- ggplot(b_rate_long, aes(x=name,value,fill=name)) + theme_bw() + ylim(c(0,2.5))
+    geom_violin() + theme(legend.position = "none" ) + xlab("Division rate estimate") + ylab("Value") +  scale_fill_manual(values=c("coral","orange"))
+p_birth
+```
