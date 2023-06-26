@@ -1,0 +1,68 @@
+<beast version="2.0"
+       namespace="beast.pkgmgmt:beast.base.core:beast.base.inference
+                 :beast.core.util
+                 :beast.core.parameter
+                 :beast.evolution.alignment
+                 :beast.evolution.likelihood
+                 :beast.evolution.tree
+                 :beast.evolution.tree.coalescent
+                 :beast.evolution.sitemodel
+                 :beast.evolution.substitutionmodel
+                 :beast.evolution.operators
+                 :beast.math.distributions
+                 :feast.simulation
+                 :bdmmprime.distribution
+                 :bdmmprime.parameterization
+                 :bdmmprime.mapping">
+
+
+    <!-- edit probabilities -->
+    <parameter id="editProbs" spec="parameter.RealParameter">
+        0.0277809923086177 0.163266590406445 0.157689134044409 0.0858551823497424 0.14881849550613 0.110415770354848 0.0976965453320326 0.0422864837731308 0.0212393168228608 0.0279922754158425 0.042595134236652 0.0562839070853184 0.0180801723639712
+    </parameter>
+
+    <!-- clock rate -->
+    <parameter id="clockRate"
+               spec="RealParameter" value="$(clock)"/>
+    <!--parameter id="cut" spec="RealParameter" value="10"
+	       estimate="false" /-->
+
+    <!-- origin -->
+    <origin id="origin" spec="RealParameter" value="5"/> <!-- Length of simulation -->
+
+
+    <stateNode spec='beast.base.evolution.tree.TreeParser' id='simulatedTree_cut_time_15' IsLabelledNewick='true' adjustTipHeights='false'
+               newick='(l1:1.103930759,((l2:0.2264792289,l3:0.2264792289)847:0.133820447,l4:0.3602996759)848:0.7436310829)849:0'/>
+
+    <!-- tree input if provided as file -->
+<!--    <stateNode spec='feast.fileio.TreeFromNewickFile' id='simulatedTree' fileName="simulate_tree.1234.newick"-->
+<!--               IsLabelledNewick="true" adjustTipHeights="false" />-->
+
+    <run spec="GPSimulator" nSims="1">
+
+      <!-- simulate sequence -->
+	<simulationObject id="seqAlign" spec="typewriter.evolution.simulation.SimulatedTypeWriterAlignment"
+                          outputFileName="./typewriter_data.clock-$(clock)_cut-time-20.seed-$(seed).alignment.nexus"
+                          numberOfTargets="1" nrOfInsertionsPerTarget="5"
+                          tree="@simulatedTree_cut_time_20" origin="@origin">
+
+            <userDataType spec="beast.base.evolution.datatype.IntegerData"/>
+
+            <siteModel spec="beast.base.evolution.sitemodel.SiteModel" mutationRate="@clockRate">
+
+
+                <substModel id="TypeWriterSubstModel"
+                            spec="typewriter.evolution.substitutionmodel.TypewriterSubstitutionModel"
+                            editProbabilities="@editProbs" >
+		  
+                    <frequencies id="freq"
+                                 spec="beast.base.evolution.substitutionmodel.Frequencies"
+                                 frequencies="1.0 0 0 0 0 0 0 0 0 0 0 0 0 0" estimate="false"/>
+                </substModel>
+            </siteModel>
+            <branchRateModel id="StrictClock.c:h3n2_2deme" spec="beast.base.evolution.branchratemodel.StrictClockModel" clock.rate="1.0"/>
+        </simulationObject>
+	
+
+    </run>
+</beast>
