@@ -73,9 +73,10 @@ edits_per_target_barcode[which(edits_per_target_barcode$max_edits < 5), ]
 g = ggplot(edit_table_subset, aes(x=nrOfEdits)) +
   facet_wrap(~ TargetBC)+
   geom_histogram()+
-  theme_minimal()
+  theme_minimal()+
+  xlab("# insertions")
 g
-ggsave("./results/exploratory/nr_edit_per_targetBC.pdf")
+ggsave("./results/exploratory/nr_edit_per_targetBC.pdf", width = 30, units = "cm")
 
 ## TODO Control for the number of cells by duplication
 edit_table_subset_reduced = unique(edit_table_subset[, 2:7])
@@ -84,10 +85,11 @@ edit_table_subset_reduced$nrOfEdits = get_nr_of_edits(edit_table_subset_reduced)
 g = ggplot(edit_table_subset_reduced, aes(x=nrOfEdits)) +
   facet_wrap(~ TargetBC)+
   geom_histogram()+
+  xlab("# insertions")+
   theme_minimal()
 g
 
-ggsave("./results/exploratory/nr_unique_edits_per_targetBC.pdf")
+ggsave("./results/exploratory/nr_unique_edits_per_targetBC.pdf", width = 30, units = "cm")
 
 get_rate_from_fraction_edited = function(fraction_edited, edit_duration){
 

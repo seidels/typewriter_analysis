@@ -20,11 +20,12 @@
 
     <!-- simulate tree -->
     <simulationObject spec="bdmmprime.trajectories.simulation.SimulatedTree"
-                      id="simulatedTree" treeFileName="$(outputDir)/$(filebase).$(seed).newick"
+                      id="simulatedTree"
+		      treeFileName="$(outputDir)/$(filebase).$(seed).newick" 
                       minSamples="1" simulateUntypedTree="True">
 
       <parameterization spec="CanonicalParameterization">
-	<origin id="origin" spec="RealParameter" value="25"/> <!-- Length of simulation -->
+	<processLength id="origin" spec="RealParameter" value="25"/> <!-- Length of simulation -->
 	<typeSet id="typeSet" spec="bdmmprime.parameterization.TypeSet" value="0"/>
 
 	<!-- Fix phylodynamic parameters -->
@@ -42,7 +43,7 @@
 	</samplingRate>
 	
 	<rhoSampling spec="TimedParameter" typeSet="@typeSet"
-		     times="25" timesAreAges="False" values="0.0003" origin="@origin"/>
+		     times="25" timesAreAges="False" values="0.0003" processLength="@origin"/>
 
 	<removalProb spec="SkylineVectorParameter" typeSet="@typeSet">
           <skylineValues spec="RealParameter" value="1.0"/>

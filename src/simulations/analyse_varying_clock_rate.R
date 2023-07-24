@@ -42,10 +42,11 @@ plot_dir = "../../../src/simulations/plots/vary_clock_rates/"
 
 clock_rates = c(0.01, 0.1, 0.3)
 
+seed = 1
 for (clock_rate in clock_rates){
 
   # read and process alignment
-  alignment_file = paste0("simulation.clockRate=", clock_rate, ".1.alignment.nexus")
+  alignment_file = paste0("simulation.clockRate=", clock_rate, ".", seed, ".alignment.nexus")
   dat = ReadCharacters(filepath = alignment_file)
   dat = as.data.frame(dat[ ,c(1,3,5,7,9)]) #remove columns that only contain commas
   colnames(dat) = c("Site1", "Site2", "Site3", "Site4", "Site5")
@@ -56,7 +57,25 @@ for (clock_rate in clock_rates){
     geom_histogram()+
     theme_minimal()+
     ylim(0, 3700)
-  ggsave(filename = paste0(plot_dir, "number_of_edits_clock_", clock_rate, ".pdf"))
+  ggsave(filename = paste0(plot_dir, "number_of_edits_clock_", clock_rate, "_", seed, ".pdf"))
+}
+
+seed = 4
+for (clock_rate in clock_rates){
+
+  # read and process alignment
+  alignment_file = paste0("simulation.clockRate=", clock_rate, ".", seed, ".alignment.nexus")
+  dat = ReadCharacters(filepath = alignment_file)
+  dat = as.data.frame(dat[ ,c(1,3,5,7,9)]) #remove columns that only contain commas
+  colnames(dat) = c("Site1", "Site2", "Site3", "Site4", "Site5")
+  dat$nrOfEdits = get_nr_of_edits(dat, unedited_char = "0")
+
+  # plot number of edits
+  g = ggplot(dat, aes(x=nrOfEdits)) +
+    geom_histogram()+
+    theme_minimal()+
+    ylim(0, 3700)
+  ggsave(filename = paste0(plot_dir, "number_of_edits_clock_", clock_rate, "_", seed, ".pdf"))
 }
 
 
