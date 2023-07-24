@@ -2,3 +2,4 @@
 *.trees
 *.nexus
 *.newick
+.Rproj.user
