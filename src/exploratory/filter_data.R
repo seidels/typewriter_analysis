@@ -23,7 +23,8 @@ setwd("~/Projects/typewriter_analysis/")
 
 # load the preprocessed data ---------
 
-edit_table = read.csv("data/Supplementary_File_2_DataTableMOI19.csv", stringsAsFactors = F, header = T, na.strings=c("","NA"))
+edit_table = read.csv("data/Supplementary_File_2_DataTableMOI19.csv", stringsAsFactors = F,
+                      header = T, na.strings=c("","NA"))
 
 ## filtering
 ### filter out entries that have no TargetBC or UMI
@@ -31,7 +32,7 @@ edit_table = edit_table[which(!(is.na(edit_table$TargetBC))), ]
 edit_table = edit_table[which(!(is.na(edit_table$nUMI))), ]
 edit_table = edit_table[which(!(is.na(edit_table$Cell))), ]
 
-### filter out cells that do not have the 13 most frequent TargetBCs
+### filter out cells that do not have the 13 most frequent TargetBCs && assert that no cell has the same targetBC twice
 frequency_of_target_bcs = as.data.frame(table(edit_table$TargetBC, useNA = "ifany"))
 frequency_of_target_bcs = frequency_of_target_bcs[order(frequency_of_target_bcs$Freq, decreasing = T), ]
 frequent_target_bcs = frequency_of_target_bcs[1:13, "Var1"]
@@ -42,6 +43,11 @@ for (cell in unique(edit_table$Cell)){
   print(cell)
 
   cell_target_bcs = edit_table[which(edit_table$Cell == cell), "TargetBC"]
+
+  if (length(cell_target_bcs) != length(unique(cell_target_bcs))){
+    exit("Same target bc in one cell")
+  }
+
   keep_cell = all(is.element(el = frequent_target_bcs, set = cell_target_bcs))
 
   if (! keep_cell){
@@ -79,6 +85,9 @@ edit_table = edit_table[! (is.na(edit_table[, 6]) &
                                        !(is.na(edit_table[, 7]))), ]
 
 
+## Assert that no targetBC occurs twice in the same cell
+
+
 ## Here, we have 3221 cells
 saveRDS(object = edit_table, file = "data/edit_table_filtered.RDS")
 
@@ -98,4 +107,6 @@ assertthat::are_equal(length(intersect(frequent_target_bcs, targetBCs_from_paper
 # Save edit table excluding the targetBC that is saturated at the 2nd site
 target_2site = "TTCACGTA"
 edit_table_exclude_2site_target = edit_table[which(! edit_table$TargetBC == target_2site), ]
+write.csv(x = frequent_target_bcs[frequent_target_bcs != target_2site], file = "./src/exploratory/frequent_TargetBCs_wo2site.csv")
+
 saveRDS(object = edit_table_exclude_2site_target, file = "data/edit_table_filtered_exclude2siteTarget.RDS")
