@@ -1,15 +1,15 @@
-/## ---------------------------
+## ---------------------------
 ##
 ## Script name: sequence_process_xml
 ##
 ## Purpose of script: Pre-processing and sampling of sequences for xml inputs
 ##
-## Author: Antoine Zwaans
+## Author: Antoine Zwaans & Sophie Seidel
 ##
 ## Date Created: 2022-12-13
 ##
-## Copyright (c) Antoine Zwaans, 2022
-## Email: antoine.zwaans@bsse.ethz.ch
+## Copyright (c) Antoine Zwaans & Sophie Seidel, 2022
+## Email: antoine.zwaans@bsse.ethz.ch, sophie.seidel@posteo.de
 ##
 ## ---------------------------
 ##
@@ -127,13 +127,12 @@ write_cell_ids_to_file = function(cell_sample, cell_ids_file){
 }
 
 
-write_alignment_to_xml = function(cell_sample, targetBCs, n_cells){
-
+write_alignment_to_xml = function(cell_sample, dataset, targetBCs, n_cells){
 
   for(i in 1:length(targetBCs)) {
 
     targetBC <- targetBCs[i]
-    sampled <- sample_targetBCs(cell_sample, dataset=data, targetBC)
+    sampled <- collect_sequences_per_cell_targetBC(cell_sample, dataset=dataset, targetBC)
 
     if((targetBC == "TGGACGAC") | (targetBC == "TGGTTTTG") | (targetBC == "TTTCGTGA" )) {
 
@@ -175,21 +174,27 @@ collect_sequences_per_cell_targetBC <- function(cell_sample, dataset, targetBC) 
   sequence_collection <- c()
 
   for(i in cell_sample) {
-    sample <- rbind(sample, edit_table_by_5[(edit_table_by_5$Cell == i) & (edit_table_by_5$TargetBC == targetBC),])
+
+    cell_sequence = dataset[(dataset$Cell == i) & (dataset$TargetBC == targetBC),]
+
+    if (nrow(cell_sequence) == 0){
+      stop(paste("Cell", i, "does not have targetBC", targetBC))
+    }
+
+    sequence_collection <- rbind(sequence_collection, cell_sequence)
+
   }
 
-  #return the sample
-  return(sample)
+  return(sequence_collection)
 
 }
 
-sample_cells <- function(size,dataset) {
-  #select all sequences with a specific target BC
-  cells <- sample(unique(dataset$Cell),size)
+# sample n cells from a dataset uniformly at random
+sample_cells <- function(n_cells, dataset) {
 
-  #return the cell sample
-  return(cells)
+    cells <- sample(unique(dataset$Cell), n_cells)
 
+    return(cells)
 }
 
 
