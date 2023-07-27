@@ -25,11 +25,6 @@ setwd("~/Projects/typewriter_analysis/")
 ## ---------------------------
 # load libs
 
-library(dplyr)
-library(ggplot2)
-library(tidyr)
-library(boot)
-library(cowplot)
 library(stringr)
 
 ## ---------------------------
