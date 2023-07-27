@@ -111,9 +111,7 @@ for (cell in unique(edit_table$Cell)){
 edit_table = edit_table[edit_table$TargetBC %in% frequent_target_bcs, ]
 
 ## Here, we have 3221 cells
-saveRDS(object = edit_table, file = "data/edit_table_filtered_.RDS")
-edit_table_old = readRDS(file = "data/edit_table_filtered.RDS")
-
+saveRDS(object = edit_table, file = "data/edit_table_filtered.RDS")
 
 # Save edit table excluding the targetBC that is saturated at the 2nd site
 target_2site = "TTCACGTA"
