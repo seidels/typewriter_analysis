@@ -26,11 +26,14 @@ setwd("~/Projects/typewriter_analysis/")
 edit_table = read.csv("data/Supplementary_File_2_DataTableMOI19.csv", stringsAsFactors = F,
                       header = T, na.strings=c("","NA"))
 
+#length(unique(edit_table$Cell)) == 16823
+
 ## filtering
 ### filter out entries that have no TargetBC or UMI
 edit_table = edit_table[which(!(is.na(edit_table$TargetBC))), ]
 edit_table = edit_table[which(!(is.na(edit_table$nUMI))), ]
 edit_table = edit_table[which(!(is.na(edit_table$Cell))), ]
+#length(unique(edit_table$Cell)) == 16810
 
 
 ### filter out entries that have not correctly ordered edits
@@ -61,6 +64,7 @@ edit_table = edit_table[! (is.na(edit_table[, 5]) &
 edit_table = edit_table[! (is.na(edit_table[, 6]) &
                              !(is.na(edit_table[, 7]))), ]
 
+# length(unique(edit_table$Cell)) == 16810
 
 ### get the most frequent TargetBCs && assert that they are the same found in the original paper
 frequency_of_target_bcs = as.data.frame(table(edit_table$TargetBC, useNA = "ifany"))
@@ -93,21 +97,22 @@ for (cell in unique(edit_table$Cell)){
     exit("Same target bc in one cell")
   }
 
-  keep_cell = all(is.element(el = frequent_target_bcs, set = cell_target_bcs))
+  keep_cell = all(frequent_target_bcs %in% cell_target_bcs)
 
   if (! keep_cell){
     edit_table = edit_table[which(!(edit_table$Cell == cell)), ]
   }
 }
 ## Here, we have 3221 cells which is close to the reported 3257
-length(unique(edit_table$Cell))
+#length(unique(edit_table$Cell)) == 3221
 
 # subset edit table to those targetBCs that we will continue to use
 ## as expected nrow(edit_table) = 13 (targetBCs) * 3221 (cells)
 edit_table = edit_table[edit_table$TargetBC %in% frequent_target_bcs, ]
 
 ## Here, we have 3221 cells
-saveRDS(object = edit_table, file = "data/edit_table_filtered.RDS")
+saveRDS(object = edit_table, file = "data/edit_table_filtered_.RDS")
+edit_table_old = readRDS(file = "data/edit_table_filtered.RDS")
 
 
 # Save edit table excluding the targetBC that is saturated at the 2nd site
