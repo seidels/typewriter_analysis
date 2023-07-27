@@ -32,12 +32,57 @@ edit_table = edit_table[which(!(is.na(edit_table$TargetBC))), ]
 edit_table = edit_table[which(!(is.na(edit_table$nUMI))), ]
 edit_table = edit_table[which(!(is.na(edit_table$Cell))), ]
 
-### filter out cells that do not have the 13 most frequent TargetBCs && assert that no cell has the same targetBC twice
+
+### filter out entries that have not correctly ordered edits
+#### pairwise comparisons, remove all entries without edit at site 1 and edit at site 2-5
+edit_table = edit_table[! (is.na(edit_table[, 3]) &
+                             !(is.na(edit_table[, 4]))), ]
+edit_table = edit_table[! (is.na(edit_table[, 3]) &
+                             !(is.na(edit_table[, 5]))), ]
+edit_table = edit_table[! (is.na(edit_table[, 3]) &
+                             !(is.na(edit_table[, 6]))), ]
+edit_table = edit_table[! (is.na(edit_table[, 3]) &
+                             !(is.na(edit_table[, 7]))), ]
+#### same for site 2
+edit_table = edit_table[! (is.na(edit_table[, 4]) &
+                             !(is.na(edit_table[, 5]))), ]
+edit_table = edit_table[! (is.na(edit_table[, 4]) &
+                             !(is.na(edit_table[, 6]))), ]
+edit_table = edit_table[! (is.na(edit_table[, 4]) &
+                             !(is.na(edit_table[, 7]))), ]
+
+#### same for site 3
+edit_table = edit_table[! (is.na(edit_table[, 5]) &
+                             !(is.na(edit_table[, 6]))), ]
+edit_table = edit_table[! (is.na(edit_table[, 5]) &
+                             !(is.na(edit_table[, 7]))), ]
+
+#### same for site 4
+edit_table = edit_table[! (is.na(edit_table[, 6]) &
+                             !(is.na(edit_table[, 7]))), ]
+
+
+### get the most frequent TargetBCs && assert that they are the same found in the original paper
 frequency_of_target_bcs = as.data.frame(table(edit_table$TargetBC, useNA = "ifany"))
 frequency_of_target_bcs = frequency_of_target_bcs[order(frequency_of_target_bcs$Freq, decreasing = T), ]
 frequent_target_bcs = frequency_of_target_bcs[1:13, "Var1"]
 write.csv(x = frequent_target_bcs, file = "./src/exploratory/13_frequent_TargetBCs.csv")
 
+
+targetBCs_from_paper = c("ATGGTAAG", "ATTTATAT",
+                         "ATTTGGTT", "GCAGGGTG",
+                         "GTAAAGAT", "TAGATTTT",
+                         "TGCGATTT", "TGGACGAC",
+                         "TGGTTTTG", "TTAGATTG",
+                         "TTCACGTA", "TTGAGGTG",
+                         "TTTCGTGA")
+
+#sort(frequent_target_bcs)
+# Make sure that we get the same 13 TargetBCs as Choi in his paper
+assertthat::are_equal(length(intersect(frequent_target_bcs, targetBCs_from_paper)), 13)
+
+
+### filter out cells that do not have the 13 most frequent TargetBCs && assert that no cell has the same targetBC twice
 for (cell in unique(edit_table$Cell)){
 
   print(cell)
@@ -54,55 +99,16 @@ for (cell in unique(edit_table$Cell)){
     edit_table = edit_table[which(!(edit_table$Cell == cell)), ]
   }
 }
-## Here, we have 3251 cells which is close to the reported 3257
+## Here, we have 3221 cells which is close to the reported 3257
+length(unique(edit_table$Cell))
 
-### filter out entries that have not correctly ordered edits
-#### pairwise comparisons, remove all entries without edit at site 1 and edit at site 2-5
-edit_table = edit_table[! (is.na(edit_table[, 3]) &
-                                       !(is.na(edit_table[, 4]))), ]
-edit_table = edit_table[! (is.na(edit_table[, 3]) &
-                                       !(is.na(edit_table[, 5]))), ]
-edit_table = edit_table[! (is.na(edit_table[, 3]) &
-                                       !(is.na(edit_table[, 6]))), ]
-edit_table = edit_table[! (is.na(edit_table[, 3]) &
-                                       !(is.na(edit_table[, 7]))), ]
-#### same for site 2
-edit_table = edit_table[! (is.na(edit_table[, 4]) &
-                                       !(is.na(edit_table[, 5]))), ]
-edit_table = edit_table[! (is.na(edit_table[, 4]) &
-                                       !(is.na(edit_table[, 6]))), ]
-edit_table = edit_table[! (is.na(edit_table[, 4]) &
-                                       !(is.na(edit_table[, 7]))), ]
-
-#### same for site 3
-edit_table = edit_table[! (is.na(edit_table[, 5]) &
-                                       !(is.na(edit_table[, 6]))), ]
-edit_table = edit_table[! (is.na(edit_table[, 5]) &
-                                       !(is.na(edit_table[, 7]))), ]
-
-#### same for site 4
-edit_table = edit_table[! (is.na(edit_table[, 6]) &
-                                       !(is.na(edit_table[, 7]))), ]
-
-
-## Assert that no targetBC occurs twice in the same cell
-
+# subset edit table to those targetBCs that we will continue to use
+## as expected nrow(edit_table) = 13 (targetBCs) * 3221 (cells)
+edit_table = edit_table[edit_table$TargetBC %in% frequent_target_bcs, ]
 
 ## Here, we have 3221 cells
 saveRDS(object = edit_table, file = "data/edit_table_filtered.RDS")
 
-
-targetBCs_from_paper = c("ATGGTAAG", "ATTTATAT",
-                         "ATTTGGTT", "GCAGGGTG",
-                         "GTAAAGAT", "TAGATTTT",
-                         "TGCGATTT", "TGGACGAC",
-                         "TGGTTTTG", "TTAGATTG",
-                         "TTCACGTA", "TTGAGGTG",
-                         "TTTCGTGA")
-
-#sort(frequent_target_bcs)
-# Make sure that we get the same 13 TargetBCs as Choi in his paper
-assertthat::are_equal(length(intersect(frequent_target_bcs, targetBCs_from_paper)), 13)
 
 # Save edit table excluding the targetBC that is saturated at the 2nd site
 target_2site = "TTCACGTA"
