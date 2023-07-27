@@ -1,10 +1,23 @@
 pick_code <- function(edit,code_map) {
-  code <- code_map[which(code_map$edit==edit),2]
+  code <- code_map[which(code_map$insert == edit), "integer"]
   return(code)
   
 }
 
-sample_dataset_for_BEAST <- function(n_cells, data, seednr=1) {
+# get inserts across all cells, arrange in descrending freq, 
+# map each insert to integer;
+# assumes that the inserts are already tri-nucleotides
+get_insert_to_integer_map = function(edit_table){
+  
+  insert_to_integer_map <- data.frame(table(unlist(edit_table_by_5[, 3:7]))) %>% arrange(desc(Freq))
+  insert_to_integer_map$integer <- as.character(seq(0,19))
+  colnames(insert_to_integer_map)[1] = "insert"
+  
+  return(insert_to_integer_map)
+  
+}
+
+subsample_dataset <- function(n_cells, dataset, seednr=1) {
   
   set.seed(seednr)
   
@@ -20,6 +33,14 @@ write_cell_ids_to_file = function(cell_sample, cell_ids_file){
   }
 }
 
+
+
+
+#targetBCs identified as having truncation to 4, they will be processed as such in the sampling
+#TODO IMPLEMENT THIS DIFFERENTLY
+#"TGGACGAC" - number 8
+#"TGGTTTTG" - number 9
+#"TTTCGTGA" - number 12
 
 write_alignment_to_xml = function(cell_sample, dataset, targetBCs, n_cells, alignment_file){
   
