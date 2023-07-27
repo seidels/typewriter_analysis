@@ -94,7 +94,7 @@ for (cell in unique(edit_table$Cell)){
   cell_target_bcs = edit_table[which(edit_table$Cell == cell), "TargetBC"]
 
   if (length(cell_target_bcs) != length(unique(cell_target_bcs))){
-    exit("Same target bc in one cell")
+    stop("Same target bc in one cell")
   }
 
   keep_cell = all(frequent_target_bcs %in% cell_target_bcs)
@@ -112,6 +112,7 @@ edit_table = edit_table[edit_table$TargetBC %in% frequent_target_bcs, ]
 
 ## Here, we have 3221 cells
 saveRDS(object = edit_table, file = "data/edit_table_filtered.RDS")
+write.csv(edit_table, file="data/edit_table_filtered.csv")
 
 # Save edit table excluding the targetBC that is saturated at the 2nd site
 target_2site = "TTCACGTA"
