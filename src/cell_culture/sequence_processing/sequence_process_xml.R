@@ -37,7 +37,7 @@ output_folder = "results/analysis_cell_culture_data/alignments/"
 
 #load the filtered data:
 
-edit_table_by_5 = readRDS("data/edit_table_filtered.RDS")
+edit_table_by_5 = readRDS("data/cell_culture/edit_table_filtered.RDS")
 
 site_columns = 3:7
 
@@ -54,7 +54,7 @@ for(site_column in site_columns) {
 
 # 2nd, create a map from the trinucleotides to an integer
 insert_to_integer_map = get_insert_to_integer_map(edit_table_by_5)
-
+write.csv(insert_to_integer_map, file = "data/cell_culture/insert_to_integer_map.csv")
 
 # convert these trinucleotides to integer in the edit table
 for(site_column in site_columns) {
@@ -87,7 +87,7 @@ for (n_cells in c(100, 500, 1000)){
     cell_sample = subsample_dataset(n_cells, edit_table_by_5, seed)
 
     edit_table_for_sample = edit_table_by_5[ (edit_table_by_5$Cell %in% cell_sample) & (edit_table_by_5$TargetBC %in% targetBCs), ]
-    write.csv(x = edit_table_for_sample, file = paste0(output_folder_ncells, "edit_table_sample.csv"))
+    write.csv(x = edit_table_for_sample, file = paste0(output_folder_ncells, "edit_table_sample_", seed, ".csv"))
 
     write_cell_ids_to_file(cell_sample = cell_sample, cell_ids_file = paste0(output_folder_ncells, "cell_ids_seed", seed, ".txt"))
     write_alignment_to_xml(cell_sample = cell_sample, dataset = edit_table_by_5, targetBCs = targetBCs, n_cells = n_cells,
