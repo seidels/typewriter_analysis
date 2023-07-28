@@ -26,6 +26,7 @@ setwd("~/Projects/typewriter_analysis/")
 # load libs
 
 library(stringr)
+library(dplyr)
 
 ## ---------------------------
 source("src/cell_culture/sequence_processing/functions.R")
