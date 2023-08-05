@@ -73,9 +73,16 @@ subsampled_log$Sample == sample_nr_tree
 #extract likelihood values
 tree_likelihood <- subsampled_log$likelihood
 
+#if needed check low likelihood trees and remove them (potential remnants of burnin)
+#plot(tree_likelihood)
+#looks like trees ~170 to 210 are burnin, remove those!
+#tree_likelihood <- tree_likelihood[c(1:160,220:length(tree_likelihood))]
+#trees <- trees[c(1:160,220:length(trees))]
+
+
 #get the upgma tree corresponding to the dataset and relabel the tips to match BEAST tree
 upgma <- ape::read.tree(file = "~/typewriter_analysis/results/analysis_cell_culture_data/upgma/UPGMAtree_1000.txt")
-cell_ids <- read.csv(header = F, file = "~/typewriter_analysis/results/analysis_cell_culture_data/upgma/UPGMAtree_1000_cell_names.txt")
+cell_ids <- read.csv(header = F, file = "~/typewriter_analysis/results/analysis_cell_culture_data/upgma/UPGMAtree_1000_cell_names_.txt")
 cell_ids$numeric_label <- 0:999
 cell_ids_sorted <- cell_ids[match(upgma$tip.label, cell_ids$V1), ]
 upgma$tip.label <- as.character(cell_ids_sorted$numeric_label)

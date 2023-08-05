@@ -14,7 +14,7 @@
 
 ## set working directory to where trees and log files are
 
-setwd("typewriter_analysis/results/analysis_cell_culture_data/inference_results/single_clock/1000cells/")    
+setwd("~/typewriter_analysis/results/analysis_cell_culture_data/inference_results/single_clock/1000_cells/")    
 
 ## load up the packages we will need:  (uncomment as required)
 
@@ -44,13 +44,15 @@ for (i in 1:length(trees)) {
 
 #add upgma and mcc coordinates
 ltt_upgma <- ltt.plot.coords(upgma)
+
+
 all_ltt <- rbind(all_ltt, cbind(ltt_upgma,rep(length(trees)+1,nrow(ltt_upgma))))
 ltt_mcc <- ltt.plot.coords(MCC)                                
 all_ltt <- rbind(all_ltt, cbind(ltt_mcc,rep(length(trees)+2,nrow(ltt_mcc))))
 all_ltt <- data.frame(all_ltt)
 
 #create another column to colour by type  
-all_ltt$type <- c(rep("SciPhy",length(which(all_ltt$number<=560))),rep("UPGMA",length(which(all_ltt$number==561))),rep("MCC",length(which(all_ltt$number==562))))
+all_ltt$type <- c(rep("SciPhy",length(which(all_ltt$number<=(length(trees))))),rep("UPGMA",length(which(all_ltt$number==(length(trees)+1)))),rep("MCC",length(which(all_ltt$number==(length(trees)+2)))))
 cols <- c("SciPhy" = "#E1E1F7", "MCC" = "#060647", "UPGMA" = rgb(1,0,0,0.5))
 
 ltt_all <-  ggplot(all_ltt,aes(x=time,y=N,group=number,colour=type)) + 
