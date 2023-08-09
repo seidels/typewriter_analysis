@@ -48,6 +48,10 @@ subsample_dataset <- function(n_cells, dataset, seednr=1) {
 
 write_cell_ids_to_file = function(cell_sample, cell_ids_file){
 
+  if (file.exists(cell_ids_file)){
+    file.remove(cell_ids_file)
+  }
+
   for(i in 1:length(cell_sample)) {
     write(x = cell_sample[i], file = cell_ids_file, append=TRUE)
   }
@@ -63,6 +67,10 @@ write_cell_ids_to_file = function(cell_sample, cell_ids_file){
 #"TTTCGTGA" - number 12
 
 write_alignment_to_xml = function(cell_sample, dataset, targetBCs, n_cells, alignment_file){
+
+  if (file.exists(alignment_file)){
+    file.remove(alignment_file)
+  }
 
   for(i in 1:length(targetBCs)) {
 
