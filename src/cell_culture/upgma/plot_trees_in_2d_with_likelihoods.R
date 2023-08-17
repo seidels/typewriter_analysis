@@ -16,7 +16,7 @@
 ## Email: sophie.seidel@posteo.de
 ##
 ## Set working directory to where the log and tree files are
-setwd("~/typewriter_analysis/results/analysis_cell_culture_data/inference_results/single_clock/1000_cells/")     
+setwd("~/typewriter_analysis/results/analysis_cell_culture_data/inference_results/clock_per_target/1000_cells/")     
 
 ## ---------------------------
 
@@ -32,7 +32,7 @@ library(phangorn)
 ## Define functions
 
 # Function to plot tree distances colored by likelihood
-plot_tree_distances <- function(tree_df,tree_likelihood,metric_name) {
+plot_tree_distances_topology_metric <- function(tree_df,tree_likelihood,metric_name) {
  tree_df <-  tree_df
  plot_title = paste(metric_name,"metric space")
   
@@ -47,6 +47,39 @@ plot_tree_distances <- function(tree_df,tree_likelihood,metric_name) {
     geom_text(aes(x=tree_df$A1[length(tree_df$A1)]*(0.95),y=tree_df$A1[length(tree_df$A2)]*(0.95),label="MCC")) + ggtitle(plot_title)
   
   return(plot)
+}
+
+# Function to plot tree distances colored by likelihood with the scaled UPGMA 
+plot_tree_distances_branch_lengths_metric <- function(tree_df,tree_likelihood,metric_name) {
+  tree_df <-  tree_df
+  plot_title = paste(metric_name,"metric space")
+  
+  plot <- ggplot(tree_df[1: (length(tree_df$A1) - 3),], aes(x = A1, y = A2)) +
+    geom_point(aes(col = tree_likelihood), size = 6, alpha = 0.5) + 
+    scale_color_gradient(low = "#E1E1F7", high = "#060647",name = "Likelihood")  +  
+    xlab("") + ylab("") + theme_bw(base_family = "")+ 
+    theme(legend.position = c(0.8,0.2), text = element_text(size = 14)) +
+    geom_point(aes(x=tree_df$A1[length(tree_df$A1)-2],y=tree_df$A1[length(tree_df$A2)-2]),colour="red") +
+    geom_text(aes(x=tree_df$A1[length(tree_df$A1)-2]*1.05,y=tree_df$A1[length(tree_df$A2)-2]*1.05,label="UPGMA")) +
+    geom_point(aes(x=tree_df$A1[length(tree_df$A1)-1],y=tree_df$A1[length(tree_df$A2)-1]),colour="red") +
+    geom_text(aes(x=tree_df$A1[length(tree_df$A1)-1]*(0.95),y=tree_df$A1[length(tree_df$A2)-1]*(0.95),label="MCC")) + 
+    geom_point(aes(x=tree_df$A1[length(tree_df$A1)],y=tree_df$A1[length(tree_df$A2)]),colour="red") +
+    geom_text(aes(x=tree_df$A1[length(tree_df$A1)]*0.95,y=tree_df$A1[length(tree_df$A2)]*0.95,label="Scaled UPGMA")) +
+    ggtitle(plot_title)
+  
+  return(plot)
+}
+
+tree_height_calc <- function(tree) { 
+  start_edge <- 1
+  sum_path <- 0
+  while(length(tree$edge[tree$edge[,2] == start_edge,1]) != 0) {
+    sum_path <- sum_path + tree$edge.length[tree$edge[,2] == start_edge]
+    start_edge = tree$edge[tree$edge[,2] == start_edge,1]
+    
+  }
+  return(sum_path)
+  
 }
 
 ## ---------------------------
@@ -76,8 +109,8 @@ tree_likelihood <- subsampled_log$likelihood
 #if needed check low likelihood trees and remove them (potential remnants of burnin)
 #plot(tree_likelihood)
 #looks like trees ~170 to 210 are burnin, remove those!
-#tree_likelihood <- tree_likelihood[c(1:160,220:length(tree_likelihood))]
-#trees <- trees[c(1:160,220:length(trees))]
+tree_likelihood <- tree_likelihood[c(1:160,220:length(tree_likelihood))]
+trees <- trees[c(1:160,220:length(trees))]
 
 
 #get the upgma tree corresponding to the dataset and relabel the tips to match BEAST tree
@@ -87,39 +120,50 @@ cell_ids$numeric_label <- 0:999
 cell_ids_sorted <- cell_ids[match(upgma$tip.label, cell_ids$V1), ]
 upgma$tip.label <- as.character(cell_ids_sorted$numeric_label)
 
-#add the upgma to the trees list
+#create a upgma scaled by the median posterior tree height.
+median_posterior_height <- median(log[,"treeHeight.t.alignment"])
+upgma_rescaled <- upgma
+upgma_height <- tree_height_calc(upgma)
+upgma_rescaled$edge.length <- upgma_rescaled$edge.length * (median_posterior_height/upgma_height)
+
+#save it for use elsewhere
+ape::write.tree(upgma_rescaled, file='~/all_beasts2.7/typewriter/UPGMA_BDS/UPGMAtree_1000_medianPosteriorHeight.txt')
+
+#add the upgmas to the trees list
 trees[[length(trees) + 1]] <- upgma 
 names(trees)[length(trees)] <- "upgma"
 
+
 #get the MCC tree and add to the trees list
-MCC <- ape::read.nexus(file = "MCC_commonAncestorHeights.tree")
+MCC <- ape::read.nexus(file = "MCC_medianHeights.tree")
 trees[[length(trees) + 1]] <- MCC 
 names(trees)[length(trees)] <- "MCC"
 
 ## -----------------------------------------------------------
 ## Place all trees in 2d using the Robinson Foulds (RF) metric
 ## -----------------------------------------------------------
-
-res_rf <- treespace(trees, nf = 2, method="RF")
+res_rf <- treespace(trees, nf = 2, "RF")
 
 # Plot RF scenario
 tree_df_rf <- res_rf$pco$li
-plot <- plot_tree_distances(tree_df_rf, tree_likelihood, "Robinson Foulds")
+plot <- plot_tree_distances_topology_metric(tree_df_rf, tree_likelihood, "Robinson Foulds")
 #remove the legend, the other plit will have it
 plot_rf <- plot + theme(legend.position = "none") 
-ggsave("2d_likelihood_mds_RF.png", plot_rf, width = 15, height = 15, units = "cm", dpi = 300)
+ggsave("2d_likelihood_mds_RF_medianHeights.png", plot_rf, width = 15, height = 15, units = "cm", dpi = 300)
 
 ## ---------------------------------------------------------------------
 ## Place all trees in 2d using the weighted Robinson Foulds (wRF) metric
 ## ---------------------------------------------------------------------
+trees[[length(trees) + 1]] <- upgma_rescaled 
+names(trees)[length(trees)] <- "scaled_upgma"
 
-res_wrf <- treespace(trees, nf = 2, method = "wRF")
+res_wrf <- treespace(trees, nf = 2, method = "Weighted Robinson Foulds")
 
 # Plot wRF scenario
 tree_df_wrf <- res_wrf$pco$li
-plot_wrf <- plot_tree_distances(tree_df_wrf, tree_likelihood, "Weighted Robinson Foulds")
-ggsave("2d_likelihood_mds_wRFl.png", plot_wrf, width = 15, height = 15, units = "cm", dpi = 300)
+plot_wrf <- plot_tree_distances_branch_lengths_metric(tree_df_wrf, tree_likelihood, "Kendall Colijn (lambda=1)")
+ggsave("2d_likelihood_mds_wRF_medianHeights.png", plot_wrf, width = 15, height = 15, units = "cm", dpi = 300)
 
 #make a combined version of these plots
 combined <- cowplot::plot_grid(plot_rf,plot_wrf,nrow = 1)
-ggsave("combined_2D_plot.png", combined, width = 30, height = 15, units = "cm", dpi = 300)
+ggsave("combined_2D_plot_medianHeights.png", combined, width = 30, height = 15, units = "cm", dpi = 300)
