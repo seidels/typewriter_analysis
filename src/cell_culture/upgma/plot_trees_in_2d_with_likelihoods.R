@@ -42,9 +42,9 @@ plot_tree_distances_topology_metric <- function(tree_df,tree_likelihood,metric_n
     xlab("") + ylab("") + theme_bw(base_family = "")+ 
     theme(legend.position = c(0.8,0.2), text = element_text(size = 14)) +
     geom_point(aes(x=tree_df$A1[length(tree_df$A1)-1],y=tree_df$A1[length(tree_df$A2)-1]),colour="red") +
-    geom_text(aes(x=tree_df$A1[length(tree_df$A1)-1]*1.05,y=tree_df$A1[length(tree_df$A2)-1]*1.05,label="UPGMA")) +
+    geom_text(aes(x=tree_df$A1[length(tree_df$A1)-1]*1.1,y=tree_df$A1[length(tree_df$A2)-1]*1.1,label="UPGMA")) +
     geom_point(aes(x=tree_df$A1[length(tree_df$A1)],y=tree_df$A1[length(tree_df$A2)]),colour="red") +
-    geom_text(aes(x=tree_df$A1[length(tree_df$A1)]*(0.95),y=tree_df$A1[length(tree_df$A2)]*(0.95),label="MCC")) + ggtitle(plot_title)
+    geom_text(aes(x=tree_df$A1[length(tree_df$A1)]*(0.90),y=tree_df$A1[length(tree_df$A2)]*(0.90),label="MCC")) + ggtitle(plot_title)
   
   return(plot)
 }
@@ -85,8 +85,9 @@ tree_height_calc <- function(tree) {
 ## ---------------------------
 
 ## Load tree data and extract sample nbrs
-trees <- ape::read.nexus(file = "smallest_combined.trees")
-sample_nr_tree <- as.numeric(unlist(strsplit(names(trees),"_"))[seq(2,2*length(trees),by=2)])
+sciphy_trees <- ape::read.nexus(file = "thinned4000000.trees")
+
+sample_nr_tree <- as.numeric(unlist(strsplit(names(sciphy_trees),"_"))[seq(2,2*length(sciphy_trees),by=2)])
 
 ## Load log data and extract likelihood values corresponding to the matching sample nrs
 log <- read.table("combined.log", header = T)
@@ -98,19 +99,19 @@ step_log <- log$Sample[2] - log$Sample[1]
 subsampled_log <- log[seq(1,length(log$Sample),by=step_tree/step_log),]
 
 #resample the same number
-subsampled_log <- subsampled_log[1:min(length(trees),length(subsampled_log$Sample)),]
+subsampled_log <- subsampled_log[1:min(length(sciphy_trees),length(subsampled_log$Sample)),]
 
 #check that all tree sample nrs and likelihood sample nrs match
-subsampled_log$Sample == sample_nr_tree
+which(subsampled_log$Sample != sample_nr_tree)
 
 #extract likelihood values
 tree_likelihood <- subsampled_log$likelihood
 
-#if needed check low likelihood trees and remove them (potential remnants of burnin)
-#plot(tree_likelihood)
-#looks like trees ~170 to 210 are burnin, remove those!
-tree_likelihood <- tree_likelihood[c(1:160,220:length(tree_likelihood))]
-trees <- trees[c(1:160,220:length(trees))]
+#if needed check low likelihood sciphy_trees and remove them (potential remnants of burnin)
+plot(tree_likelihood)
+#looks like sciphy_trees ~170 to 210 are burnin, remove those!
+#tree_likelihood <- tree_likelihood[c(1:160,220:length(tree_likelihood))]
+#sciphy_trees <- sciphy_trees[c(1:160,220:length(sciphy_trees))]
 
 
 #get the upgma tree corresponding to the dataset and relabel the tips to match BEAST tree
@@ -127,22 +128,34 @@ upgma_height <- tree_height_calc(upgma)
 upgma_rescaled$edge.length <- upgma_rescaled$edge.length * (median_posterior_height/upgma_height)
 
 #save it for use elsewhere
-ape::write.tree(upgma_rescaled, file='~/all_beasts2.7/typewriter/UPGMA_BDS/UPGMAtree_1000_medianPosteriorHeight.txt')
+#list_UPGMA <- list(upgma)
+#ape::write.tree(list_UPGMA, file='UPGMAtree_1000.tree')
 
-#add the upgmas to the trees list
-trees[[length(trees) + 1]] <- upgma 
-names(trees)[length(trees)] <- "upgma"
+#add the upgmas to the sciphy_trees list
+#subsample the sciphy_trees 
+#sciphy_trees <- sciphy_trees[sample(1:length(sciphy_trees),100)]
+all_trees <- sciphy_trees
+all_trees[[length(all_trees) + 1]] <- upgma 
+names(all_trees)[length(all_trees)] <- "upgma"
 
 
-#get the MCC tree and add to the trees list
+#get the MCC tree and add to the all_trees list
 MCC <- ape::read.nexus(file = "MCC_medianHeights.tree")
-trees[[length(trees) + 1]] <- MCC 
-names(trees)[length(trees)] <- "MCC"
+all_trees[[length(all_trees) + 1]] <- MCC 
+names(all_trees)[length(all_trees)] <- "MCC"
+
+
+#save that list:
+#ape::write.nexus(upgma, file='upgma.nexus')
+#ape::write.nexus(all_trees, file='tree_list_100Sciphy.nexus')
+#ape::write.tree(all_trees, file='tree_list_100Sciphy_MCC.txt')
+#ape::write.tree(all_trees, file='tree_list_100Sciphy_MCC_UPGMA.txt')
+
 
 ## -----------------------------------------------------------
-## Place all trees in 2d using the Robinson Foulds (RF) metric
+## Place all all_trees in 2d using the Robinson Foulds (RF) metric
 ## -----------------------------------------------------------
-res_rf <- treespace(trees, nf = 2, "RF")
+res_rf <- treespace(all_trees, nf = 2, "RF")
 
 # Plot RF scenario
 tree_df_rf <- res_rf$pco$li
@@ -152,16 +165,16 @@ plot_rf <- plot + theme(legend.position = "none")
 ggsave("2d_likelihood_mds_RF_medianHeights.png", plot_rf, width = 15, height = 15, units = "cm", dpi = 300)
 
 ## ---------------------------------------------------------------------
-## Place all trees in 2d using the weighted Robinson Foulds (wRF) metric
+## Place all all_trees in 2d using the weighted Robinson Foulds (wRF) metric
 ## ---------------------------------------------------------------------
-trees[[length(trees) + 1]] <- upgma_rescaled 
-names(trees)[length(trees)] <- "scaled_upgma"
+all_trees[[length(all_trees) + 1]] <- upgma_rescaled 
+names(all_trees)[length(all_trees)] <- "scaled_upgma"
 
-res_wrf <- treespace(trees, nf = 2, method = "Weighted Robinson Foulds")
+res_wrf <- treespace(all_trees, nf = 2, method = "wRF")
 
 # Plot wRF scenario
 tree_df_wrf <- res_wrf$pco$li
-plot_wrf <- plot_tree_distances_branch_lengths_metric(tree_df_wrf, tree_likelihood, "Kendall Colijn (lambda=1)")
+plot_wrf <- plot_tree_distances_branch_lengths_metric(tree_df_wrf, tree_likelihood, "Weighted Robinson Foulds")
 ggsave("2d_likelihood_mds_wRF_medianHeights.png", plot_wrf, width = 15, height = 15, units = "cm", dpi = 300)
 
 #make a combined version of these plots
