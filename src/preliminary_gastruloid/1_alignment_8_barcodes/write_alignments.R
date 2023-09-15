@@ -56,3 +56,10 @@ for (targetBC in unique(integers_dat$TargetBC)){
                                   targetBC = targetBC)
 }
 
+# date trait
+taxon_and_date_individual = unname(sapply(filtered_dat$Cell, function(x){
+  paste(x, "=10", sep = "")
+}))
+# to be pasted in xml
+taxon_and_date_merged = paste(taxon_and_date_individual, collapse = ",")
+write(taxon_and_date_merged, file = "results/preliminary_gastruloid/1_alignment_8_barcodes/date_traits.xml")

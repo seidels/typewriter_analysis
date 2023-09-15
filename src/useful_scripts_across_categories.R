@@ -117,7 +117,7 @@ write_sequence_into_alignment = function(targets_per_cell_dat, targetBC, filenam
 
     write(x = c(paste0('<sequence id="', (i-1), '_cell_', cell, '_targetBC_', targetBC,
                        '" spec="Sequence" taxon="',
-                       (i-1),'" value="', targets_concatenated, '"/>')),
+                       cell,'" value="', targets_concatenated, '"/>')),
           file = filename, ncolumns = 1, append = TRUE, sep = " ")
   }
 }
@@ -168,11 +168,17 @@ fun_shared_edit_matrix <- function(x) {
 }
 
 
-build_upgma_tree = function(edit_table, nSites){
+build_upgma_tree = function(edit_table, nSites, collapsedSites=T){
 
 
   # edit_cell_table_65 = Ordered cell-by-65EditSites table, including non-existing sites before contraction
-  edit_cell_table_65 <- select(edit_table, -nUMI) %>%
+  if("nUMI" %in% colnames(edit_table)){
+    edit_cell_table_65 <- select(edit_table, -nUMI)
+  }else{
+    edit_cell_table_65 <- edit_table
+  }
+
+  edit_cell_table_65 <- edit_cell_table_65 %>%
     pivot_longer(cols = c('Site1','Site2','Site3','Site4','Site5'), names_to = 'Sites', values_to ='Insert') %>%
     pivot_wider(id_cols = Cell, names_from = c(TargetBC,Sites), names_sep = ".", values_from = Insert)
 
@@ -186,9 +192,12 @@ build_upgma_tree = function(edit_table, nSites){
   sub_edit65[is.na(sub_edit65)] <- 'None'
   rownames(sub_edit65) <- edit_cell_table_65$Cell
 
-  sub_edit59 <- as.matrix(select(edit_cell_table_65,-c('Cell','TGGACGAC.Site5','TTTCGTGA.Site5','TGGTTTTG.Site5',
-                                                       'TTCACGTA.Site3','TTCACGTA.Site4','TTCACGTA.Site5')))
-  rownames(sub_edit59) <- edit_cell_table_65$Cell
+  if(collapsedSites){
+
+  }
+  #sub_edit59 <- as.matrix(select(edit_cell_table_65,-c('Cell','TGGACGAC.Site5','TTTCGTGA.Site5','TGGTTTTG.Site5',
+  #                                                     'TTCACGTA.Site3','TTCACGTA.Site4','TTCACGTA.Site5')))
+  #rownames(sub_edit59) <- edit_cell_table_65$Cell
   cell_list <- edit_cell_table_65$Cell
 
 
