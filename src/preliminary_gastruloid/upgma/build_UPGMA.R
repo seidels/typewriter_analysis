@@ -59,12 +59,12 @@ tree_height <- tree_height_calc(tree)
 
 ## we want to scale the tree such that is is smaller than 25 in height.
 tree$edge.length <- tree$edge.length * (9.0/tree_height)
-tree$edge.length <- tree$edge.length + 0.01
+tree$edge.length <- tree$edge.length + 0.001
 
-tree$edge.length
+sort(tree$edge.length)
 
 ## save UPGMA as txt file
-ape::write.tree(tree, file='results/preliminary_gastruloid/upgma/UPGMAtree_780cells_8tBCs.txt')
+ape::write.tree(tree, file='results/preliminary_gastruloid/upgma/UPGMAtree_780cells_8tBCs_funnyBranchLengths_forBEASTinit.txt')
 write(cell_names, "results/preliminary_gastruloid/upgma/UPGMAtree_780cells_8tBCs_cell_names.txt")
 
 
