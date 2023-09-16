@@ -23,7 +23,7 @@ setwd("~/Projects/typewriter_analysis/")
 
 # load the preprocessed data ---------
 
-edit_table = read.csv("data/Supplementary_File_2_DataTableMOI19.csv", stringsAsFactors = F,
+edit_table = read.csv("data/cell_culture/Supplementary_File_2_DataTableMOI19.csv", stringsAsFactors = F,
                       header = T, na.strings=c("","NA"))
 
 #length(unique(edit_table$Cell)) == 16823
@@ -111,12 +111,12 @@ for (cell in unique(edit_table$Cell)){
 edit_table = edit_table[edit_table$TargetBC %in% frequent_target_bcs, ]
 
 ## Here, we have 3221 cells
-saveRDS(object = edit_table, file = "data/edit_table_filtered.RDS")
-write.csv(edit_table, file="data/edit_table_filtered.csv")
+saveRDS(object = edit_table, file = "data/cell_culture/edit_table_filtered.RDS")
+write.csv(edit_table, file="data/cell_culture/edit_table_filtered.csv")
 
 # Save edit table excluding the targetBC that is saturated at the 2nd site
 target_2site = "TTCACGTA"
 edit_table_exclude_2site_target = edit_table[which(! edit_table$TargetBC == target_2site), ]
 write.csv(x = frequent_target_bcs[frequent_target_bcs != target_2site], file = "./src/exploratory/frequent_TargetBCs_wo2site.csv")
 
-saveRDS(object = edit_table_exclude_2site_target, file = "data/edit_table_filtered_exclude2siteTarget.RDS")
+saveRDS(object = edit_table_exclude_2site_target, file = "data/cell_culture/edit_table_filtered_exclude2siteTarget.RDS")
