@@ -1,4 +1,5 @@
 
+library(plyr)
 
 get_nr_of_edits = function(edit_table, unedited_symbol=NA){
 
@@ -72,7 +73,7 @@ get_possible_edits = function(targets_per_cell){
   columns_with_edits = colnames(targets_per_cell)
   columns_with_edits = columns_with_edits[startsWith(x = columns_with_edits, prefix = "Site")]
 
-  all_edits = unique(unlist(filtered_dat[ , columns_with_edits]))
+  all_edits = unique(unlist(targets_per_cell[ , columns_with_edits]))
   all_edits = all_edits[all_edits != "None"]
 
   edit_to_integer_map = data.frame(edits = all_edits, integer=1:length(all_edits))
