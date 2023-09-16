@@ -8,16 +8,16 @@ library(lubridate)
 library(dirmult)
 library(coda)
 
-setwd("/Users/azwaans/typewriter_analysis/results/preliminary_gastruloid/skyline_gastruloid_100/")
-typewriter_file <- "prelim_gastruloid_8targetBCs_running_100.1.log"
-trinucleotides_file <- "/Users/azwaans/typewriter_analysis/src/preliminary_gastruloid/1_alignment_8_barcodes_100/conversion_table_100.csv"
-selected_barcode_file = "/Users/azwaans/typewriter_analysis/data/mGASv2_TargetBC_selected8.csv"
+dir = "~/Projects/typewriter_analysis/results/preliminary_gastruloid/skyline_gastruloid_780/"
+typewriter_file <- "combined.log"
+trinucleotides_file <- "~/Projects/typewriter_analysis/src/preliminary_gastruloid/1_alignment_8_barcodes_100/conversion_table_780.csv"
+selected_barcode_file = "~/Projects/typewriter_analysis/data/mGASv2_TargetBC_selected8.csv"
 
 ```
 
 ```{r}
 #Read in typewriter log and trim 10% burn-in
-typewriter <- read.table(typewriter_file, header = T) %>% slice_tail(prop = 0.10)
+typewriter <- read.table(paste0(dir, typewriter_file), header = T) %>% slice_tail(prop = 0.10)
 
 #Tell coda that this is an mcmc file, and calculate 95% HPD values
 typewriter_mcmc <- as.mcmc(typewriter)
