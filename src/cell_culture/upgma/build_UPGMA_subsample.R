@@ -60,6 +60,8 @@ for(i in cell100) {
 sample_100 = mark_unedited_sites(sample_100)
 sample_100 = set_non_contracted_sites_to_na(sample_100)
 
+# nSites is 13 targetBCs * 5 sites = 65 sites; minus the contracted sites,
+# i.e. 1x 3 contracted (2xTape) and 3x 1 contracted (4xTape)
 tree = build_upgma_tree(edit_table = sample_100, nSites = 59)
 
 tree_100_height <- tree_height_calc(tree)
