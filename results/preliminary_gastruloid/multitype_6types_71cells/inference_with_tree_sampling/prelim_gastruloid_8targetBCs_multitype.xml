@@ -1,0 +1,999 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beast beautitemplate='Standard'
+       beautistatus=''
+       namespace="beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.base.evolution.alignment:beast.pkgmgmt:beast.base.core:beast.base.inference:beast.base.evolution.tree.coalescent:beast.pkgmgmt:beast.base.core:beast.base.inference.util:beast.evolution.nuc:beast.base.evolution.operator:beast.base.inference.operator:beast.base.evolution.sitemodel:beast.base.evolution.substitutionmodel:beast.base.evolution.likelihood" required="BEAST.base v2.7.4" version="2.7">
+
+    <map name="Uniform" >beast.base.inference.distribution.Uniform</map>
+
+    <data  id="preliminary_gastruloid_targetBC_AACTGAATGTTT" spec="Alignment" name="alignment" dataType="integer">
+        <sequence id="0_cell_AAAGGGCCAAATCAAG-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="AAAGGGCCAAATCAAG-1" value="1,4,16,0,0"/>
+        <sequence id="1_cell_CAGATACCATAGTCGT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CAGATACCATAGTCGT-1" value="1,4,15,0,0"/>
+        <sequence id="2_cell_TTGGGCGGTATGACAA-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TTGGGCGGTATGACAA-1" value="8,4,5,0,0"/>
+        <sequence id="3_cell_CACCGTTCAATAACCC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CACCGTTCAATAACCC-1" value="1,4,3,7,0"/>
+        <sequence id="4_cell_TTTCAGTGTGCTGTCG-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TTTCAGTGTGCTGTCG-1" value="1,4,3,0,0"/>
+        <sequence id="5_cell_ACCCTCAAGTCTAACC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="ACCCTCAAGTCTAACC-1" value="1,4,3,5,5"/>
+        <sequence id="6_cell_CGAGGAAGTCTAGATC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CGAGGAAGTCTAGATC-1" value="1,4,4,3,0"/>
+        <sequence id="7_cell_TTTGATCGTCGGTACC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TTTGATCGTCGGTACC-1" value="1,4,3,5,4"/>
+        <sequence id="8_cell_AGAGAGCCATAGGTTC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="AGAGAGCCATAGGTTC-1" value="1,4,3,5,3"/>
+        <sequence id="9_cell_TCGATTTCAGTGGCTC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TCGATTTCAGTGGCTC-1" value="1,4,5,0,0"/>
+        <sequence id="10_cell_GTTGTAGCATCCAATG-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="GTTGTAGCATCCAATG-1" value="1,4,3,0,0"/>
+        <sequence id="11_cell_GGTTAACCATAGATCC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="GGTTAACCATAGATCC-1" value="1,0,0,0,0"/>
+        <sequence id="12_cell_TACGGTAAGCAACCAG-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TACGGTAAGCAACCAG-1" value="1,4,16,16,1"/>
+        <sequence id="13_cell_TCAATTCTCAACTACG-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TCAATTCTCAACTACG-1" value="1,4,16,16,1"/>
+        <sequence id="14_cell_TCACGGGCAGCCGTTG-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TCACGGGCAGCCGTTG-1" value="1,4,3,3,0"/>
+        <sequence id="15_cell_TCCGGGAGTTCGCGTG-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TCCGGGAGTTCGCGTG-1" value="1,4,5,7,4"/>
+        <sequence id="16_cell_GCCGTGAGTATATGGA-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="GCCGTGAGTATATGGA-1" value="1,4,1,0,0"/>
+        <sequence id="17_cell_TTACGTTAGCTGTTAC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TTACGTTAGCTGTTAC-1" value="1,4,0,0,0"/>
+        <sequence id="18_cell_GTGTCCTGTCGTTTCC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="GTGTCCTGTCGTTTCC-1" value="1,4,5,7,1"/>
+        <sequence id="19_cell_GCGGATCCACTGCATA-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="GCGGATCCACTGCATA-1" value="1,4,5,5,0"/>
+        <sequence id="20_cell_TGGATCACACAGCTTA-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TGGATCACACAGCTTA-1" value="1,4,0,0,0"/>
+        <sequence id="21_cell_CAGGTATAGAAGCTCG-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CAGGTATAGAAGCTCG-1" value="1,4,4,1,7"/>
+        <sequence id="22_cell_AACCTTTGTTCTCACC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="AACCTTTGTTCTCACC-1" value="10,4,15,4,15"/>
+        <sequence id="23_cell_CCTTCAGCAATTGAAG-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CCTTCAGCAATTGAAG-1" value="1,4,16,16,1"/>
+        <sequence id="24_cell_CACTGAAAGTCGGCAA-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CACTGAAAGTCGGCAA-1" value="1,4,0,0,0"/>
+        <sequence id="25_cell_CGGCAGTTCTTTCAGT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CGGCAGTTCTTTCAGT-1" value="1,4,3,3,3"/>
+        <sequence id="26_cell_AGAACAAGTCCAGCGT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="AGAACAAGTCCAGCGT-1" value="11,4,3,5,16"/>
+        <sequence id="27_cell_ACTGATGCATAGGAGC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="ACTGATGCATAGGAGC-1" value="1,4,3,3,16"/>
+        <sequence id="28_cell_ATCCACCTCAGCAATC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="ATCCACCTCAGCAATC-1" value="1,4,3,3,3"/>
+        <sequence id="29_cell_TGCAGTAAGCATCAAA-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TGCAGTAAGCATCAAA-1" value="1,4,16,3,4"/>
+        <sequence id="30_cell_ACCGTTCAGCATGATA-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="ACCGTTCAGCATGATA-1" value="1,4,0,0,0"/>
+        <sequence id="31_cell_CCTTTGGGTCTCTCAC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CCTTTGGGTCTCTCAC-1" value="1,4,3,0,0"/>
+        <sequence id="32_cell_ACCCTTGCAGAATTCC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="ACCCTTGCAGAATTCC-1" value="1,4,3,3,15"/>
+        <sequence id="33_cell_ACTTAGGCAATATCCG-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="ACTTAGGCAATATCCG-1" value="1,4,3,0,0"/>
+        <sequence id="34_cell_GTGTGGCGTCGAAACG-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="GTGTGGCGTCGAAACG-1" value="1,4,0,0,0"/>
+        <sequence id="35_cell_CTGCTCAAGATGGTAT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CTGCTCAAGATGGTAT-1" value="1,4,0,0,0"/>
+        <sequence id="36_cell_TCATCCGAGTGACCTT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TCATCCGAGTGACCTT-1" value="1,4,0,0,0"/>
+        <sequence id="37_cell_TGATTCTCAAGTACCT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TGATTCTCAAGTACCT-1" value="1,0,0,0,0"/>
+        <sequence id="38_cell_TACTTCACACTATCGA-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TACTTCACACTATCGA-1" value="1,4,3,3,1"/>
+        <sequence id="39_cell_GACGTTAGTTGTCAGT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="GACGTTAGTTGTCAGT-1" value="1,4,0,0,0"/>
+        <sequence id="40_cell_CTTCTCTGTTGGTACT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CTTCTCTGTTGGTACT-1" value="1,4,0,0,0"/>
+        <sequence id="41_cell_TGTTCTACATAGCACT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TGTTCTACATAGCACT-1" value="1,4,4,1,0"/>
+        <sequence id="42_cell_CCGGTGAAGTCCTGTA-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CCGGTGAAGTCCTGTA-1" value="1,4,13,3,16"/>
+        <sequence id="43_cell_TTTGACTAGCAACTTC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TTTGACTAGCAACTTC-1" value="1,4,16,16,1"/>
+        <sequence id="44_cell_CATTGTTAGGTACAAT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CATTGTTAGGTACAAT-1" value="1,4,3,5,1"/>
+        <sequence id="45_cell_ATTCGTTAGCTTTCCC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="ATTCGTTAGCTTTCCC-1" value="1,0,0,0,0"/>
+        <sequence id="46_cell_CGAGAAGGTTCCATTT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CGAGAAGGTTCCATTT-1" value="1,4,3,5,26"/>
+        <sequence id="47_cell_ACCAAACAGCACTAGG-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="ACCAAACAGCACTAGG-1" value="1,4,0,0,0"/>
+        <sequence id="48_cell_CCGAACGCAGCGACCT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CCGAACGCAGCGACCT-1" value="1,4,3,0,0"/>
+        <sequence id="49_cell_CCTTGTGGTTCTTCAT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CCTTGTGGTTCTTCAT-1" value="10,4,4,3,15"/>
+        <sequence id="50_cell_CTCAAGAAGACCTGGA-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CTCAAGAAGACCTGGA-1" value="1,4,3,3,0"/>
+        <sequence id="51_cell_TGTCCTGCAATTGCCA-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TGTCCTGCAATTGCCA-1" value="1,4,3,3,0"/>
+        <sequence id="52_cell_CGATGGCTCGCCAGAC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CGATGGCTCGCCAGAC-1" value="1,4,5,7,0"/>
+        <sequence id="53_cell_CGGAGAATCCGCTGTT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CGGAGAATCCGCTGTT-1" value="1,4,3,3,0"/>
+        <sequence id="54_cell_AGAGCAGAGAAGTGTT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="AGAGCAGAGAAGTGTT-1" value="1,4,4,3,0"/>
+        <sequence id="55_cell_TCTGCCAAGAGTCTTC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TCTGCCAAGAGTCTTC-1" value="1,4,3,5,4"/>
+        <sequence id="56_cell_GGGATCCCAACTGAAA-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="GGGATCCCAACTGAAA-1" value="1,4,3,5,4"/>
+        <sequence id="57_cell_AGAAGCGTCACCTCGT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="AGAAGCGTCACCTCGT-1" value="1,4,3,5,4"/>
+        <sequence id="58_cell_TATCTTGTCGCCTCTA-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TATCTTGTCGCCTCTA-1" value="1,4,16,1,3"/>
+        <sequence id="59_cell_TCTGGCTAGACCTTTG-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TCTGGCTAGACCTTTG-1" value="1,4,3,3,15"/>
+        <sequence id="60_cell_CCTCAACCAGGACTTT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CCTCAACCAGGACTTT-1" value="8,4,4,3,15"/>
+        <sequence id="61_cell_CAACGATCACGTAACT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CAACGATCACGTAACT-1" value="1,4,3,13,0"/>
+        <sequence id="62_cell_CGGGTGTTCCCACAGG-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CGGGTGTTCCCACAGG-1" value="1,4,3,16,3"/>
+        <sequence id="63_cell_CAGGCCATCTGGAGAG-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CAGGCCATCTGGAGAG-1" value="1,4,3,5,4"/>
+        <sequence id="64_cell_AGCGCTGAGGATTTAG-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="AGCGCTGAGGATTTAG-1" value="1,4,3,5,5"/>
+        <sequence id="65_cell_TGAGACTCAAGATGGC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="TGAGACTCAAGATGGC-1" value="1,4,3,3,13"/>
+        <sequence id="66_cell_ACCACAACAATACCTG-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="ACCACAACAATACCTG-1" value="1,4,3,3,27"/>
+        <sequence id="67_cell_ACGTACATCCGATAAC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="ACGTACATCCGATAAC-1" value="1,4,0,0,0"/>
+        <sequence id="68_cell_CACAACAAGTCGGCCT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CACAACAAGTCGGCCT-1" value="1,4,3,5,16"/>
+        <sequence id="69_cell_CAACAACCAGCTGTGC-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="CAACAACCAGCTGTGC-1" value="1,4,3,5,0"/>
+        <sequence id="70_cell_GCCAGGTTCTCGGCTT-1_targetBC_AACTGAATGTTT" spec="Sequence" taxon="GCCAGGTTCTCGGCTT-1" value="1,4,3,5,0"/>
+    </data>
+    <data  id="preliminary_gastruloid_targetBC_GTACAAAATAGT" spec="Alignment" name="alignment" dataType="integer">
+        <sequence id="0_cell_AAAGGGCCAAATCAAG-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="AAAGGGCCAAATCAAG-1" value="2,4,4,1,3"/>
+        <sequence id="1_cell_CAGATACCATAGTCGT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CAGATACCATAGTCGT-1" value="2,4,7,0,0"/>
+        <sequence id="2_cell_TTGGGCGGTATGACAA-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TTGGGCGGTATGACAA-1" value="0,0,0,0,0"/>
+        <sequence id="3_cell_CACCGTTCAATAACCC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CACCGTTCAATAACCC-1" value="2,4,3,4,5"/>
+        <sequence id="4_cell_TTTCAGTGTGCTGTCG-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TTTCAGTGTGCTGTCG-1" value="2,4,3,0,0"/>
+        <sequence id="5_cell_ACCCTCAAGTCTAACC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="ACCCTCAAGTCTAACC-1" value="2,4,3,4,4"/>
+        <sequence id="6_cell_CGAGGAAGTCTAGATC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CGAGGAAGTCTAGATC-1" value="2,4,3,0,0"/>
+        <sequence id="7_cell_TTTGATCGTCGGTACC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TTTGATCGTCGGTACC-1" value="2,0,0,0,0"/>
+        <sequence id="8_cell_AGAGAGCCATAGGTTC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="AGAGAGCCATAGGTTC-1" value="2,4,4,15,0"/>
+        <sequence id="9_cell_TCGATTTCAGTGGCTC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TCGATTTCAGTGGCTC-1" value="2,4,4,0,0"/>
+        <sequence id="10_cell_GTTGTAGCATCCAATG-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="GTTGTAGCATCCAATG-1" value="2,4,0,0,0"/>
+        <sequence id="11_cell_GGTTAACCATAGATCC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="GGTTAACCATAGATCC-1" value="2,0,0,0,0"/>
+        <sequence id="12_cell_TACGGTAAGCAACCAG-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TACGGTAAGCAACCAG-1" value="2,4,3,4,4"/>
+        <sequence id="13_cell_TCAATTCTCAACTACG-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TCAATTCTCAACTACG-1" value="2,4,5,0,0"/>
+        <sequence id="14_cell_TCACGGGCAGCCGTTG-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TCACGGGCAGCCGTTG-1" value="2,19,3,1,1"/>
+        <sequence id="15_cell_TCCGGGAGTTCGCGTG-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TCCGGGAGTTCGCGTG-1" value="2,4,3,4,4"/>
+        <sequence id="16_cell_GCCGTGAGTATATGGA-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="GCCGTGAGTATATGGA-1" value="2,4,3,4,3"/>
+        <sequence id="17_cell_TTACGTTAGCTGTTAC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TTACGTTAGCTGTTAC-1" value="2,4,4,0,0"/>
+        <sequence id="18_cell_GTGTCCTGTCGTTTCC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="GTGTCCTGTCGTTTCC-1" value="2,4,3,4,4"/>
+        <sequence id="19_cell_GCGGATCCACTGCATA-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="GCGGATCCACTGCATA-1" value="2,4,3,5,0"/>
+        <sequence id="20_cell_TGGATCACACAGCTTA-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TGGATCACACAGCTTA-1" value="2,0,0,0,0"/>
+        <sequence id="21_cell_CAGGTATAGAAGCTCG-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CAGGTATAGAAGCTCG-1" value="2,4,4,3,15"/>
+        <sequence id="22_cell_AACCTTTGTTCTCACC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="AACCTTTGTTCTCACC-1" value="2,4,0,0,0"/>
+        <sequence id="23_cell_CCTTCAGCAATTGAAG-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CCTTCAGCAATTGAAG-1" value="2,4,4,16,4"/>
+        <sequence id="24_cell_CACTGAAAGTCGGCAA-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CACTGAAAGTCGGCAA-1" value="2,4,3,1,0"/>
+        <sequence id="25_cell_CGGCAGTTCTTTCAGT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CGGCAGTTCTTTCAGT-1" value="2,4,3,4,26"/>
+        <sequence id="26_cell_AGAACAAGTCCAGCGT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="AGAACAAGTCCAGCGT-1" value="2,4,3,4,16"/>
+        <sequence id="27_cell_ACTGATGCATAGGAGC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="ACTGATGCATAGGAGC-1" value="2,4,3,4,0"/>
+        <sequence id="28_cell_ATCCACCTCAGCAATC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="ATCCACCTCAGCAATC-1" value="2,4,3,5,0"/>
+        <sequence id="29_cell_TGCAGTAAGCATCAAA-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TGCAGTAAGCATCAAA-1" value="2,4,4,7,7"/>
+        <sequence id="30_cell_ACCGTTCAGCATGATA-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="ACCGTTCAGCATGATA-1" value="2,4,4,0,0"/>
+        <sequence id="31_cell_CCTTTGGGTCTCTCAC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CCTTTGGGTCTCTCAC-1" value="2,4,3,0,0"/>
+        <sequence id="32_cell_ACCCTTGCAGAATTCC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="ACCCTTGCAGAATTCC-1" value="2,4,4,3,15"/>
+        <sequence id="33_cell_ACTTAGGCAATATCCG-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="ACTTAGGCAATATCCG-1" value="2,4,3,1,0"/>
+        <sequence id="34_cell_GTGTGGCGTCGAAACG-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="GTGTGGCGTCGAAACG-1" value="2,4,3,0,0"/>
+        <sequence id="35_cell_CTGCTCAAGATGGTAT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CTGCTCAAGATGGTAT-1" value="2,4,3,16,4"/>
+        <sequence id="36_cell_TCATCCGAGTGACCTT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TCATCCGAGTGACCTT-1" value="2,4,0,0,0"/>
+        <sequence id="37_cell_TGATTCTCAAGTACCT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TGATTCTCAAGTACCT-1" value="2,4,4,0,0"/>
+        <sequence id="38_cell_TACTTCACACTATCGA-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TACTTCACACTATCGA-1" value="2,0,0,0,0"/>
+        <sequence id="39_cell_GACGTTAGTTGTCAGT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="GACGTTAGTTGTCAGT-1" value="2,4,4,3,0"/>
+        <sequence id="40_cell_CTTCTCTGTTGGTACT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CTTCTCTGTTGGTACT-1" value="2,4,3,0,0"/>
+        <sequence id="41_cell_TGTTCTACATAGCACT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TGTTCTACATAGCACT-1" value="2,4,3,7,0"/>
+        <sequence id="42_cell_CCGGTGAAGTCCTGTA-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CCGGTGAAGTCCTGTA-1" value="2,4,3,4,3"/>
+        <sequence id="43_cell_TTTGACTAGCAACTTC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TTTGACTAGCAACTTC-1" value="2,4,4,3,15"/>
+        <sequence id="44_cell_CATTGTTAGGTACAAT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CATTGTTAGGTACAAT-1" value="2,4,3,0,0"/>
+        <sequence id="45_cell_ATTCGTTAGCTTTCCC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="ATTCGTTAGCTTTCCC-1" value="2,4,3,4,7"/>
+        <sequence id="46_cell_CGAGAAGGTTCCATTT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CGAGAAGGTTCCATTT-1" value="14,4,3,5,3"/>
+        <sequence id="47_cell_ACCAAACAGCACTAGG-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="ACCAAACAGCACTAGG-1" value="2,4,3,16,4"/>
+        <sequence id="48_cell_CCGAACGCAGCGACCT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CCGAACGCAGCGACCT-1" value="2,4,3,0,0"/>
+        <sequence id="49_cell_CCTTGTGGTTCTTCAT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CCTTGTGGTTCTTCAT-1" value="2,4,3,0,0"/>
+        <sequence id="50_cell_CTCAAGAAGACCTGGA-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CTCAAGAAGACCTGGA-1" value="2,4,3,4,0"/>
+        <sequence id="51_cell_TGTCCTGCAATTGCCA-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TGTCCTGCAATTGCCA-1" value="2,4,3,1,7"/>
+        <sequence id="52_cell_CGATGGCTCGCCAGAC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CGATGGCTCGCCAGAC-1" value="2,4,3,0,0"/>
+        <sequence id="53_cell_CGGAGAATCCGCTGTT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CGGAGAATCCGCTGTT-1" value="2,4,3,8,7"/>
+        <sequence id="54_cell_AGAGCAGAGAAGTGTT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="AGAGCAGAGAAGTGTT-1" value="2,4,3,0,0"/>
+        <sequence id="55_cell_TCTGCCAAGAGTCTTC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TCTGCCAAGAGTCTTC-1" value="2,4,3,4,4"/>
+        <sequence id="56_cell_GGGATCCCAACTGAAA-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="GGGATCCCAACTGAAA-1" value="2,4,3,4,0"/>
+        <sequence id="57_cell_AGAAGCGTCACCTCGT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="AGAAGCGTCACCTCGT-1" value="2,4,3,4,4"/>
+        <sequence id="58_cell_TATCTTGTCGCCTCTA-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TATCTTGTCGCCTCTA-1" value="2,0,0,0,0"/>
+        <sequence id="59_cell_TCTGGCTAGACCTTTG-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TCTGGCTAGACCTTTG-1" value="2,4,3,4,3"/>
+        <sequence id="60_cell_CCTCAACCAGGACTTT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CCTCAACCAGGACTTT-1" value="2,4,3,0,0"/>
+        <sequence id="61_cell_CAACGATCACGTAACT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CAACGATCACGTAACT-1" value="2,4,3,8,7"/>
+        <sequence id="62_cell_CGGGTGTTCCCACAGG-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CGGGTGTTCCCACAGG-1" value="2,4,3,4,3"/>
+        <sequence id="63_cell_CAGGCCATCTGGAGAG-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CAGGCCATCTGGAGAG-1" value="2,4,3,4,4"/>
+        <sequence id="64_cell_AGCGCTGAGGATTTAG-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="AGCGCTGAGGATTTAG-1" value="2,4,3,4,4"/>
+        <sequence id="65_cell_TGAGACTCAAGATGGC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="TGAGACTCAAGATGGC-1" value="2,4,3,4,3"/>
+        <sequence id="66_cell_ACCACAACAATACCTG-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="ACCACAACAATACCTG-1" value="2,4,3,1,0"/>
+        <sequence id="67_cell_ACGTACATCCGATAAC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="ACGTACATCCGATAAC-1" value="2,4,3,4,3"/>
+        <sequence id="68_cell_CACAACAAGTCGGCCT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CACAACAAGTCGGCCT-1" value="2,4,3,4,16"/>
+        <sequence id="69_cell_CAACAACCAGCTGTGC-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="CAACAACCAGCTGTGC-1" value="2,4,3,4,0"/>
+        <sequence id="70_cell_GCCAGGTTCTCGGCTT-1_targetBC_GTACAAAATAGT" spec="Sequence" taxon="GCCAGGTTCTCGGCTT-1" value="2,4,3,0,0"/>
+    </data>
+    <data  id="preliminary_gastruloid_targetBC_TTCACAAATTTA" spec="Alignment" name="alignment" dataType="integer">
+        <sequence id="0_cell_AAAGGGCCAAATCAAG-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="AAAGGGCCAAATCAAG-1" value="3,5,1,1,0"/>
+        <sequence id="1_cell_CAGATACCATAGTCGT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CAGATACCATAGTCGT-1" value="7,0,0,0,0"/>
+        <sequence id="2_cell_TTGGGCGGTATGACAA-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TTGGGCGGTATGACAA-1" value="3,3,16,0,0"/>
+        <sequence id="3_cell_CACCGTTCAATAACCC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CACCGTTCAATAACCC-1" value="7,0,0,0,0"/>
+        <sequence id="4_cell_TTTCAGTGTGCTGTCG-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TTTCAGTGTGCTGTCG-1" value="7,4,15,3,3"/>
+        <sequence id="5_cell_ACCCTCAAGTCTAACC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="ACCCTCAAGTCTAACC-1" value="7,16,4,5,3"/>
+        <sequence id="6_cell_CGAGGAAGTCTAGATC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CGAGGAAGTCTAGATC-1" value="0,0,0,0,0"/>
+        <sequence id="7_cell_TTTGATCGTCGGTACC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TTTGATCGTCGGTACC-1" value="7,16,4,5,4"/>
+        <sequence id="8_cell_AGAGAGCCATAGGTTC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="AGAGAGCCATAGGTTC-1" value="3,0,0,0,0"/>
+        <sequence id="9_cell_TCGATTTCAGTGGCTC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TCGATTTCAGTGGCTC-1" value="7,16,3,15,0"/>
+        <sequence id="10_cell_GTTGTAGCATCCAATG-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="GTTGTAGCATCCAATG-1" value="0,0,0,0,0"/>
+        <sequence id="11_cell_GGTTAACCATAGATCC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="GGTTAACCATAGATCC-1" value="7,16,4,5,0"/>
+        <sequence id="12_cell_TACGGTAAGCAACCAG-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TACGGTAAGCAACCAG-1" value="3,1,1,4,7"/>
+        <sequence id="13_cell_TCAATTCTCAACTACG-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TCAATTCTCAACTACG-1" value="3,1,1,4,0"/>
+        <sequence id="14_cell_TCACGGGCAGCCGTTG-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TCACGGGCAGCCGTTG-1" value="7,0,0,0,0"/>
+        <sequence id="15_cell_TCCGGGAGTTCGCGTG-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TCCGGGAGTTCGCGTG-1" value="7,16,4,5,3"/>
+        <sequence id="16_cell_GCCGTGAGTATATGGA-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="GCCGTGAGTATATGGA-1" value="7,0,0,0,0"/>
+        <sequence id="17_cell_TTACGTTAGCTGTTAC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TTACGTTAGCTGTTAC-1" value="9,16,4,5,3"/>
+        <sequence id="18_cell_GTGTCCTGTCGTTTCC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="GTGTCCTGTCGTTTCC-1" value="0,0,0,0,0"/>
+        <sequence id="19_cell_GCGGATCCACTGCATA-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="GCGGATCCACTGCATA-1" value="3,0,0,0,0"/>
+        <sequence id="20_cell_TGGATCACACAGCTTA-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TGGATCACACAGCTTA-1" value="7,4,3,4,11"/>
+        <sequence id="21_cell_CAGGTATAGAAGCTCG-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CAGGTATAGAAGCTCG-1" value="0,0,0,0,0"/>
+        <sequence id="22_cell_AACCTTTGTTCTCACC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="AACCTTTGTTCTCACC-1" value="0,0,0,0,0"/>
+        <sequence id="23_cell_CCTTCAGCAATTGAAG-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CCTTCAGCAATTGAAG-1" value="3,1,1,3,11"/>
+        <sequence id="24_cell_CACTGAAAGTCGGCAA-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CACTGAAAGTCGGCAA-1" value="0,0,0,0,0"/>
+        <sequence id="25_cell_CGGCAGTTCTTTCAGT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CGGCAGTTCTTTCAGT-1" value="7,0,0,0,0"/>
+        <sequence id="26_cell_AGAACAAGTCCAGCGT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="AGAACAAGTCCAGCGT-1" value="7,16,4,5,15"/>
+        <sequence id="27_cell_ACTGATGCATAGGAGC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="ACTGATGCATAGGAGC-1" value="7,16,4,5,3"/>
+        <sequence id="28_cell_ATCCACCTCAGCAATC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="ATCCACCTCAGCAATC-1" value="0,0,0,0,0"/>
+        <sequence id="29_cell_TGCAGTAAGCATCAAA-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TGCAGTAAGCATCAAA-1" value="3,1,3,1,24"/>
+        <sequence id="30_cell_ACCGTTCAGCATGATA-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="ACCGTTCAGCATGATA-1" value="12,16,4,5,3"/>
+        <sequence id="31_cell_CCTTTGGGTCTCTCAC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CCTTTGGGTCTCTCAC-1" value="3,0,0,0,0"/>
+        <sequence id="32_cell_ACCCTTGCAGAATTCC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="ACCCTTGCAGAATTCC-1" value="0,0,0,0,0"/>
+        <sequence id="33_cell_ACTTAGGCAATATCCG-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="ACTTAGGCAATATCCG-1" value="7,16,3,16,0"/>
+        <sequence id="34_cell_GTGTGGCGTCGAAACG-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="GTGTGGCGTCGAAACG-1" value="0,0,0,0,0"/>
+        <sequence id="35_cell_CTGCTCAAGATGGTAT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CTGCTCAAGATGGTAT-1" value="7,5,0,0,0"/>
+        <sequence id="36_cell_TCATCCGAGTGACCTT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TCATCCGAGTGACCTT-1" value="7,4,0,0,0"/>
+        <sequence id="37_cell_TGATTCTCAAGTACCT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TGATTCTCAAGTACCT-1" value="0,0,0,0,0"/>
+        <sequence id="38_cell_TACTTCACACTATCGA-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TACTTCACACTATCGA-1" value="0,0,0,0,0"/>
+        <sequence id="39_cell_GACGTTAGTTGTCAGT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="GACGTTAGTTGTCAGT-1" value="0,0,0,0,0"/>
+        <sequence id="40_cell_CTTCTCTGTTGGTACT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CTTCTCTGTTGGTACT-1" value="3,3,4,0,0"/>
+        <sequence id="41_cell_TGTTCTACATAGCACT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TGTTCTACATAGCACT-1" value="7,5,3,7,0"/>
+        <sequence id="42_cell_CCGGTGAAGTCCTGTA-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CCGGTGAAGTCCTGTA-1" value="7,0,0,0,0"/>
+        <sequence id="43_cell_TTTGACTAGCAACTTC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TTTGACTAGCAACTTC-1" value="0,0,0,0,0"/>
+        <sequence id="44_cell_CATTGTTAGGTACAAT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CATTGTTAGGTACAAT-1" value="7,16,4,16,0"/>
+        <sequence id="45_cell_ATTCGTTAGCTTTCCC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="ATTCGTTAGCTTTCCC-1" value="7,16,4,5,7"/>
+        <sequence id="46_cell_CGAGAAGGTTCCATTT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CGAGAAGGTTCCATTT-1" value="7,4,0,0,0"/>
+        <sequence id="47_cell_ACCAAACAGCACTAGG-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="ACCAAACAGCACTAGG-1" value="3,15,0,0,0"/>
+        <sequence id="48_cell_CCGAACGCAGCGACCT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CCGAACGCAGCGACCT-1" value="3,3,16,0,0"/>
+        <sequence id="49_cell_CCTTGTGGTTCTTCAT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CCTTGTGGTTCTTCAT-1" value="3,4,15,0,0"/>
+        <sequence id="50_cell_CTCAAGAAGACCTGGA-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CTCAAGAAGACCTGGA-1" value="0,0,0,0,0"/>
+        <sequence id="51_cell_TGTCCTGCAATTGCCA-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TGTCCTGCAATTGCCA-1" value="7,3,0,0,0"/>
+        <sequence id="52_cell_CGATGGCTCGCCAGAC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CGATGGCTCGCCAGAC-1" value="0,0,0,0,0"/>
+        <sequence id="53_cell_CGGAGAATCCGCTGTT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CGGAGAATCCGCTGTT-1" value="7,3,0,0,0"/>
+        <sequence id="54_cell_AGAGCAGAGAAGTGTT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="AGAGCAGAGAAGTGTT-1" value="3,4,0,0,0"/>
+        <sequence id="55_cell_TCTGCCAAGAGTCTTC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TCTGCCAAGAGTCTTC-1" value="7,16,4,5,1"/>
+        <sequence id="56_cell_GGGATCCCAACTGAAA-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="GGGATCCCAACTGAAA-1" value="7,16,4,5,3"/>
+        <sequence id="57_cell_AGAAGCGTCACCTCGT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="AGAAGCGTCACCTCGT-1" value="7,16,4,5,7"/>
+        <sequence id="58_cell_TATCTTGTCGCCTCTA-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TATCTTGTCGCCTCTA-1" value="4,7,0,0,0"/>
+        <sequence id="59_cell_TCTGGCTAGACCTTTG-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TCTGGCTAGACCTTTG-1" value="7,3,3,0,0"/>
+        <sequence id="60_cell_CCTCAACCAGGACTTT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CCTCAACCAGGACTTT-1" value="3,4,0,0,0"/>
+        <sequence id="61_cell_CAACGATCACGTAACT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CAACGATCACGTAACT-1" value="0,0,0,0,0"/>
+        <sequence id="62_cell_CGGGTGTTCCCACAGG-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CGGGTGTTCCCACAGG-1" value="7,4,0,0,0"/>
+        <sequence id="63_cell_CAGGCCATCTGGAGAG-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CAGGCCATCTGGAGAG-1" value="7,16,4,5,3"/>
+        <sequence id="64_cell_AGCGCTGAGGATTTAG-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="AGCGCTGAGGATTTAG-1" value="7,16,4,5,3"/>
+        <sequence id="65_cell_TGAGACTCAAGATGGC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="TGAGACTCAAGATGGC-1" value="7,0,0,0,0"/>
+        <sequence id="66_cell_ACCACAACAATACCTG-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="ACCACAACAATACCTG-1" value="7,7,0,0,0"/>
+        <sequence id="67_cell_ACGTACATCCGATAAC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="ACGTACATCCGATAAC-1" value="7,16,0,0,0"/>
+        <sequence id="68_cell_CACAACAAGTCGGCCT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CACAACAAGTCGGCCT-1" value="7,16,4,5,15"/>
+        <sequence id="69_cell_CAACAACCAGCTGTGC-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="CAACAACCAGCTGTGC-1" value="7,16,4,5,4"/>
+        <sequence id="70_cell_GCCAGGTTCTCGGCTT-1_targetBC_TTCACAAATTTA" spec="Sequence" taxon="GCCAGGTTCTCGGCTT-1" value="7,16,3,4,3"/>
+    </data>
+    <data  id="preliminary_gastruloid_targetBC_TAACGAAGATTT" spec="Alignment" name="alignment" dataType="integer">
+        <sequence id="0_cell_AAAGGGCCAAATCAAG-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="AAAGGGCCAAATCAAG-1" value="0,0,0,0,0"/>
+        <sequence id="1_cell_CAGATACCATAGTCGT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CAGATACCATAGTCGT-1" value="0,0,0,0,0"/>
+        <sequence id="2_cell_TTGGGCGGTATGACAA-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TTGGGCGGTATGACAA-1" value="0,0,0,0,0"/>
+        <sequence id="3_cell_CACCGTTCAATAACCC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CACCGTTCAATAACCC-1" value="5,1,16,0,0"/>
+        <sequence id="4_cell_TTTCAGTGTGCTGTCG-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TTTCAGTGTGCTGTCG-1" value="3,0,0,0,0"/>
+        <sequence id="5_cell_ACCCTCAAGTCTAACC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="ACCCTCAAGTCTAACC-1" value="0,0,0,0,0"/>
+        <sequence id="6_cell_CGAGGAAGTCTAGATC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CGAGGAAGTCTAGATC-1" value="0,0,0,0,0"/>
+        <sequence id="7_cell_TTTGATCGTCGGTACC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TTTGATCGTCGGTACC-1" value="5,3,0,0,0"/>
+        <sequence id="8_cell_AGAGAGCCATAGGTTC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="AGAGAGCCATAGGTTC-1" value="0,0,0,0,0"/>
+        <sequence id="9_cell_TCGATTTCAGTGGCTC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TCGATTTCAGTGGCTC-1" value="0,0,0,0,0"/>
+        <sequence id="10_cell_GTTGTAGCATCCAATG-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="GTTGTAGCATCCAATG-1" value="0,0,0,0,0"/>
+        <sequence id="11_cell_GGTTAACCATAGATCC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="GGTTAACCATAGATCC-1" value="5,7,0,0,0"/>
+        <sequence id="12_cell_TACGGTAAGCAACCAG-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TACGGTAAGCAACCAG-1" value="0,0,0,0,0"/>
+        <sequence id="13_cell_TCAATTCTCAACTACG-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TCAATTCTCAACTACG-1" value="0,0,0,0,0"/>
+        <sequence id="14_cell_TCACGGGCAGCCGTTG-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TCACGGGCAGCCGTTG-1" value="0,0,0,0,0"/>
+        <sequence id="15_cell_TCCGGGAGTTCGCGTG-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TCCGGGAGTTCGCGTG-1" value="0,0,0,0,0"/>
+        <sequence id="16_cell_GCCGTGAGTATATGGA-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="GCCGTGAGTATATGGA-1" value="0,0,0,0,0"/>
+        <sequence id="17_cell_TTACGTTAGCTGTTAC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TTACGTTAGCTGTTAC-1" value="5,0,0,0,0"/>
+        <sequence id="18_cell_GTGTCCTGTCGTTTCC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="GTGTCCTGTCGTTTCC-1" value="0,0,0,0,0"/>
+        <sequence id="19_cell_GCGGATCCACTGCATA-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="GCGGATCCACTGCATA-1" value="0,0,0,0,0"/>
+        <sequence id="20_cell_TGGATCACACAGCTTA-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TGGATCACACAGCTTA-1" value="0,0,0,0,0"/>
+        <sequence id="21_cell_CAGGTATAGAAGCTCG-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CAGGTATAGAAGCTCG-1" value="0,0,0,0,0"/>
+        <sequence id="22_cell_AACCTTTGTTCTCACC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="AACCTTTGTTCTCACC-1" value="0,0,0,0,0"/>
+        <sequence id="23_cell_CCTTCAGCAATTGAAG-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CCTTCAGCAATTGAAG-1" value="5,4,0,0,0"/>
+        <sequence id="24_cell_CACTGAAAGTCGGCAA-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CACTGAAAGTCGGCAA-1" value="0,0,0,0,0"/>
+        <sequence id="25_cell_CGGCAGTTCTTTCAGT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CGGCAGTTCTTTCAGT-1" value="0,0,0,0,0"/>
+        <sequence id="26_cell_AGAACAAGTCCAGCGT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="AGAACAAGTCCAGCGT-1" value="5,4,0,0,0"/>
+        <sequence id="27_cell_ACTGATGCATAGGAGC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="ACTGATGCATAGGAGC-1" value="0,0,0,0,0"/>
+        <sequence id="28_cell_ATCCACCTCAGCAATC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="ATCCACCTCAGCAATC-1" value="0,0,0,0,0"/>
+        <sequence id="29_cell_TGCAGTAAGCATCAAA-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TGCAGTAAGCATCAAA-1" value="0,0,0,0,0"/>
+        <sequence id="30_cell_ACCGTTCAGCATGATA-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="ACCGTTCAGCATGATA-1" value="5,0,0,0,0"/>
+        <sequence id="31_cell_CCTTTGGGTCTCTCAC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CCTTTGGGTCTCTCAC-1" value="0,0,0,0,0"/>
+        <sequence id="32_cell_ACCCTTGCAGAATTCC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="ACCCTTGCAGAATTCC-1" value="0,0,0,0,0"/>
+        <sequence id="33_cell_ACTTAGGCAATATCCG-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="ACTTAGGCAATATCCG-1" value="0,0,0,0,0"/>
+        <sequence id="34_cell_GTGTGGCGTCGAAACG-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="GTGTGGCGTCGAAACG-1" value="0,0,0,0,0"/>
+        <sequence id="35_cell_CTGCTCAAGATGGTAT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CTGCTCAAGATGGTAT-1" value="0,0,0,0,0"/>
+        <sequence id="36_cell_TCATCCGAGTGACCTT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TCATCCGAGTGACCTT-1" value="3,0,0,0,0"/>
+        <sequence id="37_cell_TGATTCTCAAGTACCT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TGATTCTCAAGTACCT-1" value="0,0,0,0,0"/>
+        <sequence id="38_cell_TACTTCACACTATCGA-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TACTTCACACTATCGA-1" value="7,0,0,0,0"/>
+        <sequence id="39_cell_GACGTTAGTTGTCAGT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="GACGTTAGTTGTCAGT-1" value="0,0,0,0,0"/>
+        <sequence id="40_cell_CTTCTCTGTTGGTACT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CTTCTCTGTTGGTACT-1" value="0,0,0,0,0"/>
+        <sequence id="41_cell_TGTTCTACATAGCACT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TGTTCTACATAGCACT-1" value="4,0,0,0,0"/>
+        <sequence id="42_cell_CCGGTGAAGTCCTGTA-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CCGGTGAAGTCCTGTA-1" value="0,0,0,0,0"/>
+        <sequence id="43_cell_TTTGACTAGCAACTTC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TTTGACTAGCAACTTC-1" value="0,0,0,0,0"/>
+        <sequence id="44_cell_CATTGTTAGGTACAAT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CATTGTTAGGTACAAT-1" value="5,3,3,0,0"/>
+        <sequence id="45_cell_ATTCGTTAGCTTTCCC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="ATTCGTTAGCTTTCCC-1" value="0,0,0,0,0"/>
+        <sequence id="46_cell_CGAGAAGGTTCCATTT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CGAGAAGGTTCCATTT-1" value="0,0,0,0,0"/>
+        <sequence id="47_cell_ACCAAACAGCACTAGG-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="ACCAAACAGCACTAGG-1" value="0,0,0,0,0"/>
+        <sequence id="48_cell_CCGAACGCAGCGACCT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CCGAACGCAGCGACCT-1" value="0,0,0,0,0"/>
+        <sequence id="49_cell_CCTTGTGGTTCTTCAT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CCTTGTGGTTCTTCAT-1" value="0,0,0,0,0"/>
+        <sequence id="50_cell_CTCAAGAAGACCTGGA-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CTCAAGAAGACCTGGA-1" value="0,0,0,0,0"/>
+        <sequence id="51_cell_TGTCCTGCAATTGCCA-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TGTCCTGCAATTGCCA-1" value="7,3,0,0,0"/>
+        <sequence id="52_cell_CGATGGCTCGCCAGAC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CGATGGCTCGCCAGAC-1" value="0,0,0,0,0"/>
+        <sequence id="53_cell_CGGAGAATCCGCTGTT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CGGAGAATCCGCTGTT-1" value="12,3,0,0,0"/>
+        <sequence id="54_cell_AGAGCAGAGAAGTGTT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="AGAGCAGAGAAGTGTT-1" value="0,0,0,0,0"/>
+        <sequence id="55_cell_TCTGCCAAGAGTCTTC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TCTGCCAAGAGTCTTC-1" value="5,0,0,0,0"/>
+        <sequence id="56_cell_GGGATCCCAACTGAAA-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="GGGATCCCAACTGAAA-1" value="5,4,0,0,0"/>
+        <sequence id="57_cell_AGAAGCGTCACCTCGT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="AGAAGCGTCACCTCGT-1" value="5,7,8,0,0"/>
+        <sequence id="58_cell_TATCTTGTCGCCTCTA-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TATCTTGTCGCCTCTA-1" value="0,0,0,0,0"/>
+        <sequence id="59_cell_TCTGGCTAGACCTTTG-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TCTGGCTAGACCTTTG-1" value="15,0,0,0,0"/>
+        <sequence id="60_cell_CCTCAACCAGGACTTT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CCTCAACCAGGACTTT-1" value="0,0,0,0,0"/>
+        <sequence id="61_cell_CAACGATCACGTAACT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CAACGATCACGTAACT-1" value="0,0,0,0,0"/>
+        <sequence id="62_cell_CGGGTGTTCCCACAGG-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CGGGTGTTCCCACAGG-1" value="0,0,0,0,0"/>
+        <sequence id="63_cell_CAGGCCATCTGGAGAG-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CAGGCCATCTGGAGAG-1" value="5,0,0,0,0"/>
+        <sequence id="64_cell_AGCGCTGAGGATTTAG-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="AGCGCTGAGGATTTAG-1" value="5,4,3,0,0"/>
+        <sequence id="65_cell_TGAGACTCAAGATGGC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="TGAGACTCAAGATGGC-1" value="0,0,0,0,0"/>
+        <sequence id="66_cell_ACCACAACAATACCTG-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="ACCACAACAATACCTG-1" value="7,7,0,0,0"/>
+        <sequence id="67_cell_ACGTACATCCGATAAC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="ACGTACATCCGATAAC-1" value="0,0,0,0,0"/>
+        <sequence id="68_cell_CACAACAAGTCGGCCT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CACAACAAGTCGGCCT-1" value="5,4,15,0,0"/>
+        <sequence id="69_cell_CAACAACCAGCTGTGC-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="CAACAACCAGCTGTGC-1" value="5,4,0,0,0"/>
+        <sequence id="70_cell_GCCAGGTTCTCGGCTT-1_targetBC_TAACGAAGATTT" spec="Sequence" taxon="GCCAGGTTCTCGGCTT-1" value="0,0,0,0,0"/>
+    </data>
+    <data  id="preliminary_gastruloid_targetBC_TTGATAACGTGA" spec="Alignment" name="alignment" dataType="integer">
+        <sequence id="0_cell_AAAGGGCCAAATCAAG-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="AAAGGGCCAAATCAAG-1" value="4,4,16,5,4"/>
+        <sequence id="1_cell_CAGATACCATAGTCGT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CAGATACCATAGTCGT-1" value="4,4,16,5,3"/>
+        <sequence id="2_cell_TTGGGCGGTATGACAA-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TTGGGCGGTATGACAA-1" value="4,4,16,5,3"/>
+        <sequence id="3_cell_CACCGTTCAATAACCC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CACCGTTCAATAACCC-1" value="4,4,16,5,3"/>
+        <sequence id="4_cell_TTTCAGTGTGCTGTCG-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TTTCAGTGTGCTGTCG-1" value="4,4,16,5,0"/>
+        <sequence id="5_cell_ACCCTCAAGTCTAACC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="ACCCTCAAGTCTAACC-1" value="4,4,16,5,3"/>
+        <sequence id="6_cell_CGAGGAAGTCTAGATC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CGAGGAAGTCTAGATC-1" value="4,4,16,5,3"/>
+        <sequence id="7_cell_TTTGATCGTCGGTACC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TTTGATCGTCGGTACC-1" value="4,4,16,5,3"/>
+        <sequence id="8_cell_AGAGAGCCATAGGTTC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="AGAGAGCCATAGGTTC-1" value="4,4,16,5,3"/>
+        <sequence id="9_cell_TCGATTTCAGTGGCTC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TCGATTTCAGTGGCTC-1" value="0,0,0,0,0"/>
+        <sequence id="10_cell_GTTGTAGCATCCAATG-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="GTTGTAGCATCCAATG-1" value="4,4,0,0,0"/>
+        <sequence id="11_cell_GGTTAACCATAGATCC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="GGTTAACCATAGATCC-1" value="4,4,16,5,3"/>
+        <sequence id="12_cell_TACGGTAAGCAACCAG-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TACGGTAAGCAACCAG-1" value="4,4,16,5,3"/>
+        <sequence id="13_cell_TCAATTCTCAACTACG-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TCAATTCTCAACTACG-1" value="4,4,16,5,4"/>
+        <sequence id="14_cell_TCACGGGCAGCCGTTG-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TCACGGGCAGCCGTTG-1" value="4,4,16,5,3"/>
+        <sequence id="15_cell_TCCGGGAGTTCGCGTG-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TCCGGGAGTTCGCGTG-1" value="4,4,16,5,13"/>
+        <sequence id="16_cell_GCCGTGAGTATATGGA-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="GCCGTGAGTATATGGA-1" value="4,4,16,5,3"/>
+        <sequence id="17_cell_TTACGTTAGCTGTTAC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TTACGTTAGCTGTTAC-1" value="4,4,16,5,3"/>
+        <sequence id="18_cell_GTGTCCTGTCGTTTCC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="GTGTCCTGTCGTTTCC-1" value="4,4,16,5,3"/>
+        <sequence id="19_cell_GCGGATCCACTGCATA-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="GCGGATCCACTGCATA-1" value="4,4,16,5,3"/>
+        <sequence id="20_cell_TGGATCACACAGCTTA-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TGGATCACACAGCTTA-1" value="4,4,16,22,3"/>
+        <sequence id="21_cell_CAGGTATAGAAGCTCG-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CAGGTATAGAAGCTCG-1" value="4,4,16,5,1"/>
+        <sequence id="22_cell_AACCTTTGTTCTCACC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="AACCTTTGTTCTCACC-1" value="4,4,16,5,3"/>
+        <sequence id="23_cell_CCTTCAGCAATTGAAG-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CCTTCAGCAATTGAAG-1" value="4,4,16,5,4"/>
+        <sequence id="24_cell_CACTGAAAGTCGGCAA-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CACTGAAAGTCGGCAA-1" value="4,4,16,5,0"/>
+        <sequence id="25_cell_CGGCAGTTCTTTCAGT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CGGCAGTTCTTTCAGT-1" value="4,4,20,5,3"/>
+        <sequence id="26_cell_AGAACAAGTCCAGCGT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="AGAACAAGTCCAGCGT-1" value="4,4,16,5,3"/>
+        <sequence id="27_cell_ACTGATGCATAGGAGC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="ACTGATGCATAGGAGC-1" value="4,4,16,22,3"/>
+        <sequence id="28_cell_ATCCACCTCAGCAATC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="ATCCACCTCAGCAATC-1" value="4,4,16,5,13"/>
+        <sequence id="29_cell_TGCAGTAAGCATCAAA-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TGCAGTAAGCATCAAA-1" value="4,4,16,5,25"/>
+        <sequence id="30_cell_ACCGTTCAGCATGATA-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="ACCGTTCAGCATGATA-1" value="4,4,16,5,3"/>
+        <sequence id="31_cell_CCTTTGGGTCTCTCAC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CCTTTGGGTCTCTCAC-1" value="4,4,16,5,3"/>
+        <sequence id="32_cell_ACCCTTGCAGAATTCC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="ACCCTTGCAGAATTCC-1" value="4,4,16,5,26"/>
+        <sequence id="33_cell_ACTTAGGCAATATCCG-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="ACTTAGGCAATATCCG-1" value="4,4,16,5,3"/>
+        <sequence id="34_cell_GTGTGGCGTCGAAACG-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="GTGTGGCGTCGAAACG-1" value="4,4,16,5,3"/>
+        <sequence id="35_cell_CTGCTCAAGATGGTAT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CTGCTCAAGATGGTAT-1" value="4,4,16,5,3"/>
+        <sequence id="36_cell_TCATCCGAGTGACCTT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TCATCCGAGTGACCTT-1" value="4,4,16,5,3"/>
+        <sequence id="37_cell_TGATTCTCAAGTACCT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TGATTCTCAAGTACCT-1" value="4,4,16,5,3"/>
+        <sequence id="38_cell_TACTTCACACTATCGA-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TACTTCACACTATCGA-1" value="4,4,16,5,3"/>
+        <sequence id="39_cell_GACGTTAGTTGTCAGT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="GACGTTAGTTGTCAGT-1" value="4,4,16,5,3"/>
+        <sequence id="40_cell_CTTCTCTGTTGGTACT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CTTCTCTGTTGGTACT-1" value="4,4,16,5,3"/>
+        <sequence id="41_cell_TGTTCTACATAGCACT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TGTTCTACATAGCACT-1" value="4,4,16,5,3"/>
+        <sequence id="42_cell_CCGGTGAAGTCCTGTA-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CCGGTGAAGTCCTGTA-1" value="4,4,16,5,3"/>
+        <sequence id="43_cell_TTTGACTAGCAACTTC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TTTGACTAGCAACTTC-1" value="4,4,16,5,0"/>
+        <sequence id="44_cell_CATTGTTAGGTACAAT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CATTGTTAGGTACAAT-1" value="4,4,16,5,3"/>
+        <sequence id="45_cell_ATTCGTTAGCTTTCCC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="ATTCGTTAGCTTTCCC-1" value="4,4,16,5,3"/>
+        <sequence id="46_cell_CGAGAAGGTTCCATTT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CGAGAAGGTTCCATTT-1" value="4,4,16,5,3"/>
+        <sequence id="47_cell_ACCAAACAGCACTAGG-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="ACCAAACAGCACTAGG-1" value="4,4,0,0,0"/>
+        <sequence id="48_cell_CCGAACGCAGCGACCT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CCGAACGCAGCGACCT-1" value="4,4,20,5,3"/>
+        <sequence id="49_cell_CCTTGTGGTTCTTCAT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CCTTGTGGTTCTTCAT-1" value="4,4,16,5,3"/>
+        <sequence id="50_cell_CTCAAGAAGACCTGGA-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CTCAAGAAGACCTGGA-1" value="4,4,16,5,3"/>
+        <sequence id="51_cell_TGTCCTGCAATTGCCA-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TGTCCTGCAATTGCCA-1" value="4,4,16,5,0"/>
+        <sequence id="52_cell_CGATGGCTCGCCAGAC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CGATGGCTCGCCAGAC-1" value="4,4,16,5,3"/>
+        <sequence id="53_cell_CGGAGAATCCGCTGTT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CGGAGAATCCGCTGTT-1" value="4,4,0,0,0"/>
+        <sequence id="54_cell_AGAGCAGAGAAGTGTT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="AGAGCAGAGAAGTGTT-1" value="4,4,16,5,3"/>
+        <sequence id="55_cell_TCTGCCAAGAGTCTTC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TCTGCCAAGAGTCTTC-1" value="4,4,16,5,3"/>
+        <sequence id="56_cell_GGGATCCCAACTGAAA-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="GGGATCCCAACTGAAA-1" value="4,4,16,5,3"/>
+        <sequence id="57_cell_AGAAGCGTCACCTCGT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="AGAAGCGTCACCTCGT-1" value="4,4,16,5,3"/>
+        <sequence id="58_cell_TATCTTGTCGCCTCTA-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TATCTTGTCGCCTCTA-1" value="4,4,16,5,15"/>
+        <sequence id="59_cell_TCTGGCTAGACCTTTG-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TCTGGCTAGACCTTTG-1" value="4,4,16,5,3"/>
+        <sequence id="60_cell_CCTCAACCAGGACTTT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CCTCAACCAGGACTTT-1" value="4,4,16,5,3"/>
+        <sequence id="61_cell_CAACGATCACGTAACT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CAACGATCACGTAACT-1" value="4,4,16,22,3"/>
+        <sequence id="62_cell_CGGGTGTTCCCACAGG-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CGGGTGTTCCCACAGG-1" value="4,4,16,5,3"/>
+        <sequence id="63_cell_CAGGCCATCTGGAGAG-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CAGGCCATCTGGAGAG-1" value="4,4,16,5,3"/>
+        <sequence id="64_cell_AGCGCTGAGGATTTAG-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="AGCGCTGAGGATTTAG-1" value="4,4,16,5,0"/>
+        <sequence id="65_cell_TGAGACTCAAGATGGC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="TGAGACTCAAGATGGC-1" value="4,4,16,5,3"/>
+        <sequence id="66_cell_ACCACAACAATACCTG-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="ACCACAACAATACCTG-1" value="0,0,0,0,0"/>
+        <sequence id="67_cell_ACGTACATCCGATAAC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="ACGTACATCCGATAAC-1" value="4,4,16,5,3"/>
+        <sequence id="68_cell_CACAACAAGTCGGCCT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CACAACAAGTCGGCCT-1" value="4,4,16,5,3"/>
+        <sequence id="69_cell_CAACAACCAGCTGTGC-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="CAACAACCAGCTGTGC-1" value="4,4,16,5,3"/>
+        <sequence id="70_cell_GCCAGGTTCTCGGCTT-1_targetBC_TTGATAACGTGA" spec="Sequence" taxon="GCCAGGTTCTCGGCTT-1" value="4,4,16,5,3"/>
+    </data>
+    <data  id="preliminary_gastruloid_targetBC_AGGCTAATTCCC" spec="Alignment" name="alignment" dataType="integer">
+        <sequence id="0_cell_AAAGGGCCAAATCAAG-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="AAAGGGCCAAATCAAG-1" value="5,4,15,15,16"/>
+        <sequence id="1_cell_CAGATACCATAGTCGT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CAGATACCATAGTCGT-1" value="5,4,15,15,16"/>
+        <sequence id="2_cell_TTGGGCGGTATGACAA-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TTGGGCGGTATGACAA-1" value="5,4,15,4,15"/>
+        <sequence id="3_cell_CACCGTTCAATAACCC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CACCGTTCAATAACCC-1" value="5,4,15,3,0"/>
+        <sequence id="4_cell_TTTCAGTGTGCTGTCG-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TTTCAGTGTGCTGTCG-1" value="5,4,15,4,1"/>
+        <sequence id="5_cell_ACCCTCAAGTCTAACC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="ACCCTCAAGTCTAACC-1" value="5,4,15,3,3"/>
+        <sequence id="6_cell_CGAGGAAGTCTAGATC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CGAGGAAGTCTAGATC-1" value="5,4,15,3,4"/>
+        <sequence id="7_cell_TTTGATCGTCGGTACC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TTTGATCGTCGGTACC-1" value="5,4,15,3,3"/>
+        <sequence id="8_cell_AGAGAGCCATAGGTTC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="AGAGAGCCATAGGTTC-1" value="5,4,15,7,1"/>
+        <sequence id="9_cell_TCGATTTCAGTGGCTC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TCGATTTCAGTGGCTC-1" value="5,4,15,4,1"/>
+        <sequence id="10_cell_GTTGTAGCATCCAATG-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="GTTGTAGCATCCAATG-1" value="5,4,15,15,5"/>
+        <sequence id="11_cell_GGTTAACCATAGATCC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="GGTTAACCATAGATCC-1" value="5,4,15,3,4"/>
+        <sequence id="12_cell_TACGGTAAGCAACCAG-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TACGGTAAGCAACCAG-1" value="5,4,15,3,3"/>
+        <sequence id="13_cell_TCAATTCTCAACTACG-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TCAATTCTCAACTACG-1" value="5,4,15,4,1"/>
+        <sequence id="14_cell_TCACGGGCAGCCGTTG-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TCACGGGCAGCCGTTG-1" value="5,4,15,16,7"/>
+        <sequence id="15_cell_TCCGGGAGTTCGCGTG-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TCCGGGAGTTCGCGTG-1" value="5,4,15,15,3"/>
+        <sequence id="16_cell_GCCGTGAGTATATGGA-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="GCCGTGAGTATATGGA-1" value="5,4,15,3,1"/>
+        <sequence id="17_cell_TTACGTTAGCTGTTAC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TTACGTTAGCTGTTAC-1" value="5,4,15,0,0"/>
+        <sequence id="18_cell_GTGTCCTGTCGTTTCC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="GTGTCCTGTCGTTTCC-1" value="5,4,15,4,1"/>
+        <sequence id="19_cell_GCGGATCCACTGCATA-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="GCGGATCCACTGCATA-1" value="5,4,16,4,15"/>
+        <sequence id="20_cell_TGGATCACACAGCTTA-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TGGATCACACAGCTTA-1" value="5,4,15,4,1"/>
+        <sequence id="21_cell_CAGGTATAGAAGCTCG-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CAGGTATAGAAGCTCG-1" value="0,0,0,0,0"/>
+        <sequence id="22_cell_AACCTTTGTTCTCACC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="AACCTTTGTTCTCACC-1" value="5,4,15,4,0"/>
+        <sequence id="23_cell_CCTTCAGCAATTGAAG-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CCTTCAGCAATTGAAG-1" value="5,4,15,15,16"/>
+        <sequence id="24_cell_CACTGAAAGTCGGCAA-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CACTGAAAGTCGGCAA-1" value="5,4,15,4,5"/>
+        <sequence id="25_cell_CGGCAGTTCTTTCAGT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CGGCAGTTCTTTCAGT-1" value="5,4,21,3,1"/>
+        <sequence id="26_cell_AGAACAAGTCCAGCGT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="AGAACAAGTCCAGCGT-1" value="6,4,15,3,3"/>
+        <sequence id="27_cell_ACTGATGCATAGGAGC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="ACTGATGCATAGGAGC-1" value="5,4,15,3,3"/>
+        <sequence id="28_cell_ATCCACCTCAGCAATC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="ATCCACCTCAGCAATC-1" value="5,4,15,4,15"/>
+        <sequence id="29_cell_TGCAGTAAGCATCAAA-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TGCAGTAAGCATCAAA-1" value="5,4,15,15,16"/>
+        <sequence id="30_cell_ACCGTTCAGCATGATA-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="ACCGTTCAGCATGATA-1" value="5,4,15,3,26"/>
+        <sequence id="31_cell_CCTTTGGGTCTCTCAC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CCTTTGGGTCTCTCAC-1" value="5,4,0,0,0"/>
+        <sequence id="32_cell_ACCCTTGCAGAATTCC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="ACCCTTGCAGAATTCC-1" value="5,4,15,15,5"/>
+        <sequence id="33_cell_ACTTAGGCAATATCCG-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="ACTTAGGCAATATCCG-1" value="5,4,15,23,3"/>
+        <sequence id="34_cell_GTGTGGCGTCGAAACG-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="GTGTGGCGTCGAAACG-1" value="5,4,15,4,15"/>
+        <sequence id="35_cell_CTGCTCAAGATGGTAT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CTGCTCAAGATGGTAT-1" value="5,4,15,4,16"/>
+        <sequence id="36_cell_TCATCCGAGTGACCTT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TCATCCGAGTGACCTT-1" value="5,4,15,4,1"/>
+        <sequence id="37_cell_TGATTCTCAAGTACCT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TGATTCTCAAGTACCT-1" value="5,4,15,0,0"/>
+        <sequence id="38_cell_TACTTCACACTATCGA-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TACTTCACACTATCGA-1" value="5,4,21,4,5"/>
+        <sequence id="39_cell_GACGTTAGTTGTCAGT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="GACGTTAGTTGTCAGT-1" value="5,4,15,5,0"/>
+        <sequence id="40_cell_CTTCTCTGTTGGTACT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CTTCTCTGTTGGTACT-1" value="5,4,15,0,0"/>
+        <sequence id="41_cell_TGTTCTACATAGCACT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TGTTCTACATAGCACT-1" value="5,4,15,4,16"/>
+        <sequence id="42_cell_CCGGTGAAGTCCTGTA-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CCGGTGAAGTCCTGTA-1" value="5,4,15,3,1"/>
+        <sequence id="43_cell_TTTGACTAGCAACTTC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TTTGACTAGCAACTTC-1" value="5,4,15,15,16"/>
+        <sequence id="44_cell_CATTGTTAGGTACAAT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CATTGTTAGGTACAAT-1" value="5,4,15,0,0"/>
+        <sequence id="45_cell_ATTCGTTAGCTTTCCC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="ATTCGTTAGCTTTCCC-1" value="5,4,15,3,3"/>
+        <sequence id="46_cell_CGAGAAGGTTCCATTT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CGAGAAGGTTCCATTT-1" value="5,4,15,24,1"/>
+        <sequence id="47_cell_ACCAAACAGCACTAGG-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="ACCAAACAGCACTAGG-1" value="5,4,15,4,15"/>
+        <sequence id="48_cell_CCGAACGCAGCGACCT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CCGAACGCAGCGACCT-1" value="5,4,15,4,0"/>
+        <sequence id="49_cell_CCTTGTGGTTCTTCAT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CCTTGTGGTTCTTCAT-1" value="5,4,15,4,15"/>
+        <sequence id="50_cell_CTCAAGAAGACCTGGA-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CTCAAGAAGACCTGGA-1" value="5,4,15,25,5"/>
+        <sequence id="51_cell_TGTCCTGCAATTGCCA-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TGTCCTGCAATTGCCA-1" value="5,4,15,4,0"/>
+        <sequence id="52_cell_CGATGGCTCGCCAGAC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CGATGGCTCGCCAGAC-1" value="5,4,15,0,0"/>
+        <sequence id="53_cell_CGGAGAATCCGCTGTT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CGGAGAATCCGCTGTT-1" value="5,4,15,4,5"/>
+        <sequence id="54_cell_AGAGCAGAGAAGTGTT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="AGAGCAGAGAAGTGTT-1" value="5,4,15,4,15"/>
+        <sequence id="55_cell_TCTGCCAAGAGTCTTC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TCTGCCAAGAGTCTTC-1" value="5,4,15,3,3"/>
+        <sequence id="56_cell_GGGATCCCAACTGAAA-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="GGGATCCCAACTGAAA-1" value="5,4,15,3,3"/>
+        <sequence id="57_cell_AGAAGCGTCACCTCGT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="AGAAGCGTCACCTCGT-1" value="5,4,15,3,3"/>
+        <sequence id="58_cell_TATCTTGTCGCCTCTA-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TATCTTGTCGCCTCTA-1" value="5,4,15,15,4"/>
+        <sequence id="59_cell_TCTGGCTAGACCTTTG-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TCTGGCTAGACCTTTG-1" value="5,4,15,3,1"/>
+        <sequence id="60_cell_CCTCAACCAGGACTTT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CCTCAACCAGGACTTT-1" value="5,4,15,4,15"/>
+        <sequence id="61_cell_CAACGATCACGTAACT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CAACGATCACGTAACT-1" value="5,4,15,4,5"/>
+        <sequence id="62_cell_CGGGTGTTCCCACAGG-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CGGGTGTTCCCACAGG-1" value="5,4,15,3,1"/>
+        <sequence id="63_cell_CAGGCCATCTGGAGAG-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CAGGCCATCTGGAGAG-1" value="5,4,15,3,3"/>
+        <sequence id="64_cell_AGCGCTGAGGATTTAG-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="AGCGCTGAGGATTTAG-1" value="5,4,15,3,3"/>
+        <sequence id="65_cell_TGAGACTCAAGATGGC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="TGAGACTCAAGATGGC-1" value="5,4,15,3,1"/>
+        <sequence id="66_cell_ACCACAACAATACCTG-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="ACCACAACAATACCTG-1" value="0,0,0,0,0"/>
+        <sequence id="67_cell_ACGTACATCCGATAAC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="ACGTACATCCGATAAC-1" value="5,4,15,3,1"/>
+        <sequence id="68_cell_CACAACAAGTCGGCCT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CACAACAAGTCGGCCT-1" value="5,0,0,0,0"/>
+        <sequence id="69_cell_CAACAACCAGCTGTGC-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="CAACAACCAGCTGTGC-1" value="5,4,15,24,3"/>
+        <sequence id="70_cell_GCCAGGTTCTCGGCTT-1_targetBC_AGGCTAATTCCC" spec="Sequence" taxon="GCCAGGTTCTCGGCTT-1" value="5,4,15,3,3"/>
+    </data>
+    <data  id="preliminary_gastruloid_targetBC_GTATAAAGTTTG" spec="Alignment" name="alignment" dataType="integer">
+        <sequence id="0_cell_AAAGGGCCAAATCAAG-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="AAAGGGCCAAATCAAG-1" value="3,7,3,3,4"/>
+        <sequence id="1_cell_CAGATACCATAGTCGT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CAGATACCATAGTCGT-1" value="3,7,3,3,4"/>
+        <sequence id="2_cell_TTGGGCGGTATGACAA-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TTGGGCGGTATGACAA-1" value="3,7,3,3,3"/>
+        <sequence id="3_cell_CACCGTTCAATAACCC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CACCGTTCAATAACCC-1" value="3,7,3,13,4"/>
+        <sequence id="4_cell_TTTCAGTGTGCTGTCG-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TTTCAGTGTGCTGTCG-1" value="3,7,3,3,0"/>
+        <sequence id="5_cell_ACCCTCAAGTCTAACC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="ACCCTCAAGTCTAACC-1" value="3,7,3,3,4"/>
+        <sequence id="6_cell_CGAGGAAGTCTAGATC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CGAGGAAGTCTAGATC-1" value="3,7,3,3,3"/>
+        <sequence id="7_cell_TTTGATCGTCGGTACC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TTTGATCGTCGGTACC-1" value="3,7,3,3,4"/>
+        <sequence id="8_cell_AGAGAGCCATAGGTTC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="AGAGAGCCATAGGTTC-1" value="3,17,3,3,4"/>
+        <sequence id="9_cell_TCGATTTCAGTGGCTC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TCGATTTCAGTGGCTC-1" value="3,18,3,3,4"/>
+        <sequence id="10_cell_GTTGTAGCATCCAATG-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="GTTGTAGCATCCAATG-1" value="3,7,3,3,5"/>
+        <sequence id="11_cell_GGTTAACCATAGATCC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="GGTTAACCATAGATCC-1" value="3,7,3,13,4"/>
+        <sequence id="12_cell_TACGGTAAGCAACCAG-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TACGGTAAGCAACCAG-1" value="3,7,3,3,4"/>
+        <sequence id="13_cell_TCAATTCTCAACTACG-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TCAATTCTCAACTACG-1" value="3,7,3,3,4"/>
+        <sequence id="14_cell_TCACGGGCAGCCGTTG-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TCACGGGCAGCCGTTG-1" value="3,7,3,3,4"/>
+        <sequence id="15_cell_TCCGGGAGTTCGCGTG-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TCCGGGAGTTCGCGTG-1" value="3,7,3,3,0"/>
+        <sequence id="16_cell_GCCGTGAGTATATGGA-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="GCCGTGAGTATATGGA-1" value="3,10,3,3,4"/>
+        <sequence id="17_cell_TTACGTTAGCTGTTAC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TTACGTTAGCTGTTAC-1" value="3,7,3,3,4"/>
+        <sequence id="18_cell_GTGTCCTGTCGTTTCC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="GTGTCCTGTCGTTTCC-1" value="3,7,3,3,0"/>
+        <sequence id="19_cell_GCGGATCCACTGCATA-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="GCGGATCCACTGCATA-1" value="3,7,3,3,5"/>
+        <sequence id="20_cell_TGGATCACACAGCTTA-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TGGATCACACAGCTTA-1" value="3,7,3,3,4"/>
+        <sequence id="21_cell_CAGGTATAGAAGCTCG-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CAGGTATAGAAGCTCG-1" value="3,10,3,3,4"/>
+        <sequence id="22_cell_AACCTTTGTTCTCACC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="AACCTTTGTTCTCACC-1" value="3,7,3,3,5"/>
+        <sequence id="23_cell_CCTTCAGCAATTGAAG-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CCTTCAGCAATTGAAG-1" value="3,9,3,3,4"/>
+        <sequence id="24_cell_CACTGAAAGTCGGCAA-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CACTGAAAGTCGGCAA-1" value="3,7,3,0,0"/>
+        <sequence id="25_cell_CGGCAGTTCTTTCAGT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CGGCAGTTCTTTCAGT-1" value="3,9,3,3,4"/>
+        <sequence id="26_cell_AGAACAAGTCCAGCGT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="AGAACAAGTCCAGCGT-1" value="3,7,3,3,4"/>
+        <sequence id="27_cell_ACTGATGCATAGGAGC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="ACTGATGCATAGGAGC-1" value="3,7,3,3,0"/>
+        <sequence id="28_cell_ATCCACCTCAGCAATC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="ATCCACCTCAGCAATC-1" value="3,7,3,3,0"/>
+        <sequence id="29_cell_TGCAGTAAGCATCAAA-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TGCAGTAAGCATCAAA-1" value="3,7,3,3,4"/>
+        <sequence id="30_cell_ACCGTTCAGCATGATA-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="ACCGTTCAGCATGATA-1" value="3,7,13,3,4"/>
+        <sequence id="31_cell_CCTTTGGGTCTCTCAC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CCTTTGGGTCTCTCAC-1" value="3,7,3,3,26"/>
+        <sequence id="32_cell_ACCCTTGCAGAATTCC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="ACCCTTGCAGAATTCC-1" value="3,7,3,3,3"/>
+        <sequence id="33_cell_ACTTAGGCAATATCCG-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="ACTTAGGCAATATCCG-1" value="3,7,3,3,4"/>
+        <sequence id="34_cell_GTGTGGCGTCGAAACG-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="GTGTGGCGTCGAAACG-1" value="3,7,3,3,1"/>
+        <sequence id="35_cell_CTGCTCAAGATGGTAT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CTGCTCAAGATGGTAT-1" value="3,7,3,3,3"/>
+        <sequence id="36_cell_TCATCCGAGTGACCTT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TCATCCGAGTGACCTT-1" value="3,7,3,3,4"/>
+        <sequence id="37_cell_TGATTCTCAAGTACCT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TGATTCTCAAGTACCT-1" value="3,17,3,3,4"/>
+        <sequence id="38_cell_TACTTCACACTATCGA-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TACTTCACACTATCGA-1" value="3,7,3,3,4"/>
+        <sequence id="39_cell_GACGTTAGTTGTCAGT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="GACGTTAGTTGTCAGT-1" value="3,0,0,0,0"/>
+        <sequence id="40_cell_CTTCTCTGTTGGTACT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CTTCTCTGTTGGTACT-1" value="13,7,3,3,3"/>
+        <sequence id="41_cell_TGTTCTACATAGCACT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TGTTCTACATAGCACT-1" value="3,7,3,3,15"/>
+        <sequence id="42_cell_CCGGTGAAGTCCTGTA-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CCGGTGAAGTCCTGTA-1" value="0,0,0,0,0"/>
+        <sequence id="43_cell_TTTGACTAGCAACTTC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TTTGACTAGCAACTTC-1" value="3,7,3,3,4"/>
+        <sequence id="44_cell_CATTGTTAGGTACAAT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CATTGTTAGGTACAAT-1" value="3,7,3,3,4"/>
+        <sequence id="45_cell_ATTCGTTAGCTTTCCC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="ATTCGTTAGCTTTCCC-1" value="3,7,3,3,4"/>
+        <sequence id="46_cell_CGAGAAGGTTCCATTT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CGAGAAGGTTCCATTT-1" value="3,7,3,3,4"/>
+        <sequence id="47_cell_ACCAAACAGCACTAGG-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="ACCAAACAGCACTAGG-1" value="3,7,3,3,3"/>
+        <sequence id="48_cell_CCGAACGCAGCGACCT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CCGAACGCAGCGACCT-1" value="3,7,3,3,0"/>
+        <sequence id="49_cell_CCTTGTGGTTCTTCAT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CCTTGTGGTTCTTCAT-1" value="3,7,3,3,3"/>
+        <sequence id="50_cell_CTCAAGAAGACCTGGA-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CTCAAGAAGACCTGGA-1" value="3,7,3,3,5"/>
+        <sequence id="51_cell_TGTCCTGCAATTGCCA-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TGTCCTGCAATTGCCA-1" value="3,7,3,3,4"/>
+        <sequence id="52_cell_CGATGGCTCGCCAGAC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CGATGGCTCGCCAGAC-1" value="3,7,3,3,0"/>
+        <sequence id="53_cell_CGGAGAATCCGCTGTT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CGGAGAATCCGCTGTT-1" value="3,7,3,3,4"/>
+        <sequence id="54_cell_AGAGCAGAGAAGTGTT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="AGAGCAGAGAAGTGTT-1" value="3,7,3,3,3"/>
+        <sequence id="55_cell_TCTGCCAAGAGTCTTC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TCTGCCAAGAGTCTTC-1" value="3,7,3,3,4"/>
+        <sequence id="56_cell_GGGATCCCAACTGAAA-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="GGGATCCCAACTGAAA-1" value="3,7,3,3,4"/>
+        <sequence id="57_cell_AGAAGCGTCACCTCGT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="AGAAGCGTCACCTCGT-1" value="3,7,3,3,4"/>
+        <sequence id="58_cell_TATCTTGTCGCCTCTA-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TATCTTGTCGCCTCTA-1" value="3,7,3,3,4"/>
+        <sequence id="59_cell_TCTGGCTAGACCTTTG-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TCTGGCTAGACCTTTG-1" value="3,7,3,26,4"/>
+        <sequence id="60_cell_CCTCAACCAGGACTTT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CCTCAACCAGGACTTT-1" value="3,17,3,3,3"/>
+        <sequence id="61_cell_CAACGATCACGTAACT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CAACGATCACGTAACT-1" value="3,7,3,3,0"/>
+        <sequence id="62_cell_CGGGTGTTCCCACAGG-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CGGGTGTTCCCACAGG-1" value="3,9,3,3,4"/>
+        <sequence id="63_cell_CAGGCCATCTGGAGAG-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CAGGCCATCTGGAGAG-1" value="3,0,0,0,0"/>
+        <sequence id="64_cell_AGCGCTGAGGATTTAG-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="AGCGCTGAGGATTTAG-1" value="3,7,3,3,4"/>
+        <sequence id="65_cell_TGAGACTCAAGATGGC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="TGAGACTCAAGATGGC-1" value="3,7,3,3,4"/>
+        <sequence id="66_cell_ACCACAACAATACCTG-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="ACCACAACAATACCTG-1" value="3,7,3,3,4"/>
+        <sequence id="67_cell_ACGTACATCCGATAAC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="ACGTACATCCGATAAC-1" value="3,7,3,3,4"/>
+        <sequence id="68_cell_CACAACAAGTCGGCCT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CACAACAAGTCGGCCT-1" value="3,7,3,3,4"/>
+        <sequence id="69_cell_CAACAACCAGCTGTGC-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="CAACAACCAGCTGTGC-1" value="3,7,3,3,4"/>
+        <sequence id="70_cell_GCCAGGTTCTCGGCTT-1_targetBC_GTATAAAGTTTG" spec="Sequence" taxon="GCCAGGTTCTCGGCTT-1" value="3,7,3,3,4"/>
+    </data>
+    <data  id="preliminary_gastruloid_targetBC_GTTGAAAGGTGA" spec="Alignment" name="alignment" dataType="integer">
+        <sequence id="0_cell_AAAGGGCCAAATCAAG-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="AAAGGGCCAAATCAAG-1" value="6,13,7,5,0"/>
+        <sequence id="1_cell_CAGATACCATAGTCGT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CAGATACCATAGTCGT-1" value="6,3,0,0,0"/>
+        <sequence id="2_cell_TTGGGCGGTATGACAA-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TTGGGCGGTATGACAA-1" value="6,3,5,1,0"/>
+        <sequence id="3_cell_CACCGTTCAATAACCC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CACCGTTCAATAACCC-1" value="6,3,4,3,3"/>
+        <sequence id="4_cell_TTTCAGTGTGCTGTCG-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TTTCAGTGTGCTGTCG-1" value="0,0,0,0,0"/>
+        <sequence id="5_cell_ACCCTCAAGTCTAACC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="ACCCTCAAGTCTAACC-1" value="6,3,4,3,26"/>
+        <sequence id="6_cell_CGAGGAAGTCTAGATC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CGAGGAAGTCTAGATC-1" value="6,3,4,5,1"/>
+        <sequence id="7_cell_TTTGATCGTCGGTACC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TTTGATCGTCGGTACC-1" value="6,3,4,3,26"/>
+        <sequence id="8_cell_AGAGAGCCATAGGTTC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="AGAGAGCCATAGGTTC-1" value="6,3,4,3,3"/>
+        <sequence id="9_cell_TCGATTTCAGTGGCTC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TCGATTTCAGTGGCTC-1" value="6,3,5,0,0"/>
+        <sequence id="10_cell_GTTGTAGCATCCAATG-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="GTTGTAGCATCCAATG-1" value="6,3,5,4,5"/>
+        <sequence id="11_cell_GGTTAACCATAGATCC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="GGTTAACCATAGATCC-1" value="6,3,4,3,26"/>
+        <sequence id="12_cell_TACGGTAAGCAACCAG-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TACGGTAAGCAACCAG-1" value="6,3,0,0,0"/>
+        <sequence id="13_cell_TCAATTCTCAACTACG-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TCAATTCTCAACTACG-1" value="6,3,0,0,0"/>
+        <sequence id="14_cell_TCACGGGCAGCCGTTG-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TCACGGGCAGCCGTTG-1" value="6,3,4,3,3"/>
+        <sequence id="15_cell_TCCGGGAGTTCGCGTG-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TCCGGGAGTTCGCGTG-1" value="6,3,5,4,0"/>
+        <sequence id="16_cell_GCCGTGAGTATATGGA-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="GCCGTGAGTATATGGA-1" value="6,3,0,0,0"/>
+        <sequence id="17_cell_TTACGTTAGCTGTTAC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TTACGTTAGCTGTTAC-1" value="6,3,4,3,3"/>
+        <sequence id="18_cell_GTGTCCTGTCGTTTCC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="GTGTCCTGTCGTTTCC-1" value="6,3,5,16,0"/>
+        <sequence id="19_cell_GCGGATCCACTGCATA-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="GCGGATCCACTGCATA-1" value="6,3,5,4,5"/>
+        <sequence id="20_cell_TGGATCACACAGCTTA-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TGGATCACACAGCTTA-1" value="6,3,5,5,0"/>
+        <sequence id="21_cell_CAGGTATAGAAGCTCG-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CAGGTATAGAAGCTCG-1" value="6,3,0,0,0"/>
+        <sequence id="22_cell_AACCTTTGTTCTCACC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="AACCTTTGTTCTCACC-1" value="6,3,5,4,4"/>
+        <sequence id="23_cell_CCTTCAGCAATTGAAG-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CCTTCAGCAATTGAAG-1" value="6,3,0,0,0"/>
+        <sequence id="24_cell_CACTGAAAGTCGGCAA-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CACTGAAAGTCGGCAA-1" value="6,3,5,4,0"/>
+        <sequence id="25_cell_CGGCAGTTCTTTCAGT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CGGCAGTTCTTTCAGT-1" value="6,3,4,0,0"/>
+        <sequence id="26_cell_AGAACAAGTCCAGCGT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="AGAACAAGTCCAGCGT-1" value="6,3,4,3,3"/>
+        <sequence id="27_cell_ACTGATGCATAGGAGC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="ACTGATGCATAGGAGC-1" value="6,3,4,13,4"/>
+        <sequence id="28_cell_ATCCACCTCAGCAATC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="ATCCACCTCAGCAATC-1" value="6,3,5,4,1"/>
+        <sequence id="29_cell_TGCAGTAAGCATCAAA-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TGCAGTAAGCATCAAA-1" value="6,3,4,0,0"/>
+        <sequence id="30_cell_ACCGTTCAGCATGATA-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="ACCGTTCAGCATGATA-1" value="6,3,4,3,3"/>
+        <sequence id="31_cell_CCTTTGGGTCTCTCAC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CCTTTGGGTCTCTCAC-1" value="6,3,5,15,0"/>
+        <sequence id="32_cell_ACCCTTGCAGAATTCC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="ACCCTTGCAGAATTCC-1" value="6,3,5,0,0"/>
+        <sequence id="33_cell_ACTTAGGCAATATCCG-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="ACTTAGGCAATATCCG-1" value="6,3,4,3,26"/>
+        <sequence id="34_cell_GTGTGGCGTCGAAACG-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="GTGTGGCGTCGAAACG-1" value="6,3,22,4,1"/>
+        <sequence id="35_cell_CTGCTCAAGATGGTAT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CTGCTCAAGATGGTAT-1" value="6,3,5,0,0"/>
+        <sequence id="36_cell_TCATCCGAGTGACCTT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TCATCCGAGTGACCTT-1" value="6,3,5,3,0"/>
+        <sequence id="37_cell_TGATTCTCAAGTACCT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TGATTCTCAAGTACCT-1" value="6,3,7,0,0"/>
+        <sequence id="38_cell_TACTTCACACTATCGA-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TACTTCACACTATCGA-1" value="6,0,0,0,0"/>
+        <sequence id="39_cell_GACGTTAGTTGTCAGT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="GACGTTAGTTGTCAGT-1" value="6,3,0,0,0"/>
+        <sequence id="40_cell_CTTCTCTGTTGGTACT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CTTCTCTGTTGGTACT-1" value="6,3,5,0,0"/>
+        <sequence id="41_cell_TGTTCTACATAGCACT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TGTTCTACATAGCACT-1" value="6,3,5,5,0"/>
+        <sequence id="42_cell_CCGGTGAAGTCCTGTA-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CCGGTGAAGTCCTGTA-1" value="6,3,4,3,3"/>
+        <sequence id="43_cell_TTTGACTAGCAACTTC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TTTGACTAGCAACTTC-1" value="6,3,3,15,1"/>
+        <sequence id="44_cell_CATTGTTAGGTACAAT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CATTGTTAGGTACAAT-1" value="0,0,0,0,0"/>
+        <sequence id="45_cell_ATTCGTTAGCTTTCCC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="ATTCGTTAGCTTTCCC-1" value="6,3,4,3,26"/>
+        <sequence id="46_cell_CGAGAAGGTTCCATTT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CGAGAAGGTTCCATTT-1" value="6,3,5,7,16"/>
+        <sequence id="47_cell_ACCAAACAGCACTAGG-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="ACCAAACAGCACTAGG-1" value="6,3,5,0,0"/>
+        <sequence id="48_cell_CCGAACGCAGCGACCT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CCGAACGCAGCGACCT-1" value="6,3,0,0,0"/>
+        <sequence id="49_cell_CCTTGTGGTTCTTCAT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CCTTGTGGTTCTTCAT-1" value="6,3,5,3,0"/>
+        <sequence id="50_cell_CTCAAGAAGACCTGGA-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CTCAAGAAGACCTGGA-1" value="6,3,5,16,0"/>
+        <sequence id="51_cell_TGTCCTGCAATTGCCA-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TGTCCTGCAATTGCCA-1" value="6,3,4,3,3"/>
+        <sequence id="52_cell_CGATGGCTCGCCAGAC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CGATGGCTCGCCAGAC-1" value="0,0,0,0,0"/>
+        <sequence id="53_cell_CGGAGAATCCGCTGTT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CGGAGAATCCGCTGTT-1" value="6,3,4,3,3"/>
+        <sequence id="54_cell_AGAGCAGAGAAGTGTT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="AGAGCAGAGAAGTGTT-1" value="6,3,5,0,0"/>
+        <sequence id="55_cell_TCTGCCAAGAGTCTTC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TCTGCCAAGAGTCTTC-1" value="6,3,4,3,3"/>
+        <sequence id="56_cell_GGGATCCCAACTGAAA-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="GGGATCCCAACTGAAA-1" value="6,3,4,3,3"/>
+        <sequence id="57_cell_AGAAGCGTCACCTCGT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="AGAAGCGTCACCTCGT-1" value="6,3,4,3,3"/>
+        <sequence id="58_cell_TATCTTGTCGCCTCTA-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TATCTTGTCGCCTCTA-1" value="6,3,1,3,15"/>
+        <sequence id="59_cell_TCTGGCTAGACCTTTG-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TCTGGCTAGACCTTTG-1" value="6,3,4,0,0"/>
+        <sequence id="60_cell_CCTCAACCAGGACTTT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CCTCAACCAGGACTTT-1" value="6,3,5,3,0"/>
+        <sequence id="61_cell_CAACGATCACGTAACT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CAACGATCACGTAACT-1" value="6,3,4,3,3"/>
+        <sequence id="62_cell_CGGGTGTTCCCACAGG-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CGGGTGTTCCCACAGG-1" value="6,3,4,3,3"/>
+        <sequence id="63_cell_CAGGCCATCTGGAGAG-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CAGGCCATCTGGAGAG-1" value="6,3,4,3,3"/>
+        <sequence id="64_cell_AGCGCTGAGGATTTAG-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="AGCGCTGAGGATTTAG-1" value="6,3,4,3,26"/>
+        <sequence id="65_cell_TGAGACTCAAGATGGC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="TGAGACTCAAGATGGC-1" value="6,3,0,0,0"/>
+        <sequence id="66_cell_ACCACAACAATACCTG-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="ACCACAACAATACCTG-1" value="6,3,4,3,3"/>
+        <sequence id="67_cell_ACGTACATCCGATAAC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="ACGTACATCCGATAAC-1" value="6,3,4,3,26"/>
+        <sequence id="68_cell_CACAACAAGTCGGCCT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CACAACAAGTCGGCCT-1" value="6,3,4,3,3"/>
+        <sequence id="69_cell_CAACAACCAGCTGTGC-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="CAACAACCAGCTGTGC-1" value="6,3,0,0,0"/>
+        <sequence id="70_cell_GCCAGGTTCTCGGCTT-1_targetBC_GTTGAAAGGTGA" spec="Sequence" taxon="GCCAGGTTCTCGGCTT-1" value="6,3,4,3,3"/>
+    </data>
+
+
+
+    <!-- set all tip dates, time points of sampling to 10  time units -->
+    <traitSet id="dateTrait.t:alignment"
+              spec="beast.base.evolution.tree.TraitSet"
+              taxa="@TaxonSet.0" traitname="date-forward" value="AAAGGGCCAAATCAAG-1=10,CAGATACCATAGTCGT-1=10,TTGGGCGGTATGACAA-1=10,CACCGTTCAATAACCC-1=10,TTTCAGTGTGCTGTCG-1=10,ACCCTCAAGTCTAACC-1=10,CGAGGAAGTCTAGATC-1=10,TTTGATCGTCGGTACC-1=10,AGAGAGCCATAGGTTC-1=10,TCGATTTCAGTGGCTC-1=10,GTTGTAGCATCCAATG-1=10,GGTTAACCATAGATCC-1=10,TACGGTAAGCAACCAG-1=10,TCAATTCTCAACTACG-1=10,TCACGGGCAGCCGTTG-1=10,TCCGGGAGTTCGCGTG-1=10,GCCGTGAGTATATGGA-1=10,TTACGTTAGCTGTTAC-1=10,GTGTCCTGTCGTTTCC-1=10,GCGGATCCACTGCATA-1=10,TGGATCACACAGCTTA-1=10,CAGGTATAGAAGCTCG-1=10,AACCTTTGTTCTCACC-1=10,CCTTCAGCAATTGAAG-1=10,CACTGAAAGTCGGCAA-1=10,CGGCAGTTCTTTCAGT-1=10,AGAACAAGTCCAGCGT-1=10,ACTGATGCATAGGAGC-1=10,ATCCACCTCAGCAATC-1=10,TGCAGTAAGCATCAAA-1=10,ACCGTTCAGCATGATA-1=10,CCTTTGGGTCTCTCAC-1=10,ACCCTTGCAGAATTCC-1=10,ACTTAGGCAATATCCG-1=10,GTGTGGCGTCGAAACG-1=10,CTGCTCAAGATGGTAT-1=10,TCATCCGAGTGACCTT-1=10,TGATTCTCAAGTACCT-1=10,TACTTCACACTATCGA-1=10,GACGTTAGTTGTCAGT-1=10,CTTCTCTGTTGGTACT-1=10,TGTTCTACATAGCACT-1=10,CCGGTGAAGTCCTGTA-1=10,TTTGACTAGCAACTTC-1=10,CATTGTTAGGTACAAT-1=10,ATTCGTTAGCTTTCCC-1=10,CGAGAAGGTTCCATTT-1=10,ACCAAACAGCACTAGG-1=10,CCGAACGCAGCGACCT-1=10,CCTTGTGGTTCTTCAT-1=10,CTCAAGAAGACCTGGA-1=10,TGTCCTGCAATTGCCA-1=10,CGATGGCTCGCCAGAC-1=10,CGGAGAATCCGCTGTT-1=10,AGAGCAGAGAAGTGTT-1=10,TCTGCCAAGAGTCTTC-1=10,GGGATCCCAACTGAAA-1=10,AGAAGCGTCACCTCGT-1=10,TATCTTGTCGCCTCTA-1=10,TCTGGCTAGACCTTTG-1=10,CCTCAACCAGGACTTT-1=10,CAACGATCACGTAACT-1=10,CGGGTGTTCCCACAGG-1=10,CAGGCCATCTGGAGAG-1=10,AGCGCTGAGGATTTAG-1=10,TGAGACTCAAGATGGC-1=10,ACCACAACAATACCTG-1=10,ACGTACATCCGATAAC-1=10,CACAACAAGTCGGCCT-1=10,CAACAACCAGCTGTGC-1=10,GCCAGGTTCTCGGCTT-1=10"
+    />
+
+    <traitSet id="typeTrait.t:alignment"
+              spec="beast.base.evolution.tree.TraitSet"
+              taxa="@TaxonSet.0" traitname="type" value="AAAGGGCCAAATCAAG-1=2,CAGATACCATAGTCGT-1=3,TTGGGCGGTATGACAA-1=5,CACCGTTCAATAACCC-1=5,TTTCAGTGTGCTGTCG-1=5,ACCCTCAAGTCTAACC-1=2,CGAGGAAGTCTAGATC-1=3,TTTGATCGTCGGTACC-1=3,AGAGAGCCATAGGTTC-1=3,TCGATTTCAGTGGCTC-1=3,GTTGTAGCATCCAATG-1=3,GGTTAACCATAGATCC-1=3,TACGGTAAGCAACCAG-1=3,TCAATTCTCAACTACG-1=3,TCACGGGCAGCCGTTG-1=3,TCCGGGAGTTCGCGTG-1=3,GCCGTGAGTATATGGA-1=5,TTACGTTAGCTGTTAC-1=3,GTGTCCTGTCGTTTCC-1=3,GCGGATCCACTGCATA-1=3,TGGATCACACAGCTTA-1=1,CAGGTATAGAAGCTCG-1=3,AACCTTTGTTCTCACC-1=3,CCTTCAGCAATTGAAG-1=2,CACTGAAAGTCGGCAA-1=3,CGGCAGTTCTTTCAGT-1=5,AGAACAAGTCCAGCGT-1=3,ACTGATGCATAGGAGC-1=3,ATCCACCTCAGCAATC-1=3,TGCAGTAAGCATCAAA-1=2,ACCGTTCAGCATGATA-1=3,CCTTTGGGTCTCTCAC-1=3,ACCCTTGCAGAATTCC-1=5,ACTTAGGCAATATCCG-1=3,GTGTGGCGTCGAAACG-1=5,CTGCTCAAGATGGTAT-1=5,TCATCCGAGTGACCTT-1=2,TGATTCTCAAGTACCT-1=5,TACTTCACACTATCGA-1=3,GACGTTAGTTGTCAGT-1=3,CTTCTCTGTTGGTACT-1=3,TGTTCTACATAGCACT-1=4,CCGGTGAAGTCCTGTA-1=4,TTTGACTAGCAACTTC-1=3,CATTGTTAGGTACAAT-1=3,ATTCGTTAGCTTTCCC-1=3,CGAGAAGGTTCCATTT-1=3,ACCAAACAGCACTAGG-1=5,CCGAACGCAGCGACCT-1=3,CCTTGTGGTTCTTCAT-1=3,CTCAAGAAGACCTGGA-1=5,TGTCCTGCAATTGCCA-1=5,CGATGGCTCGCCAGAC-1=3,CGGAGAATCCGCTGTT-1=2,AGAGCAGAGAAGTGTT-1=3,TCTGCCAAGAGTCTTC-1=3,GGGATCCCAACTGAAA-1=3,AGAAGCGTCACCTCGT-1=3,TATCTTGTCGCCTCTA-1=4,TCTGGCTAGACCTTTG-1=5,CCTCAACCAGGACTTT-1=3,CAACGATCACGTAACT-1=3,CGGGTGTTCCCACAGG-1=3,CAGGCCATCTGGAGAG-1=3,AGCGCTGAGGATTTAG-1=2,TGAGACTCAAGATGGC-1=5,ACCACAACAATACCTG-1=3,ACGTACATCCGATAAC-1=3,CACAACAAGTCGGCCT-1=3,CAACAACCAGCTGTGC-1=3,GCCAGGTTCTCGGCTT-1=5"
+    />
+    <!-- set of all cells -->
+    <taxa id="TaxonSet.0" spec="TaxonSet">
+        <alignment idref="preliminary_gastruloid_targetBC_AGGCTAATTCCC"/>
+    </taxa>
+
+    <plate var="n" range="1,2,3,4,5,6,7,8">
+        <branchRateModel id="StrictClock_$(n)" spec="beast.base.evolution.branchratemodel.StrictClockModel"
+                         clock.rate="@clockRate_$(n)"/>
+    </plate>
+
+    <!-- run MCMC with 10^9 steps -->
+    <run id="mcmc" spec="MCMC" chainLength="1000000000" numInitializationAttempts="10000">
+        <state id="state" spec="State" storeEvery="10000">
+
+            <stateNode id="typewriterTree"  spec="typewriter.evolution.tree.startingTree" rootHeight="9"
+                       taxa="@preliminary_gastruloid_targetBC_AACTGAATGTTT" scarringHeight="8"
+                       scarringDuration="1" sequencesAreClustered="false">
+                <trait idref="dateTrait.t:alignment"/>
+                <taxonset idref="TaxonSet.0"/>
+            </stateNode>
+
+            <!--stateNode spec='beast.base.evolution.tree.TreeParser' id='typewriterTree'
+                       IsLabelledNewick='true' adjustTipHeights='false'
+                       taxa='@preliminary_gastruloid_targetBC_AACTGAATGTTT'
+                       newick="(CAGGTATAGAAGCTCG-1:9.001,(TCGATTTCAGTGGCTC-1:8.881389681,(ACCACAACAATACCTG-1:8.550670491,((CCTCAACCAGGACTTT-1:7.320502075,TTGGGCGGTATGACAA-1:7.320502075):0.8703889098,(CTTCTCTGTTGGTACT-1:8.080604213,((GACGTTAGTTGTCAGT-1:7.712618257,(AGAGAGCCATAGGTTC-1:6.797680498,TGATTCTCAAGTACCT-1:6.797680498):0.9159377593):0.2961412127,((CCGAACGCAGCGACCT-1:7.581912863,CGGCAGTTCTTTCAGT-1:7.581912863):0.3756887967,(TACTTCACACTATCGA-1:7.834462269,(AACCTTTGTTCTCACC-1:7.708111175,(CGATGGCTCGCCAGAC-1:7.696566718,((ACCCTTGCAGAATTCC-1:6.797680498,GTTGTAGCATCCAATG-1:6.797680498):0.728197284,(TTTCAGTGTGCTGTCG-1:7.494775934,((CGAGAAGGTTCCATTT-1:7.059091286,TGGATCACACAGCTTA-1:7.059091286):0.3906026173,((TATCTTGTCGCCTCTA-1:7.096435685,(CAGATACCATAGTCGT-1:6.884817427,(CCTTCAGCAATTGAAG-1:6.53626971,((TACGGTAAGCAACCAG-1:5.229215768,TCAATTCTCAACTACG-1:5.229215768):1.177348548,(TTTGACTAGCAACTTC-1:6.144153527,(AAAGGGCCAAATCAAG-1:6.013448133,TGCAGTAAGCATCAAA-1:6.013448133):0.1317053942):0.2624107884):0.1317053942):0.3495477178):0.2126182573):0.3015587514,(((GCCGTGAGTATATGGA-1:6.405564315,(CCGGTGAAGTCCTGTA-1:5.752037344,CGGGTGTTCCCACAGG-1:5.752037344):0.654526971):0.4869559528,((ACCGTTCAGCATGATA-1:6.274858921,TTACGTTAGCTGTTAC-1:6.274858921):0.4584688797,((CAACGATCACGTAACT-1:5.752037344,(CGGAGAATCCGCTGTT-1:5.229215768,TGTCCTGCAATTGCCA-1:5.229215768):0.5238215768):0.7520373444,(AGAACAAGTCCAGCGT-1:6.405564315,(GGTTAACCATAGATCC-1:6.316134309,(TCACGGGCAGCCGTTG-1:6.2603361,(CATTGTTAGGTACAAT-1:6.136464974,((TCTGGCTAGACCTTTG-1:5.229215768,TGAGACTCAAGATGGC-1:5.229215768):0.7068091286,(CACCGTTCAATAACCC-1:5.62133195,((ACGTACATCCGATAAC-1:5.229215768,ACTTAGGCAATATCCG-1:5.229215768):0.1752738589,(ACTGATGCATAGGAGC-1:5.300509619,(CAACAACCAGCTGTGC-1:4.837099585,(ATTCGTTAGCTTTCCC-1:4.764485477,(GCCAGGTTCTCGGCTT-1:4.641041494,(CACAACAAGTCGGCCT-1:4.557016598,(TTTGATCGTCGGTACC-1:4.183572614,(CAGGCCATCTGGAGAG-1:3.869879668,((ACCCTCAAGTCTAACC-1:2.876518672,AGCGCTGAGGATTTAG-1:2.876518672):0.480253112,(GGGATCCCAACTGAAA-1:2.876518672,(AGAAGCGTCACCTCGT-1:2.615107884,TCTGCCAAGAGTCTTC-1:2.615107884):0.2624107884):0.480253112):0.5151078838):0.3146929461):0.3744439834):0.08502489627):0.1244439834):0.07361410788):0.4644100339):0.1039800075):0.2188423237):0.3146929461):0.2024400781):0.1248711252):0.05679820922):0.09043000655):0.09851037344):0.230253112):0.1601924673):0.2689287232,(ACCAAACAGCACTAGG-1:7.040419087,(CACTGAAAGTCGGCAA-1:6.978657198,(CCTTTGGGTCTCTCAC-1:6.841248963,((GCGGATCCACTGCATA-1:6.53626971,((GTGTCCTGTCGTTTCC-1:5.752037344,TCCGGGAGTTCGCGTG-1:5.752037344):0.5891742739,(ATCCACCTCAGCAATC-1:6.274858921,CTCAAGAAGACCTGGA-1:6.274858921):0.0663526971):0.1970580913):0.1877219917,(CGAGGAAGTCTAGATC-1:6.666975104,(GTGTGGCGTCGAAACG-1:6.588551867,((AGAGCAGAGAAGTGTT-1:5.752037344,CCTTGTGGTTCTTCAT-1:5.752037344):0.6980954357,(TCATCCGAGTGACCTT-1:6.274858921,(CTGCTCAAGATGGTAT-1:5.490626556,TGTTCTACATAGCACT-1:5.490626556):0.7852323651):0.1752738589):0.1404190871):0.07942323651):0.05701659751):0.1192572614):0.1384082349):0.06276188956):0.1200299041):0.2385454448):0.05269946754):0.04708203):0.03110184836):0.1726889357):0.01254445708):0.1273510941):0.123139391):0.0521578102):0.07384474326):0.1102867713):0.3617795061):0.3317191901):0.1206103193);"/-->
+
+
+            <!-- editing model parameters -->
+            <parameter id="editProbabilities" spec="parameter.RealParameter"
+                       lower="0.0" name="stateNode"
+                       upper="1000">
+
+                0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025
+                0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025
+                0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025
+                0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.01
+                0.01 0.005
+            </parameter>
+            <!-- clock rates, start value is median of prior -->
+            <plate var="n" range="1,2,3,4,5,6,7,8">
+                <parameter id="clockRate_$(n)" spec="parameter.RealParameter"
+                           lower="0.0" name="stateNode"
+                           upper="1000"> 0.2 </parameter>
+            </plate>
+
+            <!-- population process parameters -->
+            <parameter id="birthRate" spec="parameter.RealParameter"  lower="0.0" name="stateNode"
+                       upper="Infinity">1  1  1 1 1 1 </parameter>
+
+            <parameter id="deathRate" spec="parameter.RealParameter"
+                       lower="0.0" name="stateNode"
+                       upper="Infinity">0.01 0.1 0.1 0.5 0.5 0.5</parameter>
+
+            <!-- The sampling rate through time is set to 0 as we only
+                 sample at the end of the experiment with sampling
+                 proportion rho -->
+            <parameter id="samplingRate" spec="parameter.RealParameter"
+                       dimension="6" name="stateNode"
+                       >0.0</parameter>
+
+            <!--fix origin to experiment duration, e.g. 10 -->
+            <parameter id="origin"
+                       spec="parameter.RealParameter" name="stateNode">10
+            </parameter>
+
+            <!-- fix sampling proportion to truth 71/40000 cells-->
+            <parameter id="samplingProportion"
+                       spec="parameter.RealParameter" dimension="6"
+                       name="stateNode" >0.0017 </parameter>
+
+            <!-- removal probability -->
+            <parameter id="removalProbability"
+                       spec="parameter.RealParameter"
+                       name="stateNode" dimension="6">0</parameter>
+
+            <parameter id="migrationRates" spec="parameter.RealParameter" name="stateNode">
+
+                1 1 0 0 0
+                0 0 1 1 0
+                0 0 0 0 1
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+
+
+            </parameter>
+            <parameter id="frequencies" spec="parameter.RealParameter" name="stateNode">1 0 0 0 0 0
+            </parameter>
+            <!--
+            1 1 0 0 0
+                0 0 1 1 0
+                0 0 0 0 1
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+
+                 1 1 1 1 1
+                1 1 1 1 1
+                1 1 1 1 1
+                1 1 1 1 1
+                1 1 1 1 1
+                1 1 1 1 1
+                -->
+
+
+        </state>
+
+        <!-- for initialization repeats -->
+        <init id="birthRateInitializer" spec="feast.parameter.InitRandomRealParameter"
+              initial="@birthRate">
+            <Uniform id="Uniform.birthRate" name="distr" lower="0.8" upper="1.5"/>
+        </init>
+
+        <!--init spec="feast.parameter.InitRandomRealParameter" initial="@deathRate">
+            <Uniform name="distr" lower="0.3" upper="1"/>
+        </init-->
+
+        <!--init spec="feast.parameter.InitRandomRealParameter" initial="@migrationRates">
+            <Uniform name="distr" lower="0.1" upper="0.7"/>
+        </init-->
+
+        <!-- define posterior -->
+        <distribution id="posterior" spec="CompoundDistribution">
+
+            <!-- tree prior or phylodynamic model. Here, we use a birth-death sampling
+            model -->
+            <distribution id="prior" spec="CompoundDistribution">
+
+                <distribution id="birthDeathMigration.t:alignment"
+                              spec="bdmmprime.distribution.BirthDeathMigrationDistribution"
+                              conditionOnSurvival="True" frequencies="@frequencies" tree="@typewriterTree"
+                              typeTraitSet="@typeTrait.t:alignment"
+                              storeNodeTypes="true">
+
+                    <parameterization spec="bdmmprime.parameterization.CanonicalParameterization"
+                                      processLength="@origin"
+                    >
+                        <typeSet id="typeSet_$(n)" spec="bdmmprime.parameterization.TypeSet" value="0,1,2,3,4,5"
+                                 typeTraitSet="@typeTrait.t:alignment"/>
+
+                        <birthRate spec="bdmmprime.parameterization.SkylineVectorParameter"
+                                   skylineValues="@birthRate"
+                                   timesAreAges="false"/>
+
+                        <deathRate spec="bdmmprime.parameterization.SkylineVectorParameter"
+                                   skylineValues="@deathRate"
+                                   timesAreAges="false"/>
+
+                        <samplingRate spec="bdmmprime.parameterization.SkylineVectorParameter"
+                                      skylineValues="@samplingRate"
+                                      timesAreAges="false"/>
+
+                        <rhoSampling spec="bdmmprime.parameterization.TimedParameter"
+                                     times="0"
+                                     timesAreAges="true"
+                                     processLength="@origin"
+                                     values="@samplingProportion"/>
+
+                        <removalProb spec="bdmmprime.parameterization.SkylineVectorParameter"
+                                     skylineValues="@removalProbability"
+                                     timesAreAges="false"/>
+
+                        <migrationRate spec="bdmmprime.parameterization.SkylineMatrixParameter"
+                                       skylineValues="@migrationRates"
+                                       timesAreAges="false"/>
+                    </parameterization>
+
+                </distribution>
+
+
+                <!-- prior distribution on phylogenetic parameters -->
+                <distribution spec="distribution.Prior"
+                        id="editProbabilitiesPrior" name="distribution"
+                        x="@editProbabilities">
+
+                    <Dirichlet name="distr" spec="beast.base.inference.distribution.Dirichlet">
+                        <parameter  spec="parameter.RealParameter"
+                                    estimate="false"
+                                    name="alpha" dimension="42">
+                            1.5
+                        </parameter>
+                    </Dirichlet>
+                </distribution>
+
+                <!-- 95% HPD  [0.09, 0.33, 1.2] -->
+                <!--Clock prior -->
+                <plate var="n" range="1,2,3,4,5,6,7,8">
+                    <distribution spec="distribution.Prior" id="clockRatePrior_$(n)"
+                           name="distribution" x="@clockRate_$(n)">
+                        <LogNormal spec="distribution.LogNormalDistributionModel" name="distr" M="-1.1" S="0.8"/>
+                    </distribution>
+                </plate>
+
+                <!-- prior distributions on phylodynamic parameters -->
+                <!-- 95% HPD [0.2, 1.1, 5.7] (median for pure birth gets to ~20K (known organoid size) and broad prior to allow periods of higher/smaller overall growth)-->
+                <distribution id="birthRatePrior" name="distribution" x="@birthRate" spec="distribution.Prior">
+                    <LogNormal name="distr" spec="distribution.LogNormalDistributionModel">
+                        <parameter spec="parameter.RealParameter"
+                                   estimate="false" name="M">0.1</parameter>
+                        <parameter spec="parameter.RealParameter"
+                                   estimate="false"  name="S">1</parameter>
+                    </LogNormal>
+                </distribution>
+
+            <!-- 95% HPD [0.12, 0.67, 3.4] allow growth rate ~1.1, to reach for target of at least ~30K cells-->
+                <distribution id="deathRatePrior" name="distribution" x="@deathRate" spec="distribution.Prior">
+                    <LogNormal spec="distribution.LogNormalDistributionModel" name="distr">
+                        <parameter spec="parameter.RealParameter"
+                                   estimate="false" name="M">-0.4</parameter>
+                        <parameter spec="parameter.RealParameter"
+                                   estimate="false"  name="S">1</parameter>
+                    </LogNormal>
+                </distribution>
+
+
+            <!-- 95% HPD [0.13, 0.3, 0.7] per day corresponding to an expected migration event within [1.4, 7] days,
+            remember we need 2 migration events to occur within 10 days.
+            -->
+                <distribution id="migrationRatePrior" name="distribution" x="@migrationRates"
+                              spec="bdmmprime.util.priors.SmartZeroExcludingPrior">
+
+                    <LogNormal spec="distribution.LogNormalDistributionModel" name="distr">
+                        <parameter spec="parameter.RealParameter"
+                                   estimate="false" name="M">-1.2</parameter>
+                        <parameter spec="parameter.RealParameter"
+                                   estimate="false"  name="S">0.5</parameter>
+                    </LogNormal>
+                </distribution>
+
+            </distribution>
+
+            <!-- Typewriter tree likelihood -->
+            <distribution id="likelihood" spec="CompoundDistribution" useThreads="true" threads="6">
+                <!-- Alignment 1 -->
+                <distribution id="treeLikelihood.1" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                              data="@preliminary_gastruloid_targetBC_AGGCTAATTCCC"
+                              tree="@typewriterTree" origin="@origin" useScaling="true"
+                              arrayLength="5" branchRateModel="@StrictClock_1">
+
+                    <siteModel id="SiteModel.s:typewriterTest" spec="SiteModel" >
+                        <parameter id="mutationRate.s:typewriterTest" spec="parameter.RealParameter" estimate="false" name="mutationRate">1.0</parameter>
+                        <parameter id="proportionInvariant.s:typewriterTest" spec="parameter.RealParameter" estimate="false" lower="0.0" name="proportionInvariant" upper="1.0">0.0</parameter>
+                        <substModel id="submodel.s:typewriterTest" spec="typewriter.evolution.substitutionmodel.TypewriterSubstitutionModel" editProbabilities="@editProbabilities">
+                            <frequencies id="freq" spec="beast.base.evolution.substitutionmodel.Frequencies" frequencies="1.0
+                            0 0 0 0 0 0 0 0 0 0
+                            0 0 0 0 0 0 0 0 0 0
+                            0 0 0 0 0 0 0 0 0 0
+                            0 0 0 0 0 0 0 0 0 0
+                            0 0" estimate="false"/>
+                        </substModel>
+                    </siteModel>
+                </distribution>
+                <!-- Alignment 2 -->
+                <distribution id="treeLikelihood.2" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                              siteModel="@SiteModel.s:typewriterTest" branchRateModel="@StrictClock_2"
+                              data="@preliminary_gastruloid_targetBC_TAACGAAGATTT" tree="@typewriterTree" origin="@origin" useScaling="true"
+                              arrayLength="5">
+                </distribution>
+                <!-- Alignment 3 -->
+                <distribution id="treeLikelihood.3" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                              siteModel="@SiteModel.s:typewriterTest"
+                              data="@preliminary_gastruloid_targetBC_AACTGAATGTTT" tree="@typewriterTree" origin="@origin" useScaling="true"
+                              arrayLength="5" branchRateModel="@StrictClock_3">
+                </distribution>
+
+                <!-- Alignment 4 -->
+                <distribution id="treeLikelihood.4" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                              siteModel="@SiteModel.s:typewriterTest" branchRateModel="@StrictClock_4"
+                              data="@preliminary_gastruloid_targetBC_GTATAAAGTTTG" tree="@typewriterTree" origin="@origin" useScaling="true"
+                              arrayLength="5">
+                </distribution>
+
+
+                <!-- Alignment 5 -->
+                <distribution id="treeLikelihood.5" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                              siteModel="@SiteModel.s:typewriterTest" branchRateModel="@StrictClock_5"
+                              data="@preliminary_gastruloid_targetBC_TTGATAACGTGA" tree="@typewriterTree" origin="@origin" useScaling="true"
+                              arrayLength="5">
+                </distribution>
+
+                <!-- Alignment 6 -->
+                <distribution id="treeLikelihood.6" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                              siteModel="@SiteModel.s:typewriterTest" branchRateModel="@StrictClock_6"
+                              data="@preliminary_gastruloid_targetBC_GTTGAAAGGTGA" tree="@typewriterTree" origin="@origin" useScaling="true"
+                              arrayLength="5">
+                </distribution>
+
+                <!-- Alignment 7 -->
+                <distribution id="treeLikelihood.7" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                              siteModel="@SiteModel.s:typewriterTest" branchRateModel="@StrictClock_7"
+                              data="@preliminary_gastruloid_targetBC_GTACAAAATAGT" tree="@typewriterTree" origin="@origin" useScaling="true"
+                              arrayLength="5">
+                </distribution>
+
+                <!-- Alignment 8 -->
+                <distribution id="treeLikelihood.8" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                              siteModel="@SiteModel.s:typewriterTest" branchRateModel="@StrictClock_8"
+                              data="@preliminary_gastruloid_targetBC_TTCACAAATTTA" tree="@typewriterTree" origin="@origin" useScaling="true"
+                              arrayLength="5">
+                </distribution>
+            </distribution>
+        </distribution>
+
+        <!-- phylogenetic operators -->
+        <operator id="editProbabilitiesOperator"
+                  spec="DeltaExchangeOperator"
+                  parameter="@editProbabilities"
+                  weight="10.0"/>
+
+        <plate var="n" range="1,2,3,4,5,6,7,8">
+            <operator id="clockRateScaler_$(n)" spec="ScaleOperator"
+                  parameter="@clockRate_$(n)" scaleFactor="0.8" weight="1.0"/>
+        </plate>
+
+        <!-- tree operators -->
+        <operator spec="ScaleOperator" tree="@typewriterTree" weight="1.0"/>
+        <operator spec="WilsonBalding" tree="@typewriterTree" weight="10.0"/>
+        <operator spec="Uniform" tree="@typewriterTree"
+                  weight="10.0"/>
+        <operator spec="Exchange"
+                  isNarrow="true" tree="@typewriterTree"
+                  weight="10.0"/>
+        <operator spec="SubtreeSlide" tree="@typewriterTree" weight="10.0"/>
+
+
+
+        <operator id="updown_treeClock" spec="UpDownOperator" scaleFactor="0.8" weight="1.5">
+                <plate var="n" range="1,2,3,4,5,6,7,8">
+                    <up idref="clockRate_$(n)"/>
+                </plate>
+                <down idref="typewriterTree"/>
+        </operator>
+        
+
+
+        <!-- Phylodynamic operators -->
+        <operator id="birthRateScaler" spec="ScaleOperator" parameter="@birthRate" scaleFactor="0.8" weight="1.5"/>
+
+        <!--operator id="deathRateScaler" spec="ScaleOperator" optimise="false" parameter="@deathRate" scaleAll="true" scaleFactor="0.9" weight="3.0"/-->
+
+        <operator id="deathRateScaler" spec="bdmmprime.util.operators.SmartScaleOperator"
+                  parameter="@deathRate" scaleFactor="0.8" weight="3.0"/>
+
+        <operator id="migrationRateScaler" spec="ScaleOperator" parameter="@migrationRates" scaleFactor="0.8" weight="1.5"/>
+
+        <operator id="updownBR" spec="UpDownOperator" scaleFactor="0.8" weight="1.5">
+            <up idref="birthRate"/>
+            <down idref="migrationRates"/>
+        </operator>
+
+        <operator id="upupBR" spec="UpDownOperator" scaleFactor="0.9" weight="1.5">
+            <up idref="birthRate"/>
+            <up idref="migrationRates"/>
+        </operator>
+
+        <!--operator id="smartupdown" spec="tidetree.operators.SmartUpUpOperator" weight="1.5" >
+            <up1 idref="deathRate" />
+            <up2 idref="birthRate" />
+        </operator-->
+
+        <!-- Loggers -->
+        <logger id="tracelog" spec="Logger" fileName="$(filebase).$(seed).log" logEvery="10000">
+            <log idref="posterior"/>
+            <log idref="likelihood"/>
+            <log idref="prior"/>
+            <plate var="n" range="1,2,3,4,5,6,7,8">
+                <log idref="treeLikelihood.$(n)"/>
+            </plate>
+            <log id="treeHeight.t:alignment" spec="beast.base.evolution.tree.TreeHeightLogger" tree="@typewriterTree"/>
+            <log idref="editProbabilities"/>
+            <plate var="n" range="1,2,3,4,5,6,7,8">
+                <log idref="clockRate_$(n)"/>
+            </plate>
+            <log idref="birthRate"/>
+            <log idref="deathRate"/>
+            <log idref="migrationRates"/>
+            <log idref="samplingProportion"/>
+        </logger>
+
+
+        <logger id="screenlog" spec="Logger" logEvery="5000">
+            <log idref="posterior"/>
+            <log id="ESS.0" spec="util.ESS" arg="@posterior"/>
+            <log idref="likelihood"/>
+            <log idref="prior"/>
+        </logger>
+
+        <logger id="treelog.t:alignment" spec="Logger" fileName="$(filebase).$(tree).$(seed).trees" logEvery="10000" mode="tree">
+            <log idref="typewriterTree" printMetaData="true"/>
+        </logger>
+
+
+    </run>
+
+</beast>
