@@ -37,8 +37,8 @@ integers_dat_file = "results/preliminary_gastruloid/multitype_6types_71cells/edi
 # input files
 
 ## input cell type annotations
-cell_types = read.csv("results/preliminary_gastruloid/multitype_6types/annotations.csv",
-                      header = F, col.names = c("cell", "type"))
+cell_types = read.csv("results/preliminary_gastruloid/multitype_6types_71cells/annotations.csv",
+                      header = T)
 
 
 ## input set of cells as filtered by S.Seidel
@@ -69,7 +69,7 @@ for (targetBC in unique(integers_dat$TargetBC)){
 }
 
 # date trait
-taxon_and_date_individual = unname(sapply(edit_table_subset$Cell, function(x){
+taxon_and_date_individual = unname(sapply(unique(edit_table_subset$Cell), function(x){
   paste(x, "=10", sep = "")
 }))
 
