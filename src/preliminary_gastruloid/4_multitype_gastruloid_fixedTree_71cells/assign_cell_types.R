@@ -25,7 +25,7 @@ source("src/preliminary_gastruloid/scripts_across_gastruloid.R")
 
 ## ---------------------------
 # input cell type annotations
-cell_types = read.csv("results/preliminary_gastruloid/multitype_6types_71cells/annotations.csv",
+cell_types = read.csv("results/preliminary_gastruloid/annotations/annotations.csv",
                       header = F, col.names = c("cell", "type"))
 cell_types$type_number = sapply(cell_types$type, assign_type_to_number)
 
@@ -38,6 +38,7 @@ integers_dat = read.csv(integers_dat_file)
 cell_types = cell_types[cell_types$cell %in% integers_dat$Cell, ]
 cell_types = cell_types[match(unique(integers_dat$Cell), cell_types$cell), ]
 
+write.csv(cell_types,  file = "results/preliminary_gastruloid/multitype_6types_71cells/annotations.csv", row.names = F,quote = F)
 ## ---------------------------
 # write cell type traits to be inserted into the BEAST 2 xml
 # date trait
