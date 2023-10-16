@@ -15,22 +15,24 @@
 require(tidyverse)
 require(data.table)
 
-setwd("~/typewriter_analysis")
+setwd("~/Projects/typewriter_analysis")
 
 
-annotations <- read.csv("data/mGASv2_Lane2_Group1_cell_annotation.csv")
+annotations <- read.csv("data/preliminary_gastruloid/mGASv2_Lane2_Group1_cell_annotation.csv")
 annotations <- annotations[,2:(ncol(annotations))]
 annotations <- data.frame(annotations)
 
 plot1 <- ggplot(data=annotations, aes(x=jax_major_trajectory)) + geom_bar() + xlab("Jax Annotation") + ylab("Total counts") +  theme(legend.title = element_blank(),axis.text.x=element_text(angle = 90))
+plot1
 ggsave("jax_annotations.pdf",path="results/preliminary_gastruloid/annotations/", width=25,height= 18, units = "cm")
 
 
 plot2 <- ggplot(data=annotations, aes(x=pijuan_celltype)) + geom_bar() + xlab("Pijuan Annotation") + ylab("Total counts") +  theme(legend.title = element_blank(),axis.text.x=element_text(angle = 90))
+plot2
 ggsave("pijuan_annotations.pdf",path="results/preliminary_gastruloid/annotations/", width=25,height= 18, units = "cm")
 
 #create a manual annotation to match the hierarchy in this preprint:
-#https://www.biorxiv.org/content/10.1101/2022.11.01.514697v1.full.pdf 
+#https://www.biorxiv.org/content/10.1101/2022.11.01.514697v1.full.pdf
 # based on pijaun annotations: we merge pijuan Brain annotations with SC
 annotations_xml <- c()
 for(i in 1:length(annotations$pijuan_celltype)) {
