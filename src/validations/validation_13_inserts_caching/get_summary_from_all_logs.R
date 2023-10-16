@@ -40,9 +40,9 @@ library(ggplot2)
 
 ## ---------------------------
 
-log_dir = "./results/validation_13_inserts_caching/inference_results/"
+log_dir = "/Volumes/stadler/People/Sophie_Antoine_shared/validations/validation_13_inserts_caching/inference_results/"
 
-simulation_dir = "results/validation_13_inserts_caching/simulation_parameters/"
+simulation_dir = "/Volumes/stadler/People/Sophie_Antoine_shared/validations/validation_13_inserts_caching/simulation_parameters/"
 
 parameters_of_interest = c("clockRate", paste0("insertRate.", 1:13))
 
@@ -118,6 +118,9 @@ for (seed in  1:100){
 clock_rate_inference = clock_rate_inference[order(clock_rate_inference$true_value), ]
 clock_rate_inference$orderedSeed = 1:100
 
+saveRDS(object = clock_rate_inference, file = "/Volumes/stadler/People/Sophie_Antoine_shared/validations/validation_13_inserts_caching/inference_results/summary_data_clock.RDS")
+saveRDS(object = insert_rate_inference, file = "/Volumes/stadler/People/Sophie_Antoine_shared/validations/validation_13_inserts_caching/inference_results/summary_data_insert.RDS")
+
 g = ggplot(clock_rate_inference, aes(x=orderedSeed, y=median))+
   geom_point()+
   geom_errorbar(aes(ymin = hpd_lower, ymax=hpd_upper), alpha=0.4)+
@@ -143,8 +146,14 @@ g
 ggsave(plot = g, "./src/validation_13_inserts_caching/inference_insert_rate.pdf", width = 20, height = 30, units = "cm")
 
 #coverages
-sum(insert_rate_inference$recovered)/nr_converged_chains/13
-sum(clock_rate_inference$recovered)/nr_converged_cha
+for (insert in 1:13){
+  print(sum(insert_rate_inference[insert_rate_inference$insertRate == insert, "recovered"]))
+}
+sum(clock_rate_inference$recovered)/nr_converged_chains
+
+# correlation
+cor.test(clock_rate_inference$median, clock_rate_inference$true_value)
+cor.test(insert_rate_inference$median, insert_rate_inference$true_value)
 
 
 g = ggplot(insert_rate_inference, aes(x=true_value, y=median)) +
