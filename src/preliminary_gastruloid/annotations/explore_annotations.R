@@ -15,12 +15,15 @@
 require(tidyverse)
 require(data.table)
 
-setwd("~/typewriter_analysis")
+setwd("~/Projects/typewriter_analysis")
 
 #input and filter datasets by set of 8 targetBCs
 edit_table_by_6 <- read.csv("data/preliminary_gastruloid/mGASv2_Lane2_CellByTape_10X_bamExtractV2_t3_collapse.csv", stringsAsFactors = F, header = T,na.strings=c("","NA"))
 edit_table_by_5 <- edit_table_by_6[,1:7]
 
+<<<<<<< HEAD
+annotations <- read.csv("data/preliminary_gastruloid/mGASv2_Lane2_Group1_cell_annotation.csv")
+=======
 filters <- read.csv("data/preliminary_gastruloid/mGASv2_TargetBC_selected8.csv", header = T,na.strings=c("","NA"))
 
 filtered_dataset <- c()
@@ -47,10 +50,20 @@ for (cell in unique(full_filter$Cell)){
 
 #input annotations
 annotations <- read.csv("data/mGASv2_Lane2_Group1_cell_annotation.csv")
+>>>>>>> d5ca0a00ff0e07a45395b5d46b43e58154d8927d
 annotations <- annotations[,2:(ncol(annotations))]
 
 annotations <- data.frame(annotations)
 
+<<<<<<< HEAD
+plot1 <- ggplot(data=annotations, aes(x=jax_major_trajectory)) + geom_bar() + xlab("Jax Annotation") + ylab("Total counts") +  theme(legend.title = element_blank(),axis.text.x=element_text(angle = 90))
+plot1
+ggsave("jax_annotations.pdf",path="results/preliminary_gastruloid/annotations/", width=25,height= 18, units = "cm")
+
+
+plot2 <- ggplot(data=annotations, aes(x=pijuan_celltype)) + geom_bar() + xlab("Pijuan Annotation") + ylab("Total counts") +  theme(legend.title = element_blank(),axis.text.x=element_text(angle = 90))
+plot2
+=======
 #checking that the cells in this annotation table correspond to the 780 subset that 
 #choi and sam sent us. filter out other cells
 
@@ -70,10 +83,11 @@ ggsave("jax_annotations.pdf",path="results/preliminary_gastruloid/annotations/",
 
 
 plot2 <- ggplot(data=annotations_filtered, aes(x=pijuan_celltype)) + geom_bar() + xlab("Pijuan Annotation") + ylab("Total counts") +  theme(legend.title = element_blank(),axis.text.x=element_text(angle = 90))
+>>>>>>> d5ca0a00ff0e07a45395b5d46b43e58154d8927d
 ggsave("pijuan_annotations.pdf",path="results/preliminary_gastruloid/annotations/", width=25,height= 18, units = "cm")
 
 #create a manual annotation to match the hierarchy in this preprint:
-#https://www.biorxiv.org/content/10.1101/2022.11.01.514697v1.full.pdf 
+#https://www.biorxiv.org/content/10.1101/2022.11.01.514697v1.full.pdf
 # based on pijaun annotations: we merge pijuan Brain annotations with SC
 
 length(unique(annotations_filtered$pijuan_celltype))
