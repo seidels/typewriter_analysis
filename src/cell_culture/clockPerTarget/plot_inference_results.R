@@ -1,12 +1,12 @@
 ## ---------------------------
 ##
-## Script name: plot_inference_results
+## Script name: plot_inference_results_annotated
 ##
-## Purpose of script: Generating violin plots from SciPhy estimates on HEK293 cell culture data 
+## Purpose of script: Plot estimates from SciPhy on HEK293 cell culture data, clock per target, with color annotations matching the tree.
 ##
 ## Author: Antoine Zwaans
 ##
-## Date Created: 2023-07-19
+## Date Created: 2023-10-13
 ##
 ## Copyright (c) Antoine Zwaans, 2023
 ## Email: antoine.zwaans@bsse.ethz.ch
@@ -24,6 +24,7 @@ library(dirmult)
 library(coda)
 library(LaplacesDemon)
 library(cowplot)
+library(scales)
 
 #load the combined log file 
 
@@ -42,19 +43,35 @@ trinucleotides_names <- c("CAT","CCG","GCC","ATA","GAT","ACG","ACA","TCG","TAT",
 names(insert_probs) <- trinucleotides_names
 insert_probs <- insert_probs[order(-sapply(insert_probs, median))]
 insert_probs <- bind_cols(insert_probs,Prior=rdirichlet(nrow(insert_probs), rep(1.5,19))[,2])
-insert_probs_long <- pivot_longer(insert_probs,seq(1,ncol(insert_probs)))
-insert_probs_long$name <- factor(insert_probs_long$name, levels = names(insert_probs)) 
+insert_probs_medians <- sapply(insert_probs,median)
+insert_probs_low <- as.numeric(sapply(insert_probs,function(x) {quantile(x, 0.025)}))
+insert_probs_up <-  as.numeric(sapply(insert_probs,function(x) {quantile(x, 0.975)}))
+datafra <- data_frame(name=c(trinucleotides_names,"Prior"),median=insert_probs_medians,low=insert_probs_low,up=insert_probs_up)
 
-p_inserts <-  ggplot(insert_probs_long,aes(x=name,value,fill=name)) +
-              geom_violin() + 
-              xlab("Insertion probabilities") + 
-              theme_bw() + 
-              ylab("Value") + 
-              theme(legend.position = "none" ) + 
-              scale_fill_manual(values=c(rep("#4545A8",19),"#E1E1F7")) +
-              ylim(c(0,0.2))
 
-ggsave("insert_probs.png", p_inserts, width = 30, height = 15, units = "cm", dpi = 300)
+datafra$name <- factor(datafra$name, levels = datafra$name)
+
+#assign standard colors to the trinucleotides alphabetical to match the tree plot. 
+colors <- c(hue_pal()(19),"#E1E1F7")
+names(colors) <- c(sort(trinucleotides_names),"Prior")
+p_inserts <-  ggplot(datafra) +
+  geom_bar(aes(x=name,y=median,fill=name),stat="identity",colour="black") +
+  xlab("Insert") + 
+  theme_bw() + 
+  ylab("Posterior insert probability") + 
+  theme(legend.position = "none" ) + 
+  scale_fill_manual(values=colors) +
+  
+  geom_errorbar(aes(x=name,ymin=low, ymax=up), width=.2,
+                position=position_dodge(.9)) +
+  
+  coord_cartesian(ylim=c(0,0.175),expand = FALSE) + theme(axis.text.x = element_text(angle = 90),text = element_text(size = 22), 
+                                                          panel.grid.minor = element_blank(),
+                                                          panel.border = element_blank(),
+                                                          panel.background = element_blank(),panel.grid.major.x = element_blank(),axis.text.x.bottom = element_text(size = 22)) 
+
+
+ggsave("insert_probs.png", p_inserts, width = 40, height = 10, units = "cm", dpi = 1000)
 
 # --------------------
 #  plot the clock rates
@@ -72,6 +89,7 @@ names(clock_rate) <- c("ATGGTAAG","ATTTATAT",
                        "TTGAGGTG","TTTCGTGA",
                        "TTCACGTA")
 
+
 #reorder by median
 clock_rate <- clock_rate[order(-sapply(clock_rate, median))]
 ordered_names <- names(clock_rate)
@@ -83,16 +101,20 @@ clock_rate_long <- pivot_longer(clock_rate,seq(1,ncol(clock_rate)))
 #order columns 
 clock_rate_long <- mutate(clock_rate_long,name = fct_relevel(name,ordered_names,"Prior"))
 
-p_clock <- ggplot(clock_rate_long,aes(x=name,value,fill=name)) +
-           theme_bw() +
-           geom_violin(draw_quantiles =  c(0.5)) + 
-           xlab("Clock rates") + 
-           ylab("Value") + 
-           theme(legend.position = "none") + 
-           scale_fill_manual(values=c(rep("#4545A8",13),"#E1E1F7")) + 
-           ylim(c(0,0.4))
+p_clock_pos <- ggplot(clock_rate_long,aes(x=name,value,fill=name)) +
+  theme_bw() +
+  geom_violin(draw_quantiles =  c(0.5)) + 
+  xlab("Tape") + 
+  ylab(parse(text = paste0('"Posterior editing rate "', '(~ day^-1)'))) +
+  
+  theme(legend.position = "none") + 
+  scale_fill_manual(values=c(rep("#5CA17D",13),"#E1E1F7")) + 
+  coord_cartesian(
+    ylim=c(0,0.4),expand=FALSE) + theme(text = element_text(size = 22),panel.grid.minor = element_blank(),
+                                        panel.border = element_blank(),
+                                        panel.background = element_blank(),panel.grid.major.x = element_blank(), axis.text.x = element_text(angle = 90) )
 
-ggsave("clock_rate.png", p_clock, width = 30, height = 15, units = "cm", dpi = 300)
+ggsave("clock_rates.png", p_clock_pos, width = 30, height = 15, units = "cm", dpi = 1000)
 
 # --------------------
 #  plot the growth rate
@@ -108,19 +130,82 @@ bd_rates_long <- pivot_longer(bd_rates,seq(1,ncol(bd_rates)))
 #order columns 
 bd_rates_long <- mutate(bd_rates_long,name = fct_relevel(name,"Rate","Prior"))
 p_growth <- ggplot(bd_rates_long, aes(x=name,value,fill=name)) + 
-            theme_bw() + 
-            geom_violin(draw_quantiles = c(0.5)) + 
-            theme(legend.position = "none" ) + 
-            xlab("Growth rate") + 
-            ylab("Value") + 
-            ylim(c(-0.2,1.5)) +
-            scale_fill_manual(values=c("#4545A8","#E1E1F7"))
+  theme_bw() + 
+  geom_violin(draw_quantiles = 0.5) +
+  theme(legend.position = "none" ) + 
+  xlab("Growth") + 
+  ylab(parse(text = paste0('"Posterior growth rate "', '(~day^-1)'))) + 
+  coord_cartesian(ylim = c(-0.1,0.9),expand = TRUE) + 
+  scale_fill_manual(values=c("#5CA17D","#E1E1F7")) + theme(text=element_text(size = 22),panel.grid.minor = element_blank(),
+                                                           panel.border = element_blank(),
+                                                           panel.background = element_blank(),panel.grid.major.x = element_blank())
 
-ggsave("growth_rate.png", p_growth, width = 30, height = 30, units = "cm", dpi = 300)
+
+ggsave("growth_rate.png", p_growth, width = 15, height = 10, units = "cm", dpi = 1000)
+
+
+#extract and substract the birth and death rates 
+bd_rates <- typewriter[,"birthRate"] 
+
+#add a prior column
+bd_rates <- bind_cols(Rate=bd_rates,Prior= rlnorm(length(bd_rates), meanlog = -0.6, sdlog = 1)  )
+bd_rates_long <- pivot_longer(bd_rates,seq(1,ncol(bd_rates)))
+
+#order columns 
+bd_rates_long <- mutate(bd_rates_long,name = fct_relevel(name,"Rate","Prior"))
+p_birth <- ggplot(bd_rates_long, aes(x=name,value,fill=name)) + 
+  theme_bw() + 
+  geom_violin(draw_quantiles = 0.5) +
+  theme(legend.position = "none" ) + 
+  xlab("Division") + 
+  ylab(parse(text = paste0('"Posterior division rate "', '(~day^-1)'))) + 
+  coord_cartesian(ylim = c(-0.1,0.9),expand = TRUE) + 
+  scale_fill_manual(values=c("#5CA17D","#E1E1F7")) + theme(text=element_text(size = 22),panel.grid.minor = element_blank(),
+                                                           panel.border = element_blank(),
+                                                           panel.background = element_blank(),panel.grid.major.x = element_blank())
+
+
+#extract and substract the birth and death rates 
+bd_rates <- typewriter[,"deathRate"]
+
+#add a prior column
+bd_rates <- bind_cols(Rate=bd_rates,Prior= rlnorm(length(bd_rates), meanlog = -2, sdlog = 1) )
+bd_rates_long <- pivot_longer(bd_rates,seq(1,ncol(bd_rates)))
+
+#order columns 
+bd_rates_long <- mutate(bd_rates_long,name = fct_relevel(name,"Rate","Prior"))
+p_death <- ggplot(bd_rates_long, aes(x=name,value,fill=name)) + 
+  theme_bw() + 
+  geom_violin(draw_quantiles = 0.5) +
+  theme(legend.position = "none" ) + 
+  xlab("Death") + 
+  ylab(parse(text = paste0('"Posterior death rate "', '(~day^-1)'))) + 
+  coord_cartesian(ylim = c(-0.1,0.9),expand = TRUE) + 
+  scale_fill_manual(values=c("#5CA17D","#E1E1F7")) + theme(text=element_text(size = 22),panel.grid.minor = element_blank(),
+                                                           panel.border = element_blank(),
+                                                           panel.background = element_blank(),panel.grid.major.x = element_blank())
+
+
+combined <- cowplot::plot_grid(p_birth+ theme(axis.line = element_line(colour = "black")),p_death+ theme(axis.line = element_line(colour = "black")),nrow = 1)
+
+
+
+ggsave("birth_death_rates.png", combined, width = 50, height = 15, units = "cm", dpi = 300)
 
 
 # ---------------------------
 #  plot all estimates aligned
 # ---------------------------
-combined <- cowplot::plot_grid(p_inserts + theme(axis.text.x = element_text(angle = 90)),p_clock + theme(axis.title.y = element_blank(),axis.text.x = element_text(angle = 90)),p_growth +theme(axis.title.y = element_blank()),nrow = 1,rel_widths = c(2,2,1))
-ggsave("combined_estimates.png", combined, width = 30, height = 10, units = "cm", dpi = 300)
+
+combined <- cowplot::plot_grid(p_inserts+ theme(axis.line = element_line(colour = "black")),p_clock_pos+ theme(axis.line = element_line(colour = "black")),p_growth+ theme(axis.line = element_line(colour = "black")),nrow = 1)
+ggsave("combined_estimates.png", combined, width = 50, height = 15, units = "cm", dpi = 800)
+
+
+
+
+
+
+
+
+
+

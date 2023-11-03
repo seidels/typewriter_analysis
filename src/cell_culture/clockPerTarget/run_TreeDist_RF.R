@@ -28,11 +28,20 @@ library(tidyverse)
 library(data.table)
 library(ape)
 library(TreeDist)
+library(readr)
+library(tidyverse)
+library(data.table)
+library(ape)
+library(TreeDist)
+
+
+setwd("~/typewriter_analysis/results/analysis_cell_culture_data/inference_results/clock_per_target/1000_cells")    
+
 
 #load sciphy trees and UPGMA
 sciphy_trees <- ape::read.nexus(file = "thinned4000000.trees")
-upgma <- ape::read.tree(file = "UPGMAtree_1000.txt")
-cell_ids <- read.csv(header = F, file = "UPGMAtree_1000_cell_names_.txt")
+upgma <- ape::read.tree(file = "~/typewriter_analysis/results/analysis_cell_culture_data/upgma/UPGMAtree_1000.txt")
+cell_ids <- read.csv(header = F, file = "~/typewriter_analysis/results/analysis_cell_culture_data/upgma/UPGMAtree_1000_cell_names_.txt")
 cell_ids$numeric_label <- 0:999
 cell_ids_sorted <- cell_ids[match(upgma$tip.label, cell_ids$V1), ]
 upgma$tip.label <- as.character(cell_ids_sorted$numeric_label)
