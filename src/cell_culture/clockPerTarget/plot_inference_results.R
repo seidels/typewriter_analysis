@@ -71,7 +71,7 @@ p_inserts <-  ggplot(datafra) +
                                                           panel.background = element_blank(),panel.grid.major.x = element_blank(),axis.text.x.bottom = element_text(size = 22)) 
 
 
-ggsave("insert_probs.png", p_inserts, width = 40, height = 10, units = "cm", dpi = 1000)
+ggsave("insert_probs.png", p_inserts, width = 40, height = 12, units = "cm", dpi = 1000)
 
 # --------------------
 #  plot the clock rates
@@ -114,7 +114,7 @@ p_clock_pos <- ggplot(clock_rate_long,aes(x=name,value,fill=name)) +
                                         panel.border = element_blank(),
                                         panel.background = element_blank(),panel.grid.major.x = element_blank(), axis.text.x = element_text(angle = 90) )
 
-ggsave("clock_rates.png", p_clock_pos, width = 30, height = 15, units = "cm", dpi = 1000)
+ggsave("clock_rate.png", p_clock_pos, width = 30, height = 15, units = "cm", dpi = 1000)
 
 # --------------------
 #  plot the growth rate
