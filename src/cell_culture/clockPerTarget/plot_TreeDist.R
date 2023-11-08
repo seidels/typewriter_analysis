@@ -16,7 +16,7 @@
 
 
 ## set working directory for Mac 
-setwd("~/typewriter_analysis/results/analysis_cell_culture_data/inference_results/clock_per_target/1000_cells/TreeDistFinal/")    
+setwd("~/typewriter_analysis/results/analysis_cell_culture_data/inference_results/clock_per_target/1000_cells/TreeDist/")    
 
 ## load up the packages we will need:  (uncomment as required)
 
@@ -115,7 +115,7 @@ combined_with_title <- cowplot::plot_grid(
   rel_heights = c(0.1, 1)
 )
 
-ggsave("combined_treeDist_4dim_RF_MCC.png", combined_with_title, width = 60, height = 60, units = "cm", dpi = 300)
+ggsave("combined_treeDist_4dim_RF.png", combined_with_title, width = 60, height = 60, units = "cm", dpi = 300)
 
 ###########################################
 ## Plotting in 2D Clustering Information ##
@@ -177,7 +177,7 @@ combined_with_title <- cowplot::plot_grid(
   rel_heights = c(0.1, 1)
 )
 
-ggsave("combined_treeDist_4dim_CI_MCC.png", combined_with_title, width = 60, height = 60, units = "cm", dpi = 300)
+ggsave("combined_treeDist_4dim_CI.png", combined_with_title, width = 60, height = 60, units = "cm", dpi = 300)
 
 
 ###############################################################
@@ -289,12 +289,12 @@ dev.off()
 #remove the legend, the other plit will have it
 
 tree_df_rf <- PI_treeDist
-plot1_2 <- plot_tree_distances_topology_metric(tree_df_rf, tree_likelihood, "Clustering Information",1,2) + xlab("Coordinate 1") + ylab("Coordinate 2") + theme(legend.position = "None", panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-plot1_3 <- plot_tree_distances_topology_metric(tree_df_rf, tree_likelihood, "Clustering Information",1,3) + xlab("Coordinate 1") + ylab("Coordinate 3") + theme(legend.position = "None",panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-plot1_4 <- plot_tree_distances_topology_metric(tree_df_rf, tree_likelihood, "Clustering Information",1,4) + xlab("Coordinate 1") + ylab("Coordinate 4") + theme(legend.position = "None",panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-plot2_3 <- plot_tree_distances_topology_metric(tree_df_rf, tree_likelihood, "Clustering Information",2,3) + xlab("Coordinate 2") + ylab("Coordinate 3") + theme(legend.position = "None",panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-plot2_4 <- plot_tree_distances_topology_metric(tree_df_rf, tree_likelihood, "Clustering Information",2,4) + xlab("Coordinate 2") + ylab("Coordinate 4") + theme(legend.position = "None",panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-plot3_4 <- plot_tree_distances_topology_metric(tree_df_rf, tree_likelihood, "Clustering Information",3,4) + xlab("Coordinate 3") + ylab("Coordinate 4") + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+plot1_2 <- plot_tree_distances_topology_metric(tree_df_rf, tree_likelihood, "Phylogenetic Information",1,2) + xlab("Coordinate 1") + ylab("Coordinate 2") + theme(legend.position = "None", panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+plot1_3 <- plot_tree_distances_topology_metric(tree_df_rf, tree_likelihood, "Phylogenetic Information",1,3) + xlab("Coordinate 1") + ylab("Coordinate 3") + theme(legend.position = "None",panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+plot1_4 <- plot_tree_distances_topology_metric(tree_df_rf, tree_likelihood, "Phylogenetic Information",1,4) + xlab("Coordinate 1") + ylab("Coordinate 4") + theme(legend.position = "None",panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+plot2_3 <- plot_tree_distances_topology_metric(tree_df_rf, tree_likelihood, "Phylogenetic Information",2,3) + xlab("Coordinate 2") + ylab("Coordinate 3") + theme(legend.position = "None",panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+plot2_4 <- plot_tree_distances_topology_metric(tree_df_rf, tree_likelihood, "Phylogenetic Information",2,4) + xlab("Coordinate 2") + ylab("Coordinate 4") + theme(legend.position = "None",panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+plot3_4 <- plot_tree_distances_topology_metric(tree_df_rf, tree_likelihood, "Phylogenetic Information",3,4) + xlab("Coordinate 3") + ylab("Coordinate 4") + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 blank_plot <- ggplot() + theme_void()
 
@@ -321,5 +321,5 @@ combined_with_title <- cowplot::plot_grid(
   rel_heights = c(0.1, 1)
 )
 
-ggsave("combined_treeDist_4dim_PI_MCC.png", combined_with_title, width = 60, height = 60, units = "cm", dpi = 300)
+ggsave("combined_treeDist_4dim_PI.png", combined_with_title, width = 60, height = 60, units = "cm", dpi = 300)
 
