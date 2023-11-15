@@ -1,26 +1,13 @@
 ## ---------------------------
 ##
-## Script name: write alignments
+## Script name: write alignments and conversion table
 ##
-## Purpose of script: subsample and write alignments given targets per cell input data filtered
+## Purpose of script: subsample and write alignments given targets per cell input data filtered with edit conversion (adapted from write_alignments)
 ##
-## Author: Sophie Seidel/Antoine Zwaans
-##
-## Date Created: 2023-05-16
-##
-## Copyright (c) Sophie Seidel, 2023
-## Email: sophie.seidel@posteo.de
-##
-## ---------------------------
-##
-## Notes:
-##
-##
-## ---------------------------
 
 ## set working directory for Mac
 
-setwd("~/typewriter_analysis/")      # Sophie's working directory (mac)
+setwd("~/typewriter_analysis/")      # typewriter working director
 
 ## ---------------------------
 
@@ -28,7 +15,7 @@ library(plyr)
 
 ## load up our functions into memory
 
-source("src/useful_scripts_across_categories_with_annotations.R")
+source("src/useful_scripts_across_categories.R")
 
 ## ---------------------------
 
@@ -50,7 +37,7 @@ for(i in filtered_100_cells) {
 } 
 
 # pre-process
-conversion <- convert_edits_to_integer(filtered_100, number_of_sites = 5)
+conversion <- convert_edits_to_integer_with_edit_list(filtered_100, number_of_sites = 5)
 # get the converted sequences
 integers_dat <- conversion$targets_per_cell
 # get the mapping of trinucleotide to integer
