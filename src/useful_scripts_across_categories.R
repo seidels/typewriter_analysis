@@ -68,6 +68,21 @@ convert_edits_to_integer = function(targets_per_cell, number_of_sites=5){
   return(targets_per_cell)
 }
 
+convert_edits_to_integer_with_edit_list = function(targets_per_cell, number_of_sites=5){
+  
+  possible_edits = get_possible_edits(targets_per_cell)
+  
+  
+  
+  for (site_i in 1:number_of_sites){
+    
+    site_string = paste0("Site", site_i)
+    targets_per_cell[, site_string] = mapvalues(x = targets_per_cell[, site_string], from = possible_edits$edits, to = possible_edits$integer)
+  }
+  
+  return(list(possible_edits=possible_edits,targets_per_cell=targets_per_cell))
+}
+
 get_possible_edits = function(targets_per_cell){
 
   columns_with_edits = colnames(targets_per_cell)
