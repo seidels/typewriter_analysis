@@ -416,7 +416,7 @@ for(i in 1:(length(full_filter$Cell))) {
 
 
 }
-write.csv(contiguous_inserts,"contiguous_gastruloids.csv")
+write.csv(contiguous_inserts,"results/preliminary_gastruloid/0_explore_dataset/contiguous_gastruloids.csv")
 #converting to conditional probs
 bigram_matrix <- data.frame(contiguous_inserts)
 bigram_matrix <- bigram_matrix[-which(rownames(bigram_matrix) == "None"), -which(colnames(bigram_matrix) == "None")]
