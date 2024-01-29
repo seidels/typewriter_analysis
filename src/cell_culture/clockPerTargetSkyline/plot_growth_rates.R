@@ -75,11 +75,11 @@ growth <- typewriter_mcmc[,c("birthRate.1","birthRate.2","birthRate.3")] - typew
 
 HPD <- HPDinterval(growth)
 
-mean <- as.numeric(sapply( data.frame(growth),mean))
+median <- as.numeric(sapply( data.frame(growth),median))
 up_bd <- as.numeric(HPD[,"upper"])
 low_bd <- as.numeric(HPD[,"lower"])
 
-mean <- c(mean,mean[3])
+median <- c(median,median[3])
 up_bd <- c(up_bd,up_bd[3])
 low_bd <- c(low_bd,low_bd[3])
 
@@ -87,9 +87,9 @@ low_bd <- c(low_bd,low_bd[3])
 timeline_format <- c(0.0,8.333,16.666,25) 
 
 #creating a dataframe and formatting for step plot
-data_growth <- data.frame(timeline_format,mean,low_bd,up_bd)
-colnames(data_growth) <- c("Date","Mean","95% HPI lower","95% HPI upper")
-df_growth <- pivot_longer(data_growth,c("Mean","95% HPI lower","95% HPI upper"),names_to = "stat",values_to = "value")
+data_growth <- data.frame(timeline_format,median,low_bd,up_bd)
+colnames(data_growth) <- c("Date","Median","95% HPI lower","95% HPI upper")
+df_growth <- pivot_longer(data_growth,c("Median","95% HPI lower","95% HPI upper"),names_to = "stat",values_to = "value")
 
 p_growth <- ggplot(df_growth, aes(x=Date, y = value, key = stat, linetype = stat )) +
   scale_color_manual(values=c("#5CA17D","#5CA17D","#5CA17D")) +
