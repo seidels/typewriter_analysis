@@ -37,7 +37,7 @@ library(TreeSim)
 library(ggtree)
 
 ##getting the edit frequencies and edit types for simulations
-edit_table_by_5 = read.csv("data/Supplementary_File_2_DataTableMOI19.csv", stringsAsFactors = F, header = T, na.strings=c("","NA"))
+edit_table_by_5 = read.csv("data/cell_culture/Supplementary_File_2_DataTableMOI19.csv", stringsAsFactors = F, header = T, na.strings=c("","NA"))
 
 bulk_insert_count <- data.frame(table(unlist(edit_table_by_5[,3:7]))) %>% arrange(desc(Freq))
 bulk_insert_count$Var1 <- substring(bulk_insert_count$Var1, 1,3)
@@ -82,11 +82,11 @@ past_height <- tree_height_calc(tree_past)
 tree_past$edge.length <- tree_past$edge.length * (present_height/past_height)
 
 #lambda of 4 is the original value I used
-#lambda of 0.28 allows to have ~ 5 edits along the tree
+#lambda of 0.2 allows to have close to ~ 5 edits along the tree
 #draw edits numbers along each tree edge == cells, along a tree, assuming a rate lambda
 #draw inserts types according to the insert frequencies
 
-draw_edits_along_edges <- function(tree,lambda=0.28,insert_types,insert_freq) {
+draw_edits_along_edges <- function(tree,lambda=0.2,insert_types,insert_freq) {
   num_edit_edges <- sapply(tree$edge.length, function(x) {rpois(1,x*lambda)})
   edit_types_edges <- sapply(num_edit_edges, function(x) {sample(insert_types, x, replace = TRUE, prob = insert_freq)})
   return_list <- list("num_edit"=num_edit_edges,"edits"=edit_types_edges)
@@ -106,7 +106,8 @@ for(i in 1:length(tree$tip)) {
     start_edge = tree$edge[tree$edge[,2] == start_edge,1]
     
   }
-  total_branch_edits[i] <- sum_path
+  #Specifying a target length of 5 here. Replace for any other length.  
+  total_branch_edits[i] <- min(5,sum_path)
 
 }
 return(data.frame(edits=total_branch_edits))
@@ -125,7 +126,14 @@ get_sequence_per_sampled_cell <- function(tree,edit_types_edges) {
       start_edge = tree$edge[tree$edge[,2] == start_edge,1]
       
     }
+    #this is to enforce a tape length of at most 5. For longer tapes, adapt accordingly 
+    print(sequence_path)
+    #if(nchar(sequence_path) <= 5 ) {
     full_sequences[i] <- sequence_path
+    #} 
+    #else{
+     # full_sequences[i] <- substr(sequence_path, 1, 5)
+    #}
     
   }
   return(full_sequences)
@@ -137,33 +145,93 @@ get_sequence_per_sampled_cell <- function(tree,edit_types_edges) {
 ### Tree with branching towards present ###
 
 #the total number of edits at tips on the tree with high birth towards the present
-total_branch_edits_present <- get_edits_per_sampled_cell(tree_present,draw_edits_along_edges(tree_present,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+#Simulating 13 barcodes with 5 positions each (default) 
+total_branch_edits_present1 <- get_edits_per_sampled_cell(tree_present,draw_edits_along_edges(tree_present,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_present2 <- get_edits_per_sampled_cell(tree_present,draw_edits_along_edges(tree_present,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_present3 <- get_edits_per_sampled_cell(tree_present,draw_edits_along_edges(tree_present,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_present4 <- get_edits_per_sampled_cell(tree_present,draw_edits_along_edges(tree_present,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_present5 <- get_edits_per_sampled_cell(tree_present,draw_edits_along_edges(tree_present,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_present6 <- get_edits_per_sampled_cell(tree_present,draw_edits_along_edges(tree_present,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_present7 <- get_edits_per_sampled_cell(tree_present,draw_edits_along_edges(tree_present,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_present8 <- get_edits_per_sampled_cell(tree_present,draw_edits_along_edges(tree_present,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_present9 <- get_edits_per_sampled_cell(tree_present,draw_edits_along_edges(tree_present,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_present10 <- get_edits_per_sampled_cell(tree_present,draw_edits_along_edges(tree_present,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_present11 <- get_edits_per_sampled_cell(tree_present,draw_edits_along_edges(tree_present,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_present12 <- get_edits_per_sampled_cell(tree_present,draw_edits_along_edges(tree_present,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_present13 <- get_edits_per_sampled_cell(tree_present,draw_edits_along_edges(tree_present,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+
+#total at the tips is the sum for all barcodes
+summed_total_present <- total_branch_edits_present1 + 
+  total_branch_edits_present2 + 
+  total_branch_edits_present3 + 
+  total_branch_edits_present4 + 
+  total_branch_edits_present5 + 
+  total_branch_edits_present6 + 
+  total_branch_edits_present7 + 
+  total_branch_edits_present8 +
+  total_branch_edits_present9 +
+  total_branch_edits_present10 +
+  total_branch_edits_present11 +
+  total_branch_edits_present12 +
+  total_branch_edits_present13
+
+  
+  
+
 
 #the corresponding barcode sequences
 edits_per_edge <- draw_edits_along_edges(tree_present,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$edits
 edits_per_edge <- lapply(edits_per_edge, function(x) if(identical(x, character(0))) "" else x)
 sim_seqs_present <- get_sequence_per_sampled_cell(tree_present,edits_per_edge)
 
-density_plot_present <- ggplot(data=total_branch_edits_present,aes(x=edits)) + geom_histogram(aes(y=..density..),alpha = 0.2,fill="orange") + xlab("Number of edits") + ylab("Density") +
+density_plot_present <- ggplot(data=summed_total_present,aes(x=edits)) + geom_histogram(aes(y=..density..),alpha = 0.2,fill="orange") + xlab("Number of edits per cell") + ylab("Density") +
   geom_density(alpha=.2, fill="#FF6666") 
 plot_grid(ggtree(tree_present),density_plot_present)
-ggsave("ditribution_edit_present_branching.pdf",path="/Users/azwaans/typewriter_analysis/results/exploratory", width=25,height= 18, units = "cm") 
+ggsave("distribution_edit_present_branching_tape_len_5.pdf",path="/Users/azwaans/typewriter_analysis/results/exploratory", width=25,height= 18, units = "cm") 
 
 
 ### Tree with branching towards past ###
 
 #the total number of edits at tips on the tree with high birth towards the past
-total_branch_edits_past <- get_edits_per_sampled_cell(tree_past,draw_edits_along_edges(tree_past,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+#Simulating 13 barcodes with 5 positions each (default) 
+total_branch_edits_past1 <- get_edits_per_sampled_cell(tree_past,draw_edits_along_edges(tree_past,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_past2 <- get_edits_per_sampled_cell(tree_past,draw_edits_along_edges(tree_past,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_past3 <- get_edits_per_sampled_cell(tree_past,draw_edits_along_edges(tree_past,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_past4 <- get_edits_per_sampled_cell(tree_past,draw_edits_along_edges(tree_past,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_past5 <- get_edits_per_sampled_cell(tree_past,draw_edits_along_edges(tree_past,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_past6 <- get_edits_per_sampled_cell(tree_past,draw_edits_along_edges(tree_past,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_past7 <- get_edits_per_sampled_cell(tree_past,draw_edits_along_edges(tree_past,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_past8 <- get_edits_per_sampled_cell(tree_past,draw_edits_along_edges(tree_past,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_past9 <- get_edits_per_sampled_cell(tree_past,draw_edits_along_edges(tree_past,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_past10 <- get_edits_per_sampled_cell(tree_past,draw_edits_along_edges(tree_past,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_past11 <- get_edits_per_sampled_cell(tree_past,draw_edits_along_edges(tree_past,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_past12 <- get_edits_per_sampled_cell(tree_past,draw_edits_along_edges(tree_past,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+total_branch_edits_past13 <- get_edits_per_sampled_cell(tree_past,draw_edits_along_edges(tree_past,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$num_edit)
+
+#total at the tips is the sum for all barcodes
+summed_total_past <- total_branch_edits_past1 + 
+  total_branch_edits_past2 + 
+  total_branch_edits_past3 + 
+  total_branch_edits_past4 + 
+  total_branch_edits_past5 + 
+  total_branch_edits_past6 + 
+  total_branch_edits_past7 + 
+  total_branch_edits_past8 +
+  total_branch_edits_past9 +
+  total_branch_edits_past10 +
+  total_branch_edits_past11 +
+  total_branch_edits_past12 +
+  total_branch_edits_past13
 
 #the corresponding barcode sequences
 edits_per_edge <- draw_edits_along_edges(tree_past,insert_freq = bulk_insert_count$Freq,insert_types = bulk_insert_count$Var1)$edits
 edits_per_edge <- lapply(edits_per_edge, function(x) if(identical(x, character(0))) "" else x)
 sim_seqs_past <- get_sequence_per_sampled_cell(tree_past,edits_per_edge)
 
-density_plot_past <- ggplot(data=total_branch_edits_past,aes(x=edits)) + geom_histogram(aes(y=..density..),alpha = 0.2,fill="orange") + xlab("Number of edits") + ylab("Density") +
+density_plot_past <- ggplot(data=summed_total_past,aes(x=edits)) + geom_histogram(aes(y=..density..),alpha = 0.2,fill="orange") + xlab("Number of edits per cell") + ylab("Density") +
   geom_density(alpha=.2, fill="#FF6666") 
 plot_grid(ggtree(tree_past),density_plot_past)
-ggsave("ditribution_edit_past_branching.pdf",path="/Users/azwaans/typewriter_analysis/results/exploratory", width=25,height= 18, units = "cm") 
+ggsave("distribution_edit_past_branching_len5.pdf",path="/Users/azwaans/typewriter_analysis/results/exploratory", width=25,height= 18, units = "cm") 
 
 
 
