@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='MultiTypeBirthDeath' beautistatus='' namespace="lineageTree.substitutionmodel.ScarringLoss:beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.evolution.likelihood" required="" version="2.6">
+
+
+    <data  id="alignment" spec="feast.fileio.AlignmentFromNexus" name="alignment"
+           fileName="/Users/seidels/Projects/typewriter_analysis/results/validations/validations_alignment_per_tree/simulated_values/simulate_alignment_and_tree.seed=$(seed).alignment.nexus">
+        <userDataType spec="beast.evolution.datatype.ScarData" nrOfStates="14"/>
+    </data>
+
+
+<map name="Uniform" >beast.math.distributions.Uniform</map>
+<map name="Exponential" >beast.math.distributions.Exponential</map>
+<map name="LogNormal" >beast.math.distributions.LogNormalDistributionModel</map>
+<map name="Normal" >beast.math.distributions.Normal</map>
+<map name="Beta" >beast.math.distributions.Beta</map>
+<map name="Gamma" >beast.math.distributions.Gamma</map>
+<map name="LaplaceDistribution" >beast.math.distributions.LaplaceDistribution</map>
+<map name="prior" >beast.math.distributions.Prior</map>
+<map name="InverseGamma" >beast.math.distributions.InverseGamma</map>
+<map name="OneOnX" >beast.math.distributions.OneOnX</map>
+
+<!-- set all tip dates, time points of sampling to 25 time units --> 
+<traitSet id="dateTrait.t:alignment"
+          spec="beast.evolution.tree.TraitSet"
+          taxa="@TaxonSet.0" traitname="date-forward" value="0=25"
+	  />
+<!-- set of all cells -->
+<taxa id="TaxonSet.0" spec="TaxonSet">
+  <alignment idref="alignment"/>
+</taxa>
+<taxa id="TaxonSet.1" spec="TaxonSet">
+  <alignment idref="alignment_length2"/>
+</taxa>
+
+<!-- run MCMC with 10^9 steps --> 
+<run id="mcmc" spec="MCMC" chainLength="5000000">
+    <state id="state" spec="State" storeEvery="5000">
+
+      <!-- build starting tree -->
+        <stateNode id="simulatedTree"
+                   spec="feast.fileio.TreeFromNewickFile"
+                   IsLabelledNewick='true' adjustTipHeights='false'
+                   fileName="/Users/seidels/Projects/typewriter_analysis/results/validations/validations_alignment_per_tree/simulated_values/simulate_alignment_and_tree.$(seed).newick"
+		   />
+
+      <!-- editing model parameters -->
+      <parameter id="insertRates" spec="parameter.RealParameter"
+		   lower="0.0" name="stateNode"
+		   upper="1000">
+	0.1 0.1 0.1 0.1 0.1
+	0.1 0.1 0.1 0.1 0.025
+	0.025 0.025 0.025
+      </parameter>
+
+      <parameter id="clockRate" spec="parameter.RealParameter"
+			   dimension="1" lower="0.0" name="stateNode"
+			   upper="1000"> 0.1 </parameter>
+      <parameter id="clockRate_2" spec="parameter.RealParameter"
+			   dimension="1" lower="0.0" name="stateNode"
+			   upper="1000"> 0.1 </parameter>
+
+      <!-- population process parameters -->
+      <parameter id="birthRate" spec="parameter.RealParameter" dimension="1" lower="0.0" name="stateNode" upper="Infinity">0.8</parameter>
+
+      <parameter id="deathRate" spec="parameter.RealParameter"
+		   dimension="1" lower="0.0" name="stateNode"
+		   upper="Infinity">0.2</parameter>
+
+	<!-- The sampling rate through time is set to 0 as we only
+	     sample at the end of the experiment with sampling
+	     proportion rho -->
+        <parameter id="samplingRate" spec="parameter.RealParameter"
+		   dimension="1" lower="0.0" name="stateNode"
+		   upper="1.0">0.0</parameter>
+
+	<!--fix origin to experiment duration, e.g. 25 -->
+        <parameter id="origin"
+		   spec="parameter.RealParameter" name="stateNode">25
+	</parameter>
+
+	<!-- fix sampling proportion to truth -->
+        <parameter id="samplingProportion"
+		   spec="parameter.RealParameter" lower="0.0"
+		   name="stateNode" upper="1.0">0.00003 </parameter>
+	
+        <parameter id="freqParameter.s:alignment"
+		   spec="parameter.RealParameter" dimension="4"
+		   lower="0.0" name="stateNode"
+		   upper="1.0">0.25</parameter> 
+    </state>
+
+
+    <!-- define posterior -->
+    <distribution id="posterior" spec="util.CompoundDistribution">
+
+      <!--  priors  -->
+        <distribution id="prior" spec="util.CompoundDistribution">
+
+            <prior
+                   id="insertRatesPrior" name="distribution"
+                   x="@insertRates">
+                <Dirichlet name="distr" spec="beast.math.distributions.Dirichlet">
+                    <parameter  spec="parameter.RealParameter"
+                                estimate="false"
+                                name="alpha">
+                      1.5 1.5 1.5 1.5 1.5
+		      1.5 1.5 1.5 1.5 1.5
+		      1.5 1.5 1.5
+                    </parameter>
+                </Dirichlet>
+            </prior>
+
+       
+
+	    <!-- 95% HPD [0.06, 0.13, 0.3] -->
+	    <prior id="ClockPrior.c:alignment" name="distribution" x="@clockRate">
+              <LogNormal name="distr" M="-2" S="0.5"/>
+            </prior>
+
+	</distribution>
+
+   
+	
+        <!-- TiDeTree tree likelihood -->
+        <distribution id="likelihood" spec="util.CompoundDistribution"
+		      useThreads="true">
+
+	  <distribution id="treeLikelihood"
+			  spec="lineageTree.distributions.TypewriterTreeLikelihood"
+			  data="@alignment" tree="@simulatedTree"
+			  useScaling="true" arrayLength="5"
+			  origin="25">
+
+                <siteModel id="SiteModel.s:alignment" spec="SiteModel">
+                    <mutationRate spec="parameter.RealParameter"
+				  value="1.0" />
+                    <parameter id="proportionInvariant.s:alignment"
+			       spec="parameter.RealParameter"
+			       estimate="false" lower="0.0"
+			       name="proportionInvariant"
+			       upper="1.0">0.0
+		    </parameter>
+		    
+                    <substModel
+			spec="lineageTree.substitutionmodel.TypewriterSubstitutionModel"
+			editProbabilities="@insertRates">
+                      <frequencies id="freq"
+				   spec="beast.evolution.substitutionmodel.Frequencies"
+				   frequencies="1.0 0 0 0 0 0 0 0 0 0
+						0 0 0 0" estimate="false"/>
+                    </substModel>
+                </siteModel>
+                <branchRateModel id="StrictClock.c:alignment" spec="beast.evolution.branchratemodel.StrictClockModel" clock.rate="@clockRate"/>
+          </distribution>
+	  
+	</distribution>
+	
+    </distribution>
+    
+
+    <!-- phylogenetic operators -->
+    <operator id="insertProbabilitiesOperator"
+	      spec="DeltaExchangeOperator"
+	      parameter="@insertRates"
+	      weight="50.0" delta="0.03"/>
+
+    <operator id="clockRateScaler" spec="ScaleOperator"
+	      parameter="@clockRate" scaleFactor="0.75" weight="3.0"/>
+
+    <!-- Loggers -->
+    <logger id="tracelog" spec="Logger" fileName="/Users/seidels/Projects/typewriter_analysis/results/validations/validations_alignment_per_tree/inference_results/$(filebase).$(seed).log" logEvery="1000">
+        <log idref="posterior"/>
+        <log idref="likelihood"/>
+        <log idref="prior"/>
+        <log idref="treeLikelihood"/>
+        <log id="treeHeight.t:alignment" spec="beast.evolution.tree.TreeHeightLogger" tree="@simulatedTree"/>
+        <log id="treeLength.t:alignment" spec="multitypetree.util.TreeLengthLogger" tree="@simulatedTree"/>
+        <log idref="insertRates"/>
+        <log idref="clockRate"/>
+    </logger>
+
+    <logger id="screenlog" spec="Logger" logEvery="100000">
+        <log idref="posterior"/>
+        <log id="ESS.0" spec="util.ESS" arg="@posterior"/>
+        <log idref="likelihood"/>
+        <log idref="prior"/>
+    </logger>
+
+
+</run>
+
+</beast>
