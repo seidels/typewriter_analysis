@@ -131,45 +131,45 @@ for (seed in  1:100){
 clock_rate_array_5_inference = clock_rate_array_5_inference[order(clock_rate_array_5_inference$true_value), ]
 clock_rate_array_5_inference$orderedSeed = 1:100
 
-g = ggplot(clock_rate_array_5_inference, aes(x=orderedSeed, y=median))+
-  geom_point()+
-  geom_errorbar(aes(ymin = hpd_lower, ymax=hpd_upper), alpha=0.4)+
-  geom_point(aes(x=orderedSeed, y=true_value), col="darkgreen")+
-  theme_classic()+
-  xlab("Simulation seeds ordered with increasing simulation parameter") +
-  ylab("Estimated posterior intervals and medians")
-
-g
-ggsave(plot = g, "./src/validations/validate_threaded_barcodeArrayLength/inference_clock_array_5.pdf")
-
-### clock rate of alignment with length 2 targets
-
-clock_rate_array_2_inference = clock_rate_array_2_inference[order(clock_rate_array_2_inference$true_value), ]
-clock_rate_array_2_inference$orderedSeed = 1:100
-
-g = ggplot(clock_rate_array_2_inference, aes(x=orderedSeed, y=median))+
-  geom_point()+
-  geom_errorbar(aes(ymin = hpd_lower, ymax=hpd_upper), alpha=0.4)+
-  geom_point(aes(x=orderedSeed, y=true_value), col="darkgreen")+
-  theme_classic()+
-  xlab("Simulation seeds ordered with increasing simulation parameter") +
-  ylab("Estimated posterior intervals and medians")
-
-g
-ggsave(plot = g, "./src/validations/validate_threaded_barcodeArrayLength/inference_clock_array_2.pdf")
-
-
-g = ggplot(insert_rate_inference, aes(x=seed, y=median))+
-  geom_point()+
-  facet_grid(insertRate~.)+
-  geom_errorbar(aes(ymin = hpd_lower, ymax=hpd_upper), alpha=0.4)+
-  geom_point(aes(x=seed, y=true_value), col="darkgreen")+
-  theme_classic() +
-  xlab("Simulation seeds") +
-  ylab("Estimated posterior intervals and medians")
-g
-
-ggsave(plot = g, "./src/validations/validate_threaded_barcodeArrayLength/inference_insert_rate.pdf", width = 20, height = 30, units = "cm")
+# g = ggplot(clock_rate_array_5_inference, aes(x=orderedSeed, y=median))+
+#   geom_point()+
+#   geom_errorbar(aes(ymin = hpd_lower, ymax=hpd_upper), alpha=0.4)+
+#   geom_point(aes(x=orderedSeed, y=true_value), col="darkgreen")+
+#   theme_classic()+
+#   xlab("Simulation seeds ordered with increasing simulation parameter") +
+#   ylab("Estimated posterior intervals and medians")
+#
+# g
+# ggsave(plot = g, "./src/validations/validate_threaded_barcodeArrayLength/inference_clock_array_5.pdf")
+#
+# ### clock rate of alignment with length 2 targets
+#
+# clock_rate_array_2_inference = clock_rate_array_2_inference[order(clock_rate_array_2_inference$true_value), ]
+# clock_rate_array_2_inference$orderedSeed = 1:100
+#
+# g = ggplot(clock_rate_array_2_inference, aes(x=orderedSeed, y=median))+
+#   geom_point()+
+#   geom_errorbar(aes(ymin = hpd_lower, ymax=hpd_upper), alpha=0.4)+
+#   geom_point(aes(x=orderedSeed, y=true_value), col="darkgreen")+
+#   theme_classic()+
+#   xlab("Simulation seeds ordered with increasing simulation parameter") +
+#   ylab("Estimated posterior intervals and medians")
+#
+# g
+# ggsave(plot = g, "./src/validations/validate_threaded_barcodeArrayLength/inference_clock_array_2.pdf")
+#
+#
+# g = ggplot(insert_rate_inference, aes(x=seed, y=median))+
+#   geom_point()+
+#   facet_grid(insertRate~.)+
+#   geom_errorbar(aes(ymin = hpd_lower, ymax=hpd_upper), alpha=0.4)+
+#   geom_point(aes(x=seed, y=true_value), col="darkgreen")+
+#   theme_classic() +
+#   xlab("Simulation seeds") +
+#   ylab("Estimated posterior intervals and medians")
+# g
+#
+# ggsave(plot = g, "./src/validations/validate_threaded_barcodeArrayLength/inference_insert_rate.pdf", width = 20, height = 30, units = "cm")
 
 #coverages
 sum(insert_rate_inference$recovered)/nr_converged_chains/13
