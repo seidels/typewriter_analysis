@@ -1,0 +1,111 @@
+<beast version="2.0"
+       namespace="beast.core
+                 :beast.base.util
+                 :beast.base.inference.parameter
+                 :beast.base.inference
+                 :beast.base.evolution.alignment
+                 :beast.base.evolution.likelihood
+                 :beast.base.evolution.tree.coalescent
+                 :beast.base.evolution.sitemodel
+                 :beast.base.evolution.substitutionmodel
+                 :beast.base.evolution.operators
+                 :beast.base.math.distributions
+                 :beast.base.evolution.tree
+                 :feast.simulation
+                 :feast.fileio
+                 :feast.fileio.logfileiterator
+                 :bdmmprime.distribution
+                 :bdmmprime.parameterization
+                 :bdmmprime.trajectories">
+
+    <parameterization id="parameterization" spec="CanonicalParameterization">
+
+        <typeSet id="typeSet" spec="bdmmprime.parameterization.TypeSet" value="0"/>
+        <processLength id="origin" spec="RealParameter" value="25.0"/>
+
+        <birthRate spec="SkylineVectorParameter" typeSet="@typeSet">
+            <skylineValues idref="birthRate"/>
+        </birthRate>
+
+        <deathRate spec="SkylineVectorParameter" typeSet="@typeSet">
+            <skylineValues idref="deathRate"/>
+        </deathRate>
+
+        <samplingRate spec="SkylineVectorParameter" typeSet="@typeSet">
+            <skylineValues spec="RealParameter" value="0.0"/>
+        </samplingRate>
+
+        <rhoSampling id="rho" spec="TimedParameter" typeSet="@typeSet" values="0.0008"
+                     times="25" processLength="@origin" />
+
+        <removalProb spec="SkylineVectorParameter" typeSet="@typeSet">
+            <skylineValues spec="RealParameter" value="0.0"/>
+        </removalProb>
+
+    </parameterization>
+
+    <!--trajectory id="typedTrajectory"
+                nParticles="50"
+                spec="SampledTrajectory" typeLabel="type">
+        <typeMappedTree spec="feast.fileio.TreeFromNewickFile"
+                        fileName="analyses/last_tree.newick"
+                        adjustTipHeights="false"
+                        IsLabelledNewick="true"/>
+        <parameterization idref="parameterization"/>
+    </trajectory-->
+
+    <run spec="LogFileIterator"  >
+
+        <logFileState spec="TreeLogFileState" logFileName="thinned_10000000.trees"
+                      readTaxonSet="false">
+            <tree id="tree" spec="Tree"/>
+        </logFileState>
+
+        <logFileState spec="TraceLogFileState" logFileName="thinned_10000000.log">
+
+            <logFileEntry spec="LogFileRealParameter" fieldName="finalSampleOffset">
+                <fieldParameter id="finalSampleOffset" spec="RealParameter" value="0"/>
+            </logFileEntry>
+
+            <logFileEntry spec="LogFileRealParameter" fieldName="birthRate">
+                <fieldParameter id="birthRate" spec="RealParameter" value="0"/>
+            </logFileEntry>
+
+            <logFileEntry spec="LogFileRealParameter" fieldName="deathRate">
+                <fieldParameter id="deathRate" spec="RealParameter" value="0"/>
+            </logFileEntry>
+
+
+        </logFileState>
+
+        <logger spec="Logger" logEvery="1" fileName="$(filebase).$(nParticles).log">
+            <log idref="origin"/>
+            <log idref="finalSampleOffset"/>
+            <log id="logProb" spec="BirthDeathMigrationDistribution"
+                 tree="@tree"
+                 parameterization="@parameterization"
+                 typeLabel="type"
+                 conditionOnSurvival="true">
+                <frequencies spec="RealParameter" value="1.0"/>
+                <finalSampleOffset idref="finalSampleOffset"/>
+            </log>
+            <log id="logProbEst" spec="TreeProbEstimateLogger"
+                 sampledTrajectory="@typedTrajectory"/>
+            <log idref="birthRate" />
+            <log idref="deathRate" />
+            <log idref="rho" />
+
+        </logger>
+
+        <logger spec="beast.base.inference.Logger" logEvery="1" fileName="$(filebase).$(nParticles).traj">
+            <!--log idref="typedTrajectory" /-->
+            <log id="typedTrajectory"
+                        nParticles="$(nParticles)"
+                        spec="SampledTrajectory" typeLabel="type">
+                <typeMappedTree idref="tree"/>
+                <parameterization idref="parameterization"/>
+            </log>
+        </logger>
+    </run>
+
+</beast>
