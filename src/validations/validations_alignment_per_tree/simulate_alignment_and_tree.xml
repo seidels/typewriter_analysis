@@ -72,29 +72,31 @@
             <finalSampleOffset id="finalSampleOffset" spec="RealParameter" value="0"/> <!-- Will be set by simulation -->
             <frequencies spec="RealParameter" value="1.0"/>
         </simulationObject>
-	
-    <simulationObject id="seqAlign" spec="lineageTree.simulation.SimulatedTypeWriterAlignment"
-		      outputFileName="$(outputDir)/$(filebase).seed=$(seed).alignment.nexus"
-		      numberOfTargets="1" nrOfInsertionsPerTarget="5"
-		      tree="@simulatedTree" origin="@origin">
-      
-      <userDataType spec="beast.evolution.datatype.IntegerData"/>
 
-      <siteModel spec="beast.evolution.sitemodel.SiteModel">
+	<plate var="n" range="1,2,3,4,5,6,7,8,9,10" >
+	  <simulationObject id="seqAlign_$(n)" spec="lineageTree.simulation.SimulatedTypeWriterAlignment"
+			    outputFileName="$(outputDir)/$(filebase).seed=$(seed).$(n).alignment.nexus"
+			    numberOfTargets="1" nrOfInsertionsPerTarget="5"
+			    tree="@simulatedTree" origin="@origin">
+	    
+	    <userDataType spec="beast.evolution.datatype.IntegerData"/>
 
-        <mutationRate idref="clockRate"/>
+	    <siteModel spec="beast.evolution.sitemodel.SiteModel">
 
-        <substModel id="TypeWriterSubstModel"
-		    spec="lineageTree.substitutionmodel.TypewriterSubstitutionModel"
-		    editProbabilities="@insertRates" >
-          <frequencies id="freq"
-		       spec="beast.evolution.substitutionmodel.Frequencies"
-		       frequencies="1.0 0 0 0 0 0 0 0 0 0 0 0 0 0" estimate="false"/> 
-  </substModel>
-  </siteModel>
-  <branchRateModel id="StrictClock.c:h3n2_2deme" spec="beast.evolution.branchratemodel.StrictClockModel" clock.rate="1.0"/>
+              <mutationRate idref="clockRate"/>
 
-    </simulationObject>
+              <substModel 
+			  spec="lineageTree.substitutionmodel.TypewriterSubstitutionModel"
+			  editProbabilities="@insertRates" >
+		<frequencies
+			     spec="beast.evolution.substitutionmodel.Frequencies"
+			     frequencies="1.0 0 0 0 0 0 0 0 0 0 0 0 0 0" estimate="false"/> 
+	      </substModel>
+	    </siteModel>
+	    <branchRateModel spec="beast.evolution.branchratemodel.StrictClockModel" clock.rate="1.0"/>
+
+	</simulationObject>
+	</plate>
 
 
     <!-- <logger spec="Logger" logEvery="1" fileName="$(filebase).$(seed).traj"> -->
