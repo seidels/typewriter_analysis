@@ -1,5 +1,5 @@
 <beast version="2.0"
-       namespace="beast.core
+       namespace="beast.pkgmgmt:beast.base.core:beast.base.inference
                  :beast.core.util
                  :beast.core.parameter
                  :beast.evolution.alignment
@@ -11,35 +11,38 @@
                  :beast.evolution.operators
                  :beast.math.distributions
                  :feast.simulation
+                 :sciphy.evolution
                  :bdmmprime.distribution
                  :bdmmprime.parameterization
                  :bdmmprime.mapping">
 
 
-  <!-- insert rate and clock rate -->
+  <!-- insert rates -->
   <parameter id="insertRates"
 	     spec="feast.fileio.RealParameterFromXSV" 
 	     name="stateNode"
-	     fileName="/Users/seidels/Projects/typewriter_analysis/results/validations/validations_alignment_per_tree/simulation_parameters/simParams_$(seed).csv"
+	     fileName="/cluster/scratch/azwaans/validations_2024/parameters/simParams_$(seed).csv"
 	     sep="," startRow="1" rowCount="13"
-	     startCol="1" colCount="1" /> 
+	     startCol="1" colCount="1" />
 
+    <!-- clock rate -->
     <parameter id="clockRate"
 	     spec="feast.fileio.RealParameterFromXSV" 
 	     name="stateNode"
-	     fileName="/Users/seidels/Projects/typewriter_analysis/results/validations/validations_alignment_per_tree/simulation_parameters/simParams_$(seed).csv"
+	     fileName="/cluster/scratch/azwaans/validations_2024/parameters/simParams_$(seed).csv"
 	     sep="," startRow="14" rowCount="1"
-	     startCol="1" colCount="1" /> 
+	     startCol="1" colCount="1" />
 
-    <origin id="origin" spec="RealParameter" value="25"/> <!-- Length of simulation -->
- 
+    <!-- length of simulation -->
+    <origin id="origin" spec="beast.base.inference.parameter.RealParameter" value="25"/>
+
   <run spec="GPSimulator" nSims="1">
 
     <!-- simulate sequence -->
 
        <!-- simulate tree -->
         <simulationObject spec="bdmmprime.trajectories.simulation.SimulatedTree"
-                          id="simulatedTree" treeFileName="$(outputDir)/$(filebase).$(seed).newick"
+                          id="simulatedTree" treeFileName="/cluster/scratch/azwaans/validations_2024/data/$(filebase).$(seed).newick"
                           minSamples="1" simulateUntypedTree="True">
 
             <parameterization spec="CanonicalParameterization">
@@ -48,61 +51,68 @@
 
                 <!-- Fix phylodynamic parameters -->
                 <birthRate spec="SkylineVectorParameter" typeSet="@typeSet">
-                    <skylineValues id="birthRate_ins" spec="RealParameter" value="0.8" />
+                    <skylineValues id="birthRate_ins" spec="beast.base.inference.parameter.RealParameter" value="0.8" />
                 </birthRate>
 
                 <deathRate spec="SkylineVectorParameter" typeSet="@typeSet">
-                    <skylineValues id="deathRate_ins" spec="RealParameter" value="0.2" />
+                    <skylineValues id="deathRate_ins" spec="beast.base.inference.parameter.RealParameter" value="0.2" />
                 </deathRate>
 
                 <!-- no sampling through time, only at present -->
                 <samplingRate spec="SkylineVectorParameter" typeSet="@typeSet">
-                    <skylineValues spec="RealParameter" value="0.0"/>
+                    <skylineValues spec="beast.base.inference.parameter.RealParameter" value="0.0"/>
                 </samplingRate>
 
                 <rhoSampling spec="TimedParameter" typeSet="@typeSet"
                              times="25" timesAreAges="False" values="0.00003"/>
 
                 <removalProb spec="SkylineVectorParameter" typeSet="@typeSet">
-                    <skylineValues spec="RealParameter" value="1.0"/>
+                    <skylineValues spec="beast.base.inference.parameter.RealParameter" value="1.0"/>
                 </removalProb>
 
             </parameterization>
 
-            <finalSampleOffset id="finalSampleOffset" spec="RealParameter" value="0"/> <!-- Will be set by simulation -->
-            <frequencies spec="RealParameter" value="1.0"/>
+            <finalSampleOffset id="finalSampleOffset" spec="beast.base.inference.parameter.RealParameter" value="0"/> <!-- Will be set by simulation -->
+            <frequencies spec="beast.base.inference.parameter.RealParameter" value="1.0"/>
         </simulationObject>
 
-	<plate var="n" range="1,2,3,4,5,6,7,8,9,10" >
-	  <simulationObject id="seqAlign_$(n)" spec="lineageTree.simulation.SimulatedTypeWriterAlignment"
-			    outputFileName="$(outputDir)/$(filebase).seed=$(seed).$(n).alignment.nexus"
-			    numberOfTargets="1" nrOfInsertionsPerTarget="5"
-			    tree="@simulatedTree" origin="@origin">
-	    
-	    <userDataType spec="beast.evolution.datatype.IntegerData"/>
+<!--      	<simulationObject id="simulatedTreeNewick" spec="beast.base.evolution.tree.TreeParser"-->
+<!--                         adjustTipHeights="false" adjustTreeNodeHeights="false" IsLabelledNewick="true"-->
+<!--                         newick='((14:20.226479228905717,((((((25:13.921297037397954,34:13.921297037397954)43:0.13802570362376088,23:14.059322741021715)45:1.4480585060267543,9:15.50738124704847)50:2.2020668560355947,(6:17.608903727710498,((28:16.865487199009422,((37:14.833728286101985,8:14.833728286101985)48:1.3752520451388133,20:16.2089803312408)52:0.6565068677686234)55:0.4439874580423506,(36:17.164081362503953,(35:17.09293770319463,2:17.09293770319463)57:0.07114365930932465)58:0.14539329454781935)60:0.29942907065872504)62:0.1005443753735662)64:1.6110227717983463,(((21:11.742177883190497,27:11.742177883190497)39:1.7953214376423858,15:13.537499320832882)41:0.4284892382554002,7:13.965988559088283)44:5.354482315794128)70:0.520280187873368,((5:18.10473853008921,(((33:16.780002772654818,(13:15.252230303920262,4:15.252230303920262)49:1.5277724687345557)54:0.19725092959856738,(1:10.306028268557327,0:10.306028268557327)38:6.671225433696058)56:0.9606503708352889,((11:13.725674833877543,18:13.725674833877543)42:0.35337361235463227,31:14.079048446232175)46:3.8588556268564993)66:0.16683445700053667)67:1.6587163083229264,((((24:12.090453716499235,17:12.090453716499235)40:5.8260415887676995,(30:17.683271196156273,26:17.683271196156273)63:0.23322410911066171)65:0.45555265286145996,(16:16.485348474524635,3:16.485348474524635)53:1.8866994836037598)68:0.4650663404288551,(22:14.73156000564261,19:14.73156000564261)47:4.10555429291464)69:0.9263405398548876)71:0.07729622434364103)72:0.38572816614993855)73:1.3546640992611465,(32:17.37974798350635,((10:15.807514742827873,29:15.807514742827873)51:1.417858891931811,12:17.225373634759684)59:0.15437434874666423)61:4.201395344660515)74:0.0-->
+<!--      '-->
+<!--              />-->
+      <!-- read-in tree (this is done because it looks like the tree is changed when written, ensure that we simulate and infer on same tree) -->
+      <simulationObject id="simulatedTreeNewick"
+                 spec="feast.fileio.TreeFromNewickFile"
+                 IsLabelledNewick='true' adjustTipHeights='false'
+                 fileName="/cluster/scratch/azwaans/validations_2024/data/simulate_alignment_and_tree.$(seed).newick"
+       />
 
-	    <siteModel spec="beast.evolution.sitemodel.SiteModel">
+	<plate var="n" range="1,2,3,4,5,6,7,8,9,10" >
+	  <simulationObject id="seqAlign_$(n)" spec="sciphy.evolution.simulation.SimulatedSciPhyAlignment"
+			    outputFileName="/cluster/scratch/azwaans/validations_2024/data/$(filebase).seed=$(seed).$(n).alignment.nexus"
+			    numberOfTargets="1" nrOfInsertionsPerTarget="5" arrayLength="5"
+			    tree="@simulatedTreeNewick" origin="@origin">
+	    
+	    <userDataType spec="beast.base.evolution.datatype.IntegerData"/>
+
+	    <siteModel spec="beast.base.evolution.sitemodel.SiteModel">
 
               <mutationRate idref="clockRate"/>
 
               <substModel 
-			  spec="lineageTree.substitutionmodel.TypewriterSubstitutionModel"
-			  editProbabilities="@insertRates" >
+			  spec="sciphy.evolution.substitutionmodel.SciPhySubstitutionModel"
+			  editProbabilities="@insertRates">
 		<frequencies
-			     spec="beast.evolution.substitutionmodel.Frequencies"
+			     spec="beast.base.evolution.substitutionmodel.Frequencies"
 			     frequencies="1.0 0 0 0 0 0 0 0 0 0 0 0 0 0" estimate="false"/> 
 	      </substModel>
 	    </siteModel>
-	    <branchRateModel spec="beast.evolution.branchratemodel.StrictClockModel" clock.rate="1.0"/>
+	    <branchRateModel spec="beast.base.evolution.branchratemodel.StrictClockModel" clock.rate="1.0"/>
 
 	</simulationObject>
 	</plate>
 
 
-    <!-- <logger spec="Logger" logEvery="1" fileName="$(filebase).$(seed).traj"> -->
-    <!--   <log id="trajectory" spec="bdmmprime.trajectories.simulation.SimulatedTrajectoryLogger"> -->
-    <!--     <simulatedTree idref="simulatedTree"/> -->
-    <!--   </log> -->
-    <!-- </logger> -->
   </run>
 </beast>

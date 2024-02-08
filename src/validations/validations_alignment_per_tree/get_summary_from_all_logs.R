@@ -12,37 +12,16 @@
 ## Email: sophie.seidel@posteo.de
 ##
 ## ---------------------------
-##
-## Notes:
-##
-##
-## ---------------------------
 
-## set working directory for Mac
-
-setwd("~/Projects/typewriter_analysis/")
-## ---------------------------
-
-
-## ---------------------------
-
-## load up the packages we will need:  (uncomment as required)
 
 library(tracerer)
 library(HDInterval)
 library(ggplot2)
 
 ## ---------------------------
+log_dir = "/cluster/scratch/azwaans/validations_2024/log/"
 
-## load up our functions into memory
-
-# source("functions/summarise_data.R")
-
-## ---------------------------
-
-log_dir = "./results/validations/validate_threaded_barcodeArrayLength/inference_results/"
-
-simulation_dir = "results/validations/validation_13_inserts_caching/simulation_parameters/"
+simulation_dir = "/cluster/scratch/azwaans/validations_2024/parameters/"
 
 parameters_of_interest = c("clockRate", paste0("insertRate.", 1:13))
 
@@ -61,7 +40,6 @@ is_parameter_in_hpd = function(hpd_lower, hpd_upper, true_parameter){
 nr_converged_chains = 0
 
 clock_rate_array_5_inference = data.frame(seed=1:100, hpd_lower=0, hpd_upper=0, median=0, true_value=0, recovered=F)
-clock_rate_array_2_inference = data.frame(seed=1:100, hpd_lower=0, hpd_upper=0, median=0, true_value=0, recovered=F)
 
 insert_rate_inference = data.frame(seed=rep(1:100, each = 13), hpd_lower=0, hpd_upper=0, median=0, true_value=0, recovered=F,
                                    insertRate= rep(1:13,100))
@@ -71,7 +49,7 @@ for (seed in  1:100){
 
   print(seed)
   # get inference log
-  log_file = paste0("infer_given_fixed_tree_13_inserts_clockPerBarcode.", seed, ".log")
+  log_file = paste0("infer_given_fixed_tree_13_inserts.", seed, ".log")
   log_data = parse_beast_tracelog_file(paste0(log_dir, log_file))
   log_data_wo_burnin = remove_burn_ins(log_data, burn_in_fraction = 0.1)
 
@@ -96,7 +74,6 @@ for (seed in  1:100){
   }
 
   clock_rate_array_5_hpd = hdi(object = log_data_wo_burnin$clockRate, credMass = 0.95)
-  clock_rate_array_2_hpd = hdi(object = log_data_wo_burnin$clockRate_2, credMass = 0.95)
 
   true_clock_rate = simulation_parameters[14, 2]
 
@@ -104,11 +81,6 @@ for (seed in  1:100){
     recovered = is_parameter_in_hpd(hpd_lower = clock_rate_array_5_hpd["lower"], hpd_upper = clock_rate_array_5_hpd["upper"],
                       true_parameter = true_clock_rate)
   clock_rate_array_5_inference[seed, ] = c(seed, clock_rate_array_5_hpd, median(log_data_wo_burnin$clockRate), true_clock_rate, recovered)
-
-  ## check for clock rate for alignments with array length 2
-  recovered = is_parameter_in_hpd(hpd_lower = clock_rate_array_2_hpd["lower"], hpd_upper = clock_rate_array_2_hpd["upper"],
-                                  true_parameter = true_clock_rate)
-  clock_rate_array_2_inference[seed, ] = c(seed, clock_rate_array_2_hpd, median(log_data_wo_burnin$clockRate_2), true_clock_rate, recovered)
 
   for (insert_rate_nr in 1:13){
 
@@ -127,57 +99,23 @@ for (seed in  1:100){
 }
 
 ### clock rate of alignment with length 5 targets
-
 clock_rate_array_5_inference = clock_rate_array_5_inference[order(clock_rate_array_5_inference$true_value), ]
 clock_rate_array_5_inference$orderedSeed = 1:100
 
-# g = ggplot(clock_rate_array_5_inference, aes(x=orderedSeed, y=median))+
-#   geom_point()+
-#   geom_errorbar(aes(ymin = hpd_lower, ymax=hpd_upper), alpha=0.4)+
-#   geom_point(aes(x=orderedSeed, y=true_value), col="darkgreen")+
-#   theme_classic()+
-#   xlab("Simulation seeds ordered with increasing simulation parameter") +
-#   ylab("Estimated posterior intervals and medians")
-#
-# g
-# ggsave(plot = g, "./src/validations/validate_threaded_barcodeArrayLength/inference_clock_array_5.pdf")
-#
-# ### clock rate of alignment with length 2 targets
-#
-# clock_rate_array_2_inference = clock_rate_array_2_inference[order(clock_rate_array_2_inference$true_value), ]
-# clock_rate_array_2_inference$orderedSeed = 1:100
-#
-# g = ggplot(clock_rate_array_2_inference, aes(x=orderedSeed, y=median))+
-#   geom_point()+
-#   geom_errorbar(aes(ymin = hpd_lower, ymax=hpd_upper), alpha=0.4)+
-#   geom_point(aes(x=orderedSeed, y=true_value), col="darkgreen")+
-#   theme_classic()+
-#   xlab("Simulation seeds ordered with increasing simulation parameter") +
-#   ylab("Estimated posterior intervals and medians")
-#
-# g
-# ggsave(plot = g, "./src/validations/validate_threaded_barcodeArrayLength/inference_clock_array_2.pdf")
-#
-#
-# g = ggplot(insert_rate_inference, aes(x=seed, y=median))+
-#   geom_point()+
-#   facet_grid(insertRate~.)+
-#   geom_errorbar(aes(ymin = hpd_lower, ymax=hpd_upper), alpha=0.4)+
-#   geom_point(aes(x=seed, y=true_value), col="darkgreen")+
-#   theme_classic() +
-#   xlab("Simulation seeds") +
-#   ylab("Estimated posterior intervals and medians")
-# g
-#
-# ggsave(plot = g, "./src/validations/validate_threaded_barcodeArrayLength/inference_insert_rate.pdf", width = 20, height = 30, units = "cm")
+#coverages per insert rate
+coverages_per_insert <- c()
+for(i in 1:13) {
+  coverage <- sum(insert_rate_inference[which(insert_rate_inference$insertRate == i),"recovered"])/nr_converged_chains
+  coverages_per_insert <- c(coverages_per_insert,coverage)
+}
+coverages_per_insert
+#0.97 0.95 0.93 0.92 0.97 0.95 0.94 0.92 0.91 0.93 0.99 0.94 0.95
 
-#coverages
-sum(insert_rate_inference$recovered)/nr_converged_chains/13
+#coverage for the clock rate
 sum(clock_rate_array_5_inference$recovered)/nr_converged_chains
-sum(clock_rate_array_2_inference$recovered)/nr_converged_chains
+#0.96
 
-######### version 2 plots ##########
-## where true values on x axis and estimated values on y axis
+## true values on x axis and estimated values on y axis
 
 g = ggplot(insert_rate_inference, aes(x=true_value, y=median)) +
   geom_point()+geom_errorbar(aes(ymin = hpd_lower, ymax=hpd_upper), alpha=0.4)+
@@ -185,9 +123,11 @@ g = ggplot(insert_rate_inference, aes(x=true_value, y=median)) +
   xlab("True value")+
   ylab("Estimated median and posterior interval")+
   theme_classic()+
-  xlim(0, 0.5) + ylim(0, 0.5)
+  xlim(0, 0.5) + ylim(0, 0.5)+
+  ggtitle("Insertion probabilities")+
+  theme(plot.title = element_text(hjust=0.5))
 g
-ggsave(plot = g, "./src/validations/validate_threaded_barcodeArrayLength/inference_insert_rate_v2.pdf",
+ggsave(plot = g, "//cluster/scratch/azwaans/validations_2024/plots/inference_insert_rate.pdf",
        width = 12, height = 12, units = "cm")
 
 g = ggplot(clock_rate_array_5_inference, aes(x=true_value, y=median)) +
@@ -196,19 +136,10 @@ g = ggplot(clock_rate_array_5_inference, aes(x=true_value, y=median)) +
   xlab("True value")+
   ylab("Estimated median and posterior interval")+
   theme_classic()+
-  xlim(0, 0.5) + ylim(0, 0.5)
+  xlim(0, 0.5) + ylim(0, 0.5)+
+  ggtitle("Editing rate")+
+  theme(plot.title = element_text(hjust=0.5))
 g
-ggsave(plot = g, "./src/validations/validate_threaded_barcodeArrayLength/inference_clock_array_5_v2.pdf",
-       width = 12, height = 12, units = "cm")
-
-g = ggplot(clock_rate_array_2_inference, aes(x=true_value, y=median)) +
-  geom_point()+geom_errorbar(aes(ymin = hpd_lower, ymax=hpd_upper), alpha=0.4)+
-  geom_abline(slope = 1, col="darkgreen")+
-  xlab("True value")+
-  ylab("Estimated median and posterior interval")+
-  theme_classic()+
-  xlim(0, 0.5) + ylim(0, 0.5)
-g
-ggsave(plot = g, "./src/validations/validate_threaded_barcodeArrayLength/inference_clock_array_2_v2.pdf",
+ggsave(plot = g, "/cluster/scratch/azwaans/validations_2024/plots/inference_clock_array_5.pdf",
        width = 12, height = 12, units = "cm")
 

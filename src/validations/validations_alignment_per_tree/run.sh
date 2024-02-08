@@ -1,13 +1,18 @@
-#!/bin/zsh
+#load java modules
+env2lmod
+module load openjdk/17.0.0_35
 
+#enter R environment
+conda activate tree_dist_env
 
 # draw the clock rate and the insert probabilities from prior distributions
-Rscript draw_simulation_params.R
+sbatch --wrap="Rscript draw_simulation_params.R"
 
-# run the simulation
-for seed in `seq 3 3`
-do
-    #java -jar 23-04-05-typewriter.jar -seed $seed -D outputDir="/Users/seidels/Projects/typewriter_analysis/results/validations/validations_alignment_per_tree/simulated_values/" simulate_alignment_and_tree.xml
+#exit R environment
+conda deactivate
 
-    java -jar 23-04-05-typewriter.jar -overwrite -seed $seed infer_given_fixed_tree_13_inserts.xml
-done
+#simulate trees and alignments
+sbatch --job-name="tree_alignment_simulations" --array=1-100 --wrap="java -jar ~/all_beasts_2.7_2024.jar -seed \$SLURM_ARRAY_TASK_ID -version_file version.xml simulate_alignment_and_tree.xml"
+
+#run inference
+sbatch --job-name="validations" --array=1-100 --wrap="java -jar ~/all_beasts_2.7_2024.jar -seed \$SLURM_ARRAY_TASK_ID -version_file version.xml infer_given_fixed_tree_13_inserts.xml"
