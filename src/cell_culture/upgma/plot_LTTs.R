@@ -34,12 +34,19 @@ trees <- ape::read.nexus(file = "thinned4000000.trees")
 ##read in upgma tree
 upgma <- ape::read.tree(file = "~/typewriter_analysis/results/analysis_cell_culture_data/upgma/UPGMAtree_1000.txt")
 
+##read in log
+log <- read.table("combined.log", header = T)
+
 ##read in the mcc tree
 MCC <- ape::read.nexus(file = "MCC_on_thinned4000000_check.tree")
 
-##read in scaled upgma
-upgma_scaled <- ape::read.tree(file = "~/typewriter_analysis/results/analysis_cell_culture_data/inference_results/clock_per_target/1000_cells/UPGMAtree_1000_medianPosteriorHeight.txt")
+#get the median posterior tree height
+median_posterior_height <- median(log[,"treeHeight.t.alignment"])
 
+##read in scaled upgma
+upgma_scaled <- upgma
+upgma_height <- tree_height_calc(upgma)
+upgma_scaled$edge.length <- upgma_scaled$edge.length * (median_posterior_height/upgma_height)
 
 #extract ltt coordinates from all trees
 all_ltt <- c()
@@ -82,7 +89,7 @@ ltt_all <-  ggplot(all_ltt,aes(x=time,y=N,group=number,colour=type)) +
   ylab("Total lineages") + 
   xlab("Time (days)")
 
-ggsave("LTT_SciPhy_UPGMA_scaledUPGMA_MCC.png", ltt_all, width = 50, height = 10, units = "cm", dpi = 300)
+ggsave("LTT_SciPhy_UPGMA_scaledUPGMA_MCC_median_heights.png", ltt_all, width = 50, height = 10, units = "cm", dpi = 300)
 
 
 
