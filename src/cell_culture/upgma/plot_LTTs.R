@@ -91,6 +91,19 @@ ltt_all <-  ggplot(all_ltt,aes(x=time,y=N,group=number,colour=type)) +
 
 ggsave("LTT_SciPhy_UPGMA_scaledUPGMA_MCC_median_heights.png", ltt_all, width = 50, height = 10, units = "cm", dpi = 300)
 
+#when does the LTT upgma reach 500 lineages
+25 + ltt_upgma[500,'time']
+25 + ltt_upgma_scaled[500,'time']
+
+#when do sciphy trees reach 500
+all_500_times <- 25 + all_500_times
+all_500_times <- as.mcmc(all_500_times)
+HPDinterval(all_500_times)
+
+#when do sciphy trees reach 1000
+median(all_1000_times)
+all_1000_times <- as.mcmc(all_1000_times)
+HPDinterval(all_1000_times)
 
 
 
@@ -106,7 +119,5 @@ ggsave("LTT_SciPhy_UPGMA_scaledUPGMA_MCC_median_heights.png", ltt_all, width = 5
 #}
 
 
-#when does the LTT upgma reach 500 lineages
-#ltt_upgma[500,'time']
-#upgma_1000 <- ltt_upgma[1000,'time']
+
 
