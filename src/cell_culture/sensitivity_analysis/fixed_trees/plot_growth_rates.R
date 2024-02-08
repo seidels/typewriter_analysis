@@ -30,11 +30,13 @@ library(cowplot)
 #  plot the growth rate for the run on the fixed UPGMA tree
 # --------------------------------------------------------- 
 
-typewriter_file <- "1000_UPGMA.1691754256522.log"
+typewriter_file <- "1000_UPGMA.1707411001885.log"
 typewriter <- read.table(typewriter_file, header = T) %>% slice_tail(prop = 0.10)
 
 #extract and substract the birth and death rates 
 bd_rates <- typewriter[,"birthRate"] - typewriter[,"deathRate"]
+median(bd_rates)
+#[1] 0.3743008
 
 #add a prior column
 bd_rates <- bind_cols(Rate=bd_rates,Prior= rlnorm(length(bd_rates), meanlog = -0.6, sdlog = 1) - rlnorm(length(bd_rates), meanlog = -2, sdlog = 1) )
@@ -60,11 +62,13 @@ ggsave("growth_rate_UPGMA.png", p_growth, width = 15, height = 30, units = "cm",
 #  plot the growth rate for the run on the fixed scaled UPGMA tree
 # ---------------------------------------------------------------- 
 
-typewriter_file <- "1000_UPGMA_medianPosteriorHeight.1691754434739.log"
+typewriter_file <- "1000_UPGMA_medianPosteriorHeight.1707410740300.log"
 typewriter <- read.table(typewriter_file, header = T) %>% slice_tail(prop = 0.10)
 
 #extract and substract the birth and death rates 
 bd_rates <- typewriter[,"birthRate"] - typewriter[,"deathRate"]
+median(bd_rates)
+#[1] 0.3780625
 
 #add a prior column
 bd_rates <- bind_cols(Rate=bd_rates,Prior= rlnorm(length(bd_rates), meanlog = -0.6, sdlog = 1) - rlnorm(length(bd_rates), meanlog = -2, sdlog = 1) )
@@ -93,11 +97,14 @@ ggsave("growth_rate_UPGMA_median_height.png", p_growth_median_height, width = 15
 #  plot the growth rate for the run on the fixed MCC tree
 # -------------------------------------------------------
 
-typewriter_file <- "1000_MCC.1691759850766.log"
+typewriter_file <- "1000_MCC.1707412619101.log"
 typewriter <- read.table(typewriter_file, header = T) %>% slice_tail(prop = 0.10)
 
 #extract and substract the birth and death rates 
 bd_rates <- typewriter[,"birthRate"] - typewriter[,"deathRate"]
+bd_rates_HPD<- as.mcmc(bd_rates)
+HPDinterval(bd_rates_HPD)
+#0.4400705 0.452682
 
 #add a prior column
 bd_rates <- bind_cols(Rate=bd_rates,Prior= rlnorm(length(bd_rates), meanlog = -0.6, sdlog = 1) - rlnorm(length(bd_rates), meanlog = -2, sdlog = 1) )

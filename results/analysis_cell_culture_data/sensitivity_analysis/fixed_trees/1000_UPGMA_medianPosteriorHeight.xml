@@ -13064,7 +13064,7 @@
             <stateNode id="typewriterTree"
                        spec="feast.fileio.TreeFromNewickFile"
                        IsLabelledNewick='true' adjustTipHeights='true'
-                       fileName="UPGMAtree_1000_medianPosteriorHeight.newick"/>
+                       fileName="UPGMAtree_1000_scaled_median_heights.txt"/>
 
 <!--            <tree id="typewriterTree" spec="beast.base.evolution.tree.Tree" name="stateNode">-->
 <!--                <taxonset idref="TaxonSet.0"/>-->
