@@ -95,8 +95,8 @@ tree_1000_height <- tree_height_calc(tree)
 tree$edge.length <- tree$edge.length * (24.999/tree_1000_height)
 
 ## save UPGMA as txt file
-ape::write.tree(tree, file='results/analysis_cell_culture_data/upgma/UPGMAtree_1000_13.txt')
-write(cell1000,"results/analysis_cell_culture_data/upgma/UPGMAtree_1000_13_cell_names.txt")
+ape::write.tree(tree, file='results/analysis_cell_culture_data/upgma/UPGMAtree_1000.txt')
+write(cell1000,"results/analysis_cell_culture_data/upgma/UPGMAtree_1000_cell_names_.txt")
 
 
 
