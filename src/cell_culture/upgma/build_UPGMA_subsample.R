@@ -73,4 +73,32 @@ tree$edge.length <- tree$edge.length * (24.999/tree_100_height)
 ape::write.tree(tree, file='results/analysis_cell_culture_data/upgma/UPGMAtree_100_13.txt')
 write(cell100,"results/analysis_cell_culture_data/upgma/UPGMAtree_100_13_cell_names.txt")
 
+##create a UPGMA tree for the 1000 cell sample
+set.seed(1)
+cell1000 <- sample(unique(edit_table_filtered$Cell),1000)
+
+sample_1000 <- c()
+for(i in cell1000) {
+  sample_1000 <- rbind(sample_1000,edit_table_filtered[edit_table_filtered$Cell == i,])
+}
+
+sample_1000 = mark_unedited_sites(sample_1000)
+sample_1000 = set_non_contracted_sites_to_na(sample_1000)
+
+# nSites is 13 targetBCs * 5 sites = 65 sites; minus the contracted sites,
+# i.e. 1x 3 contracted (2xTape) and 3x 1 contracted (4xTape)
+tree = build_upgma_tree(edit_table = sample_1000, nSites = 59)
+
+tree_1000_height <- tree_height_calc(tree)
+
+## we want to scale the tree such that is is smaller than 25 in height.
+tree$edge.length <- tree$edge.length * (24.999/tree_1000_height)
+
+## save UPGMA as txt file
+ape::write.tree(tree, file='results/analysis_cell_culture_data/upgma/UPGMAtree_1000_13.txt')
+write(cell1000,"results/analysis_cell_culture_data/upgma/UPGMAtree_1000_13_cell_names.txt")
+
+
+
+
 
