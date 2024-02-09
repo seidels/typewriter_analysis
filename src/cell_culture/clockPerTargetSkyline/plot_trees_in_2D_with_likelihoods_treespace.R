@@ -12,7 +12,7 @@
 ## Email: antoine.zwaans@bsse.ethz.ch
 ##
 ## set working directory for Mac 
-setwd("~/typewriter_analysis/results/analysis_cell_culture_data/inference_results/clock_per_target/1000_cells")    
+setwd("~/typewriter_analysis/results/analysis_cell_culture_data/inference_results/clock_per_target_skyline/")    
 
 ## load up the packages we will need:  (uncomment as required)
 require(tidyverse)
@@ -22,12 +22,12 @@ require(data.table)
 source("~/typewriter_analysis/src/cell_culture/upgma/plot_trees_in_2d_with_likelihoods.R")
 
 ## Load tree data and extract sample nbrs
-sciphy_trees <- ape::read.nexus(file = "thinned4000000.trees")
+sciphy_trees <- ape::read.nexus(file = "thinned5000000_burnin10.trees")
 
 sample_nr_tree <- as.numeric(unlist(strsplit(names(sciphy_trees),"_"))[seq(2,2*length(sciphy_trees),by=2)])
 
 ## Load log data and extract likelihood values corresponding to the matching sample nrs
-log <- read.table("combined.log", header = T)
+log <- read.table("combined_burnin10.log", header = T)
 
 step_tree <- sample_nr_tree[2] - sample_nr_tree[1]
 step_log <- log$Sample[2] - log$Sample[1]
@@ -49,8 +49,8 @@ tree_likelihood <- subsampled_log$likelihood
 #plot(tree_likelihood)
 
 #get the upgma tree corresponding to the dataset and relabel the tips to match BEAST tree
-upgma <- ape::read.tree(file = "~/typewriter_analysis/results/analysis_cell_culture_data/upgma/UPGMAtree_1000_13_SERIOUS.txt")
-cell_ids <- read.csv(header = F, file = "~/typewriter_analysis/results/analysis_cell_culture_data/upgma/UPGMAtree_1000_13_cell_names_SERIOUS.txt")
+upgma <- ape::read.tree(file = "~/typewriter_analysis/results/analysis_cell_culture_data/upgma/UPGMAtree_1000.txt")
+cell_ids <- read.csv(header = F, file = "~/typewriter_analysis/results/analysis_cell_culture_data/upgma/UPGMAtree_1000_cell_names_.txt")
 cell_ids$numeric_label <- 0:999
 cell_ids_sorted <- cell_ids[match(upgma$tip.label, cell_ids$V1), ]
 upgma$tip.label <- as.character(cell_ids_sorted$numeric_label)
@@ -62,7 +62,7 @@ upgma_height <- tree_height_calc(upgma)
 upgma_rescaled$edge.length <- upgma_rescaled$edge.length * (median_posterior_height/upgma_height)
 
 #get the MCC tree 
-MCC <- ape::read.nexus(file = "MCC_on_thinned4000000_check.tree")
+MCC <- ape::read.nexus(file = "mcc_median_heights.tree")
 
 #create a list of trees to analyse
 all_trees <- sciphy_trees
