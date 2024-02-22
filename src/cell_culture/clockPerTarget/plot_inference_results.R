@@ -101,6 +101,13 @@ clock_rate_long <- pivot_longer(clock_rate,seq(1,ncol(clock_rate)))
 #order columns 
 clock_rate_long <- mutate(clock_rate_long,name = fct_relevel(name,ordered_names,"Prior"))
 
+#annotating the truncated with a different colior pattern
+# the 4 truncation
+# manually annotate colors: darkest for most truncated
+# (targetBC == "TGGACGAC") | (targetBC == "TGGTTTTG") | (targetBC == "TTTCGTGA" color #5CA17D
+# truncation 
+# "TTCACGTA" color "#3C614F"
+
 p_clock_pos <- ggplot(clock_rate_long,aes(x=name,value,fill=name)) +
   theme_bw() +
   geom_violin(draw_quantiles =  c(0.5)) + 
@@ -108,11 +115,18 @@ p_clock_pos <- ggplot(clock_rate_long,aes(x=name,value,fill=name)) +
   ylab(parse(text = paste0('"Posterior editing rate "', '(~ day^-1)'))) +
   
   theme(legend.position = "none") + 
-  scale_fill_manual(values=c(rep("#5CA17D",13),"#E1E1F7")) + 
+  scale_fill_manual(values=c(c("#3C614F",rep("#5CA17D",3),rep("#31E68B",9)),"#E1E1F7")) + 
   coord_cartesian(
     ylim=c(0,0.4),expand=FALSE) + theme(text = element_text(size = 22),panel.grid.minor = element_blank(),
                                         panel.border = element_blank(),
-                                        panel.background = element_blank(),panel.grid.major.x = element_blank(), axis.text.x = element_text(angle = 90) )
+                                        panel.background = element_blank(),panel.grid.major.x = element_blank(), axis.text.x = element_text(angle = 90) ) +
+  geom_segment(aes(x=0.5,xend=1.5,y=0.08,yend=0.08)) +  
+  geom_segment(aes(x=2,xend=4,y=0.08,yend=0.08)) + 
+  geom_segment(aes(x=5,xend=13,y=0.08,yend=0.08)) + 
+  annotate("text", x = 1, y = 0.05, label = "2X") + 
+  annotate("text", x = 3, y = 0.05, label = "4X") +
+  annotate("text", x = 9, y = 0.05, label = "5X")
+
 
 ggsave("clock_rate.png", p_clock_pos, width = 30, height = 15, units = "cm", dpi = 1000)
 
