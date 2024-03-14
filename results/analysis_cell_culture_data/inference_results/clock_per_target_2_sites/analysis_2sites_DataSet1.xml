@@ -2,7 +2,7 @@
 
     <!--data  id="data_ATGGTAAG" spec="Alignment" name="alignment" dataType="integer"-->
 <data  id="data_ATGGTAAG" spec="Alignment" name="alignment" >
-            <userDataType spec="beast.evolution.datatype.ScarData" nrOfStates="20"/>
+            <userDataType spec="tidetree.evolution.datatype.EditData" nrOfStates="20"/>
             <sequence spec="Sequence" taxon="0"  value="3,11"/>
             <sequence spec="Sequence" taxon="1"  value="1,7"/>
             <sequence spec="Sequence" taxon="2"  value="3,0"/>
@@ -1005,7 +1005,7 @@
             <sequence spec="Sequence" taxon="999"  value="11,3"/>
 </data>
 <data  id="data_ATTTATAT" spec="Alignment" name="alignment" >
-            <userDataType spec="beast.evolution.datatype.ScarData" nrOfStates="20"/>
+            <userDataType spec="tidetree.evolution.datatype.EditData" nrOfStates="20"/>
             <sequence spec="Sequence" taxon="0"  value="8,12"/>
             <sequence spec="Sequence" taxon="1"  value="10,11"/>
             <sequence spec="Sequence" taxon="2"  value="0,0"/>
@@ -2008,7 +2008,7 @@
             <sequence spec="Sequence" taxon="999"  value="7,5"/>
 </data>
 <data  id="data_ATTTGGTT" spec="Alignment" name="alignment" >
-            <userDataType spec="beast.evolution.datatype.ScarData" nrOfStates="20"/>
+            <userDataType spec="tidetree.evolution.datatype.EditData" nrOfStates="20"/>
             <sequence spec="Sequence" taxon="0"  value="3,5"/>
             <sequence spec="Sequence" taxon="1"  value="8,0"/>
             <sequence spec="Sequence" taxon="2"  value="7,0"/>
@@ -3011,7 +3011,7 @@
             <sequence spec="Sequence" taxon="999"  value="7,8"/>
 </data>
 <data  id="data_GCAGGGTG" spec="Alignment" name="alignment" >
-            <userDataType spec="beast.evolution.datatype.ScarData" nrOfStates="20"/>
+            <userDataType spec="tidetree.evolution.datatype.EditData" nrOfStates="20"/>
             <sequence spec="Sequence" taxon="0"  value="10,15"/>
             <sequence spec="Sequence" taxon="1"  value="11,11"/>
             <sequence spec="Sequence" taxon="2"  value="10,15"/>
@@ -4014,7 +4014,7 @@
             <sequence spec="Sequence" taxon="999"  value="10,15"/>
 </data>
 <data  id="data_GTAAAGAT" spec="Alignment" name="alignment" >
-            <userDataType spec="beast.evolution.datatype.ScarData" nrOfStates="20"/>
+            <userDataType spec="tidetree.evolution.datatype.EditData" nrOfStates="20"/>
             <sequence spec="Sequence" taxon="0"  value="16,15"/>
             <sequence spec="Sequence" taxon="1"  value="7,3"/>
             <sequence spec="Sequence" taxon="2"  value="11,17"/>
@@ -5017,7 +5017,7 @@
             <sequence spec="Sequence" taxon="999"  value="11,7"/>
 </data>
 <data  id="data_TAGATTTT" spec="Alignment" name="alignment" >
-            <userDataType spec="beast.evolution.datatype.ScarData" nrOfStates="20"/>
+            <userDataType spec="tidetree.evolution.datatype.EditData" nrOfStates="20"/>
             <sequence spec="Sequence" taxon="0"  value="11,0"/>
             <sequence spec="Sequence" taxon="1"  value="8,5"/>
             <sequence spec="Sequence" taxon="2"  value="7,3"/>
@@ -6020,7 +6020,7 @@
             <sequence spec="Sequence" taxon="999"  value="5,0"/>
 </data>
 <data  id="data_TGCGATTT" spec="Alignment" name="alignment" >
-            <userDataType spec="beast.evolution.datatype.ScarData" nrOfStates="20"/>
+            <userDataType spec="tidetree.evolution.datatype.EditData" nrOfStates="20"/>
             <sequence spec="Sequence" taxon="0"  value="5,10"/>
             <sequence spec="Sequence" taxon="1"  value="3,7"/>
             <sequence spec="Sequence" taxon="2"  value="11,8"/>
@@ -7023,7 +7023,7 @@
             <sequence spec="Sequence" taxon="999"  value="11,1"/>
 </data>
 <data  id="data_TGGACGAC" spec="Alignment" name="alignment" >
-            <userDataType spec="beast.evolution.datatype.ScarData" nrOfStates="20"/>
+            <userDataType spec="tidetree.evolution.datatype.EditData" nrOfStates="20"/>
             <sequence spec="Sequence" taxon="0"  value="0,0"/>
             <sequence spec="Sequence" taxon="1"  value="10,15"/>
             <sequence spec="Sequence" taxon="2"  value="0,0"/>
@@ -8026,7 +8026,7 @@
             <sequence spec="Sequence" taxon="999"  value="11,1"/>
 </data>
 <data  id="data_TGGTTTTG" spec="Alignment" name="alignment" >
-            <userDataType spec="beast.evolution.datatype.ScarData" nrOfStates="20"/>
+            <userDataType spec="tidetree.evolution.datatype.EditData" nrOfStates="20"/>
             <sequence spec="Sequence" taxon="0"  value="0,0"/>
             <sequence spec="Sequence" taxon="1"  value="5,8"/>
             <sequence spec="Sequence" taxon="2"  value="8,0"/>
@@ -9029,7 +9029,7 @@
             <sequence spec="Sequence" taxon="999"  value="8,1"/>
 </data>
 <data  id="data_TTAGATTG" spec="Alignment" name="alignment" >
-            <userDataType spec="beast.evolution.datatype.ScarData" nrOfStates="20"/>
+            <userDataType spec="tidetree.evolution.datatype.EditData" nrOfStates="20"/>
             <sequence spec="Sequence" taxon="0"  value="7,11"/>
             <sequence spec="Sequence" taxon="1"  value="11,15"/>
             <sequence spec="Sequence" taxon="2"  value="10,11"/>
@@ -10032,7 +10032,7 @@
             <sequence spec="Sequence" taxon="999"  value="10,9"/>
 </data>
 <data  id="data_TTGAGGTG" spec="Alignment" name="alignment" >
-            <userDataType spec="beast.evolution.datatype.ScarData" nrOfStates="20"/>
+            <userDataType spec="tidetree.evolution.datatype.EditData" nrOfStates="20"/>
             <sequence spec="Sequence" taxon="0"  value="3,0"/>
             <sequence spec="Sequence" taxon="1"  value="14,11"/>
             <sequence spec="Sequence" taxon="2"  value="7,8"/>
@@ -11035,7 +11035,7 @@
             <sequence spec="Sequence" taxon="999"  value="7,11"/>
 </data>
 <data  id="data_TTTCGTGA" spec="Alignment" name="alignment" >
-            <userDataType spec="beast.evolution.datatype.ScarData" nrOfStates="20"/>
+            <userDataType spec="tidetree.evolution.datatype.EditData" nrOfStates="20"/>
             <sequence spec="Sequence" taxon="0"  value="8,10"/>
             <sequence spec="Sequence" taxon="1"  value="5,0"/>
             <sequence spec="Sequence" taxon="2"  value="3,0"/>
@@ -12038,7 +12038,7 @@
             <sequence spec="Sequence" taxon="999"  value="8,8"/>
 </data>
 <data  id="data_TTCACGTA" spec="Alignment" name="alignment" >
-            <userDataType spec="beast.evolution.datatype.ScarData" nrOfStates="20"/>
+            <userDataType spec="tidetree.evolution.datatype.EditData" nrOfStates="20"/>
             <sequence spec="Sequence" taxon="0"  value="11,10"/>
             <sequence spec="Sequence" taxon="1"  value="8,1"/>
             <sequence spec="Sequence" taxon="2"  value="8,1"/>
@@ -13082,7 +13082,7 @@
         <state id="state" spec="State" storeEvery="5000">
 
             <!-- build starting tree -->
-            <stateNode id="typewriterTree"  spec="typewriter.evolution.tree.startingTree" rootHeight="20"
+            <stateNode id="typewriterTree"  spec="sciphy.evolution.tree.startingTree" rootHeight="20"
                        taxa="@data_ATGGTAAG" scarringHeight="20"
                        scarringDuration="5" sequencesAreClustered="false">
                 <trait idref="dateTrait.t:alignment"/>
@@ -13194,87 +13194,87 @@
                 </prior>
             </distribution>
 
-            <!-- Typewriter tree likelihood -->
+            <!-- SciPhy tree likelihood -->
             <distribution id="likelihood" spec="beast.base.inference.CompoundDistribution"  useThreads="true">
                 <!-- Alignment 1 -->
-                <distribution id="treeLikelihood.1" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                <distribution id="treeLikelihood.1" spec="sciphy.evolution.likelihood.SciPhyTreeLikelihood"
                               data="@data_ATGGTAAG" tree="@typewriterTree" origin="@origin" useScaling="true"
-                              arrayLength="5" branchRateModel="@StrictClock_1">
+                              arrayLength="2" branchRateModel="@StrictClock_1">
                     <siteModel id="SiteModel.s:typewriterTest" spec="SiteModel" >
                         <parameter id="mutationRate.s:typewriterTest" spec="parameter.RealParameter" estimate="false" name="mutationRate">1.0</parameter>
                         <parameter id="proportionInvariant.s:typewriterTest" spec="parameter.RealParameter" estimate="false" lower="0.0" name="proportionInvariant" upper="1.0">0.0</parameter>
-                        <substModel id="submodel.s:typewriterTest" spec="typewriter.evolution.substitutionmodel.TypewriterSubstitutionModel" editProbabilities="@insertRates">
+                        <substModel id="submodel.s:typewriterTest" spec="sciphy.evolution.substitutionmodel.SciPhySubstitutionModel" editProbabilities="@insertRates">
                             <frequencies id="freq" spec="beast.base.evolution.substitutionmodel.Frequencies" frequencies="1.0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0" estimate="false"/>
                         </substModel>
                     </siteModel>
                     <!-- Alignment 2 -->
                 </distribution>
 
-                <distribution id="treeLikelihood.2" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                <distribution id="treeLikelihood.2" spec="sciphy.evolution.likelihood.SciPhyTreeLikelihood"
                               siteModel="@SiteModel.s:typewriterTest" branchRateModel="@StrictClock_2"
                               data="@data_ATTTATAT" tree="@typewriterTree" origin="@origin" useScaling="true"
                               arrayLength="2"/>
                 <!-- Alignment 3 -->
-                <distribution id="treeLikelihood.3" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                <distribution id="treeLikelihood.3" spec="sciphy.evolution.likelihood.SciPhyTreeLikelihood"
                               siteModel="@SiteModel.s:typewriterTest" branchRateModel="@StrictClock_3"
                               data="@data_ATTTGGTT" tree="@typewriterTree" origin="@origin" useScaling="true"
                               arrayLength="2">
                 </distribution>
                 <!-- Alignment 4 -->
-                <distribution id="treeLikelihood.4" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                <distribution id="treeLikelihood.4" spec="sciphy.evolution.likelihood.SciPhyTreeLikelihood"
                               siteModel="@SiteModel.s:typewriterTest" branchRateModel="@StrictClock_4"
                               data="@data_GCAGGGTG" tree="@typewriterTree" origin="@origin" useScaling="true"
                               arrayLength="2">
                 </distribution>
                 <!-- Alignment 5 -->
-                <distribution id="treeLikelihood.5" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                <distribution id="treeLikelihood.5" spec="sciphy.evolution.likelihood.SciPhyTreeLikelihood"
                               siteModel="@SiteModel.s:typewriterTest" branchRateModel="@StrictClock_5"
                               data="@data_GTAAAGAT" tree="@typewriterTree" origin="@origin" useScaling="true"
                               arrayLength="2">
                 </distribution>
                 <!-- Alignment 6 -->
-                <distribution id="treeLikelihood.6" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                <distribution id="treeLikelihood.6" spec="sciphy.evolution.likelihood.SciPhyTreeLikelihood"
                               siteModel="@SiteModel.s:typewriterTest" branchRateModel="@StrictClock_6"
                               data="@data_TAGATTTT" tree="@typewriterTree" origin="@origin" useScaling="true"
                               arrayLength="2">
                 </distribution>
                 <!-- Alignment 7 -->
-                <distribution id="treeLikelihood.7" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                <distribution id="treeLikelihood.7" spec="sciphy.evolution.likelihood.SciPhyTreeLikelihood"
                               siteModel="@SiteModel.s:typewriterTest" branchRateModel="@StrictClock_7"
                               data="@data_TGCGATTT" tree="@typewriterTree" origin="@origin" useScaling="true"
                               arrayLength="2">
                 </distribution>
                 <!-- Alignment 8 -->
-                <distribution id="treeLikelihood.8" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                <distribution id="treeLikelihood.8" spec="sciphy.evolution.likelihood.SciPhyTreeLikelihood"
                               siteModel="@SiteModel.s:typewriterTest" branchRateModel="@StrictClock_8"
                               data="@data_TGGACGAC" tree="@typewriterTree" origin="@origin" useScaling="true"
-                              arrayLength="4">
+                              arrayLength="2">
                 </distribution>
                 <!-- Alignment 9 -->
-                <distribution id="treeLikelihood.9" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                <distribution id="treeLikelihood.9" spec="sciphy.evolution.likelihood.SciPhyTreeLikelihood"
                               siteModel="@SiteModel.s:typewriterTest" branchRateModel="@StrictClock_9"
                               data="@data_TGGTTTTG" tree="@typewriterTree" origin="@origin" useScaling="true"
-                              arrayLength="4">
+                              arrayLength="2">
                 </distribution>
                 <!-- Alignment 10 -->
-                <distribution id="treeLikelihood.10" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                <distribution id="treeLikelihood.10" spec="sciphy.evolution.likelihood.SciPhyTreeLikelihood"
                               siteModel="@SiteModel.s:typewriterTest" branchRateModel="@StrictClock_10"
                               data="@data_TTAGATTG" tree="@typewriterTree" origin="@origin" useScaling="true"
                               arrayLength="2">
                 </distribution>
                 <!-- Alignment 11 -->
-                <distribution id="treeLikelihood.11" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                <distribution id="treeLikelihood.11" spec="sciphy.evolution.likelihood.SciPhyTreeLikelihood"
                               siteModel="@SiteModel.s:typewriterTest" branchRateModel="@StrictClock_11"
                               data="@data_TTGAGGTG" tree="@typewriterTree" origin="@origin" useScaling="true"
                               arrayLength="2">
                 </distribution>
                 <!-- Alignment 12 -->
-                <distribution id="treeLikelihood.12" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                <distribution id="treeLikelihood.12" spec="sciphy.evolution.likelihood.SciPhyTreeLikelihood"
                               siteModel="@SiteModel.s:typewriterTest" branchRateModel="@StrictClock_12"
                               data="@data_TTTCGTGA" tree="@typewriterTree" origin="@origin" useScaling="true"
                               arrayLength="2">
                 </distribution>
-                <distribution id="treeLikelihood.13" spec="typewriter.evolution.likelihood.TypewriterTreeLikelihood"
+                <distribution id="treeLikelihood.13" spec="sciphy.evolution.likelihood.SciPhyTreeLikelihood"
                               siteModel="@SiteModel.s:typewriterTest" branchRateModel="@StrictClock_13"
                               data="@data_TTCACGTA" tree="@typewriterTree"
                               origin="@origin" useScaling="true"
@@ -13334,7 +13334,6 @@
             <log idref="likelihood"/>
             <log idref="prior"/>
             <log id="treeHeight.t:alignment" spec="beast.base.evolution.tree.TreeHeightLogger" tree="@typewriterTree"/>
-            <log id="treeLength.t:alignment" spec="multitypetree.util.TreeLengthLogger" tree="@typewriterTree"/>
             <log idref="insertRates"/>
             <log idref="birthRate"/>
             <log idref="samplingProportion"/>
