@@ -23,3 +23,20 @@ CORRECT timeline as shared by Sam (see Below)
 	- Aggregate growth upstream of chiron treatment: D16-D18 
 	- Chiron treatment: D19 (300 cells)
 	- Symmetry breaking and elongation: D20-D22 (30K/ gastruloid)
+
+change times: 0 4 7 8
+
+Assuming that during the day of chiron treatment, there may be a
+separate birth and death rate. 
+
+
+### Version 4 BDSKY: 4-mGASv2-skyline-ou.xml
+
+
+change times: 0 4 7.5
+
+Chiron treatment begins at day 7. Here we assume that for half a day
+nothing changes to before and then at half a day the rates start to
+change. Effectively, this means we have 2 parameters less to estimate
+and are a bit less prone to overfitting anything happening during a 1
+day time bin (as done in version 3). 
