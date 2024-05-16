@@ -29,7 +29,7 @@ library(scales)
 #load the combined log file 
 
 typewriter_file <- "combined.log"
-typewriter <- read.table(typewriter_file, header = T) %>% slice_tail(prop = 0.10)
+typewriter <- read.table(typewriter_file, header = T) 
 
 # -----------------------------
 #  plot insertion probabilities
@@ -57,18 +57,19 @@ names(colors) <- c(sort(trinucleotides_names),"Prior")
 p_inserts <-  ggplot(datafra) +
   geom_bar(aes(x=name,y=median,fill=name),stat="identity",colour="black") +
   xlab("Insert") + 
-  theme_bw() + 
-  ylab("Posterior insert probability") + 
+  theme_classic() + 
+  ylab("Posterior insert probability") + xlab("Insert") +
   theme(legend.position = "none" ) + 
   scale_fill_manual(values=colors) +
-  
+  #theme(plot.title = element_text(hjust=0.5)) +
   geom_errorbar(aes(x=name,ymin=low, ymax=up), width=.2,
                 position=position_dodge(.9)) +
+  ggtitle("Insert probabilities") +
   
   coord_cartesian(ylim=c(0,0.175),expand = FALSE) + theme(axis.text.x = element_text(angle = 90),text = element_text(size = 22), 
                                                           panel.grid.minor = element_blank(),
                                                           panel.border = element_blank(),
-                                                          panel.background = element_blank(),panel.grid.major.x = element_blank(),axis.text.x.bottom = element_text(size = 22)) 
+                                                          panel.background = element_blank(),panel.grid.major.x = element_blank(),axis.title.x = element_blank()) 
 
 
 ggsave("insert_probs.png", p_inserts, width = 40, height = 12, units = "cm", dpi = 1000)
@@ -90,6 +91,7 @@ names(clock_rate) <- c("ATGGTAAG","ATTTATAT",
                        "TTCACGTA")
 
 
+
 #reorder by median
 clock_rate <- clock_rate[order(-sapply(clock_rate, median))]
 ordered_names <- names(clock_rate)
@@ -107,25 +109,25 @@ clock_rate_long <- mutate(clock_rate_long,name = fct_relevel(name,ordered_names,
 # (targetBC == "TGGACGAC") | (targetBC == "TGGTTTTG") | (targetBC == "TTTCGTGA" color #5CA17D
 # truncation 
 # "TTCACGTA" color "#3C614F"
-
+segments <- data.frame(xstart=c(2,5),xstop=c(4,13),ystart=c(0.25,0.21),ystop=c(0.25,0.21))
 p_clock_pos <- ggplot(clock_rate_long,aes(x=name,value,fill=name)) +
-  theme_bw() +
-  geom_violin(draw_quantiles =  c(0.5)) + 
-  xlab("Tape") + 
+  theme_classic() +
+  geom_violin(draw_quantiles =  c(0.5)) +
   ylab(parse(text = paste0('"Posterior editing rate "', '(~ day^-1)'))) +
   
   theme(legend.position = "none") + 
-  scale_fill_manual(values=c(c("#3C614F",rep("#5CA17D",3),rep("#31E68B",9)),"#E1E1F7")) + 
+  scale_fill_manual(values=c(c("#0A0A82",rep("#404085",3),rep("#7C7CA3",9)),"#E1E1F7")) + 
   coord_cartesian(
-    ylim=c(0,0.4),expand=FALSE) + theme(text = element_text(size = 22),panel.grid.minor = element_blank(),
-                                        panel.border = element_blank(),
-                                        panel.background = element_blank(),panel.grid.major.x = element_blank(), axis.text.x = element_text(angle = 90) ) +
-  geom_segment(aes(x=0.5,xend=1.5,y=0.08,yend=0.08)) +  
-  geom_segment(aes(x=2,xend=4,y=0.08,yend=0.08)) + 
-  geom_segment(aes(x=5,xend=13,y=0.08,yend=0.08)) + 
-  annotate("text", x = 1, y = 0.05, label = "2X") + 
-  annotate("text", x = 3, y = 0.05, label = "4X") +
-  annotate("text", x = 9, y = 0.05, label = "5X")
+    ylim=c(0.1,0.37),expand=FALSE) + theme(text = element_text(size = 22),panel.grid.minor = element_blank(),
+                                           panel.border = element_blank(),
+                                           panel.background = element_blank(),panel.grid.major.x = element_blank(), axis.text.x = element_text(angle = 90),axis.title.x = element_blank() ) +
+  
+  annotate("text", x = 1, y = 0.35, label = "2X") + 
+  annotate("text", x = 3, y = 0.26, label = "4X") +
+  annotate("text", x = 9, y = 0.22, label = "5X") +
+  ggtitle("Editing rate per tape")+ xlab("TargetBC") +
+  #theme(plot.title = element_text(hjust=0.5)) +
+  geom_segment(data=segments,aes(x=xstart,xend=xstop,y=ystart,yend=ystop),inherit.aes = FALSE) 
 
 
 ggsave("clock_rate.png", p_clock_pos, width = 30, height = 15, units = "cm", dpi = 1000)
@@ -143,16 +145,18 @@ bd_rates_long <- pivot_longer(bd_rates,seq(1,ncol(bd_rates)))
 
 #order columns 
 bd_rates_long <- mutate(bd_rates_long,name = fct_relevel(name,"Rate","Prior"))
+
 p_growth <- ggplot(bd_rates_long, aes(x=name,value,fill=name)) + 
-  theme_bw() + 
+  theme_classic() + 
   geom_violin(draw_quantiles = 0.5) +
-  theme(legend.position = "none" ) + 
-  xlab("Growth") + 
+  theme(legend.position = "none" ) +
   ylab(parse(text = paste0('"Posterior growth rate "', '(~day^-1)'))) + 
   coord_cartesian(ylim = c(-0.1,0.9),expand = TRUE) + 
-  scale_fill_manual(values=c("#5CA17D","#E1E1F7")) + theme(text=element_text(size = 22),panel.grid.minor = element_blank(),
-                                                           panel.border = element_blank(),
-                                                           panel.background = element_blank(),panel.grid.major.x = element_blank())
+  ggtitle("Growth rate")+
+  #theme(plot.title = element_text(hjust=0.5)) +
+  scale_fill_manual(values=c("white","#E1E1F7")) + theme(text=element_text(size = 22),panel.grid.minor = element_blank(),
+                                                         panel.border = element_blank(),
+                                                         panel.background = element_blank(),panel.grid.major.x = element_blank(),axis.title.x = element_blank())
 
 
 ggsave("growth_rate.png", p_growth, width = 15, height = 10, units = "cm", dpi = 1000)
@@ -200,6 +204,7 @@ p_death <- ggplot(bd_rates_long, aes(x=name,value,fill=name)) +
                                                            panel.background = element_blank(),panel.grid.major.x = element_blank())
 
 
+
 combined <- cowplot::plot_grid(p_birth+ theme(axis.line = element_line(colour = "black")),p_death+ theme(axis.line = element_line(colour = "black")),nrow = 1)
 
 
@@ -210,9 +215,11 @@ ggsave("birth_death_rates.png", combined, width = 50, height = 15, units = "cm",
 # ---------------------------
 #  plot all estimates aligned
 # ---------------------------
-
-combined <- cowplot::plot_grid(p_inserts+ theme(axis.line = element_line(colour = "black")),p_clock_pos+ theme(axis.line = element_line(colour = "black")),p_growth+ theme(axis.line = element_line(colour = "black")),nrow = 1)
-ggsave("combined_estimates.png", combined, width = 50, height = 15, units = "cm", dpi = 800)
+top_row <- cowplot::plot_grid(p_clock_pos+ theme(axis.line = element_line(colour = "black")), p_growth+ theme(axis.line = element_line(colour = "black")), ncol=2,align = "h",rel_widths = c(1,0.5),label_size=22)
+combined <- cowplot::plot_grid(top_row,p_inserts+ theme(axis.line = element_line(colour = "black")),nrow = 2,rel_heights = c(1,0.6),label_size=22)
+ggsave("combined_estimates_vertical.png", combined, width = 50, height = 35, units = "cm", dpi = 800)
+combined <- cowplot::plot_grid(p_inserts+ theme(axis.line = element_line(colour = "black")),p_clock_pos+ theme(axis.line = element_line(colour = "black")), p_growth+ theme(axis.line = element_line(colour = "black")),nrow = 1,align = "h",label_size=22,rel_widths = c(1,1.5,0.7))
+ggsave("combined_estimates_horizontal.png", combined, width = 50, height = 25, units = "cm", dpi = 800)
 
 
 
