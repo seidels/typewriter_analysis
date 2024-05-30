@@ -23,10 +23,12 @@ for (cell_id in 1:length(cells)){
 
 cell_by_n_tapes = cell_by_n_tapes[order(cell_by_n_tapes$n_tapes), ]
 
-ggplot(cell_by_n_tapes, aes(x=cell, y=n_tapes))+
+p = ggplot(cell_by_n_tapes, aes(x=cell, y=n_tapes))+
   geom_point()+
   theme_bw()
 
+ggsave(width = 15, height = 15, units = "cm",
+  filename = "~/Projects/typewriter_analysis/src/gastruloid/sequence_processing/n_tapes_by_cells.png")
 ## filtering out cells that have less than x tapes
 cells_with_too_few_tapes = cell_by_n_tapes[which(cell_by_n_tapes$n_tapes < x), "cell"]
 
@@ -43,7 +45,7 @@ for (tape_id in 1:nrow(tape_by_n_cells)){
 
 tape_by_n_cells = tape_by_n_cells[order(tape_by_n_cells$n_cells), ]
 ggplot(tape_by_n_cells, aes(x=n_cells))+
-  geom_histogram(binwidth = 200)
+  geom_histogram(bins = 10)
 
 tapes_with_too_few_cells = tape_by_n_cells[which(tape_by_n_cells$n_cells < x), "tape"]
 
@@ -58,7 +60,7 @@ length(unique(dat_filtered$TargetBC))
 
 ## ---------------------------
 # Take the top y tapes and tell me in how many cells they all are
-y = 15
+y = 10
 tape_by_n_cells = tape_by_n_cells[order(tape_by_n_cells$n_cells, decreasing = T), ]
 tapes_y = tape_by_n_cells[1:y, "tape"]
 

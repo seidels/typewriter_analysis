@@ -38,8 +38,8 @@ source("src/useful_scripts_across_categories.R")
 
 
 # input cell type annotations
-cell_types = read.csv("results/preliminary_gastruloid/multitype_6types/annotations.csv",
-                      header = F, col.names = c("cell", "type"))
+cell_types = read.csv("results/preliminary_gastruloid/multitype_6types_71cells/annotations.csv",
+                      header = T)
 
 
 ## input set of cells as filtered by S.Seidel
