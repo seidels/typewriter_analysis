@@ -4,7 +4,7 @@ source("~/Projects/typewriter_analysis/src/cell_culture/understand_growth/functi
 
 
 #traj_file = "~/frameworks/beasts2.7/beast_typewriter/analyses/traj_per_state_3.traj"
-traj_file = "~/frameworks/beasts2.7/beast_typewriter/analyses/traj_per_state.traj"
+traj_file = "~/Desktop/traj_per_state.100.traj"
 
 # traj_text = read_file(traj_file)
 #
@@ -30,10 +30,11 @@ traj_file = "~/frameworks/beasts2.7/beast_typewriter/analyses/traj_per_state.tra
 
 ###
 traj_loaded = loadTrajectories(filename = traj_file, burninFrac = 0)
-states = traj_loaded$states
+#states = traj_loaded$states
+saveRDS(object = traj_loaded$states, file = "~/Desktop/states.100.rds")
 
-states = readRDS(file = "~/Projects/typewriter_analysis/src/cell_culture/understand_growth/state_files/states_bdsky.100.rds")
-states = readRDS(file = "/Volumes/stadler/People/Sophie_Antoine_shared/cell_culture/trajectory_inference/given_bds_model/trajectory_data/states.100.rds")
+#states = readRDS(file = "~/Projects/typewriter_analysis/src/cell_culture/understand_growth/state_files/states_bdsky.100.rds")
+#states = readRDS(file = "/Volumes/stadler/People/Sophie_Antoine_shared/cell_culture/trajectory_inference/given_bds_model/trajectory_data/states.100.rds")
 
 #p = ggplot(states, aes(x=time, y=N))+
 #  geom_point()
@@ -70,13 +71,13 @@ p = ggplot(N_summarised, aes(x=time, y=median_population))+
                      labels = expression(1, 10, 10^2, 10^3, 10^4, 10^5, 10^6),
                      expand = c(0, 0))+
   geom_point(aes(x=25,y = 1200000), col="#B00020", size = 4, shape=3)+
-  theme_minimal() +
+  theme_bw() +
   ylab(label = "Inferred number of cells")+
   xlab(label = "Time")
 
 p
-#ggsave(p, width = 10, height = 7, units = "cm",
-#       filename="~/Projects/typewriter_analysis/src/cell_culture/understand_growth/plot_N_post_particles_100_thin_e7.jpg")
-
 ggsave(p, width = 10, height = 7, units = "cm",
-       filename="~/Projects/typewriter_analysis/src/cell_culture/understand_growth/plot_N_bdsky_post_particles_100_thin_e7.jpg")
+       filename="~/Projects/typewriter_analysis/src/cell_culture/understand_growth/plot_N_post_particles_100_thin_e7.jpg")
+
+#ggsave(p, width = 10, height = 7, units = "cm",
+#       filename="~/Projects/typewriter_analysis/src/cell_culture/understand_growth/plot_N_bdsky_post_particles_100_thin_e7.jpg")

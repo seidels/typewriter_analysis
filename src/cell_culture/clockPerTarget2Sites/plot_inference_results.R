@@ -28,6 +28,9 @@ setwd("~/Projects/typewriter_analysis/")      # Sophie's working directory (mac)
 
 setwd("~/Projects/typewriter_analysis/results/analysis_cell_culture_data/inference_results/clock_per_target_2_sites/")
 
+## figure settings
+text_size = 11
+
 ## load up the packages we will need:
 
 library(tidyverse)
@@ -66,10 +69,14 @@ names(clock_rate_2_sites) = names(clock_rate_all_sites) <- c("ATGGTAAG","ATTTATA
 
 
 #reorder by median
-ord = order(-sapply(clock_rate_all_sites, median))
-clock_rate_all_sites <- clock_rate_all_sites[ord]
-clock_rate_2_sites <- clock_rate_2_sites[ord]
-ordered_names <- names(clock_rate_all_sites)
+ord_all = order(-sapply(clock_rate_all_sites, median))
+clock_rate_all_sites <- clock_rate_all_sites[ord_all]
+
+ord_2 = order(-sapply(clock_rate_2_sites, median))
+clock_rate_2_sites <- clock_rate_2_sites[ord_2]
+
+ordered_names_all <- names(clock_rate_all_sites)
+ordered_names_2 <- names(clock_rate_2_sites)
 
 #add a prior column
 #clock_rate <- cbind(clock_rate,Prior=rlnorm(nrow(clock_rate), meanlog = -2, sdlog = 0.5))
@@ -79,37 +86,89 @@ clock_rate_2_sites_long <- pivot_longer(clock_rate_2_sites, seq(1,ncol(clock_rat
 clock_rate_2_sites_long$data = "2 sites"
 
 #order columns
-clock_rate_all_sites_long <- mutate(clock_rate_all_sites_long,name = fct_relevel(name,ordered_names))
-clock_rate_2_sites_long <- mutate(clock_rate_2_sites_long,name = fct_relevel(name,ordered_names))
+clock_rate_all_sites_long <- mutate(clock_rate_all_sites_long,name = fct_relevel(name,ordered_names_all))
+clock_rate_2_sites_long <- mutate(clock_rate_2_sites_long, name = fct_relevel(name, ordered_names_2))
 
 clock = rbind(clock_rate_all_sites_long, clock_rate_2_sites_long)
 
 
-p_clock_pos <- ggplot(clock, aes(x=name,value,fill=name)) +
+p_clock_pos <- ggplot(clock_rate_all_sites_long, aes(x=name,value,fill=name)) +
   facet_grid(data~.)+
   theme_bw() +
   geom_violin(draw_quantiles =  c(0.5)) +
   xlab("Tape") +
-  ylab(parse(text = paste0('"Posterior editing rate "', '(~ day^-1)'))) +
+  ylab(expression("Posterior edit rate [" * d^-1 * "]"))+
 
-  theme(legend.position = "none") +
+  theme(legend.position = "none", axis.title = element_text(size = text_size)) +
   scale_fill_manual(values=c(rep("#5CA17D",13),"#E1E1F7")) +
   coord_cartesian(
-    ,expand=FALSE) + theme(text = element_text(size = 22),panel.grid.minor = element_blank(),
+    ,expand=FALSE) + theme(axis.title = element_text(size= text_size *2),
+                           axis.text = element_text(size = (text_size -2)*2),
+                           panel.grid.minor = element_blank(),
                                         panel.border = element_blank(),
                                         panel.background = element_blank(),
                            strip.background  = element_rect(colour="black", fill="white"),
                            panel.grid.major.x = element_blank(), axis.text.x = element_text(angle = 90) )
 
 p_clock_pos
+ggsave("compare_clock_all_sites.png", p_clock_pos, width = 14.28, height = 9, units = "cm", dpi = 300)
+svg("compare_clock_all_sites.svg", width = 14.28, height = 9)
+p_clock_pos
+dev.off()
+
+p_clock_pos <- ggplot(clock_rate_2_sites_long, aes(x=name,value,fill=name)) +
+  facet_grid(data~.)+
+  theme_bw() +
+  geom_violin(draw_quantiles =  c(0.5)) +
+  xlab("Tape") +
+  ylab(expression("Posterior edit rate [" * d^-1 * "]"))+
+
+  theme(legend.position = "none", axis.title = element_text(size = text_size)) +
+  scale_fill_manual(values=c(rep("#5CA17D",13),"#E1E1F7")) +
+  coord_cartesian(
+    ,expand=FALSE) + theme(axis.title = element_text(size= (text_size)*2),
+                           axis.text = element_text(size = (text_size -2)*2),
+                           panel.grid.minor = element_blank(),
+                           panel.border = element_blank(),
+                           panel.background = element_blank(),
+                           strip.background  = element_rect(colour="black", fill="white"),
+                           panel.grid.major.x = element_blank(), axis.text.x = element_text(angle = 90) )
+
+p_clock_pos
+
+svg("compare_clock_2_sites.svg", width = 14.28, height = 9, pointsize = )
+p_clock_pos
+dev.off()
+ggsave("compare_clock_2_sites.png", p_clock_pos, width = 14.28, height = 9, units = "cm", dpi = 300)
 
 
-ggsave("compare_clock_2vsall_sites.png", p_clock_pos, width = 30, height = 20, units = "cm", dpi = 1000)
 
+# Test the average of the medians
 
+## Among all sites
+tapes_4x = ordered_names_all[2:4]
+tapes_5x = ordered_names_all[5:length(ordered_names_all)]
 
+medians_tapes4x_allsites = apply(X = clock_rate_all_sites[, tapes_4x], MARGIN = 2, FUN = median)
+mean_tapes4x_allsites = mean(medians_tapes4x_allsites)
+mean_tapes4x_allsites
+sd(medians_tapes4x_allsites)
 
+medians_tapes5x_allsites = apply(X = clock_rate_all_sites[, tapes_5x], MARGIN = 2, FUN = median)
+mean_tapes5x_allsites = mean(medians_tapes5x_allsites)
+mean_tapes5x_allsites
+sd(medians_tapes5x_allsites)
 
+## Among 2 sites
+medians_tapes4x_2sites = apply(X = clock_rate_2_sites[, tapes_4x], MARGIN = 2, FUN = median)
+mean_tapes4x_2sites = mean(medians_tapes4x_2sites)
+mean_tapes4x_2sites
+sd(medians_tapes4x_2sites)
+
+medians_tapes5x_2sites = apply(X = clock_rate_2_sites[, tapes_5x], MARGIN = 2, FUN = median)
+mean_tapes5x_2sites = mean(medians_tapes5x_2sites)
+mean_tapes5x_2sites
+sd(medians_tapes5x_2sites)
 
 
 

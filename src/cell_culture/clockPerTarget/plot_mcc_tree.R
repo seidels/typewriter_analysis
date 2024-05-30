@@ -40,7 +40,7 @@ library(treeio)
 
 swap_integer_for_edit = function(integer, insert_to_integer_map){
 
-  insert = insert_to_inter_map[insert_to_inter_map$integer == integer, "insert"]
+  insert = insert_to_integer_map[insert_to_integer_map$integer == integer, "insert"]
   return(insert)
 }
 
@@ -51,7 +51,7 @@ output_dir = "results/analysis_cell_culture_data/inference_results/clock_per_tar
 
 ## define input files
 
-tree_file = "results/analysis_cell_culture_data/inference_results/1000_cells/clock_per_target/MCC_CommonAncestorHeights.tree"
+tree_file = "./results/analysis_cell_culture_data/inference_results/clock_per_target/1000_cells/MCC_medianHeights.tree"
 alignment = "results/analysis_cell_culture_data/alignments/simple_1000cells_13tbcs/alignment_seed1.txt"
 cell_ids_file = "results/analysis_cell_culture_data/alignments/simple_1000cells_13tbcs/cell_ids_seed1.txt"
 edit_file = "results/analysis_cell_culture_data/alignments/simple_1000cells_13tbcs/edit_table_sample_1.csv"
@@ -124,11 +124,11 @@ for (targetBC in targetBCs){
 #
 #
 # ## convert edits from integers to trinucleotides
-# edits_trinucl = data.frame(Site1 = sapply(edits$Site1, function(x) {swap_integer_for_edit(integer = x, insert_to_inter_map = insert_to_inter_map)}),
-#                            Site2 = sapply(edits$Site2, function(x) {swap_integer_for_edit(integer = x, insert_to_inter_map = insert_to_inter_map)}),
-#                            Site3 = sapply(edits$Site3, function(x) {swap_integer_for_edit(integer = x, insert_to_inter_map = insert_to_inter_map)}),
-#                            Site4 = sapply(edits$Site4, function(x) {swap_integer_for_edit(integer = x, insert_to_inter_map = insert_to_inter_map)}),
-#                            Site5 = sapply(edits$Site5, function(x) {swap_integer_for_edit(integer = x, insert_to_inter_map = insert_to_inter_map)})
+# edits_trinucl = data.frame(Site1 = sapply(edits$Site1, function(x) {swap_integer_for_edit(integer = x, insert_to_integer_map = insert_to_integer_map)}),
+#                            Site2 = sapply(edits$Site2, function(x) {swap_integer_for_edit(integer = x, insert_to_integer_map = insert_to_integer_map)}),
+#                            Site3 = sapply(edits$Site3, function(x) {swap_integer_for_edit(integer = x, insert_to_integer_map = insert_to_integer_map)}),
+#                            Site4 = sapply(edits$Site4, function(x) {swap_integer_for_edit(integer = x, insert_to_integer_map = insert_to_integer_map)}),
+#                            Site5 = sapply(edits$Site5, function(x) {swap_integer_for_edit(integer = x, insert_to_integer_map = insert_to_integer_map)})
 #                            )
 # rownames(edits_trinucl) = rownames(edits)
 #
@@ -145,9 +145,12 @@ for (i in 1:length(targetBCs)){
   p_old = p_new
 }
 
-p_final = p_new + theme(legend.position = "top") + guides(fill=guide_legend("insertBC"))
+p_final = p_new + theme(legend.position = "top")# + guides(fill=guide_legend("insertBC", nrow = 1))
 p_final
 
-svg(filename = paste0(output_dir, "mcc_1_with_alignment.svg"))
+svg(filename = paste0(output_dir, "mcc_1_with_alignment.svg"), width = 15, height = 10 )
 p_final
 dev.off()
+
+ggsave(filename = paste0(output_dir, "mcc_1_with_alignment.pdf"), plot = p_final, width = 15, height = 10
+        )

@@ -53,7 +53,7 @@ for(site_column in site_columns) {
 }
 
 # 2nd, create a map from the trinucleotides to an integer
-insert_to_integer_map = get_insert_to_integer_map(edit_table_by_5)
+insert_to_integer_map = get_insert_to_integer_map(edit_table_by_5, columns=site_columns)
 write.csv(insert_to_integer_map, file = "data/cell_culture/insert_to_integer_map.csv")
 
 # convert these trinucleotides to integer in the edit table
