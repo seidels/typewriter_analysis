@@ -1,5 +1,7 @@
 # Typewriter analysis
 
+**NOTE** This is a preliminary repository. We now keep all code related to SciPhy in the repo: https://github.com/seidels/sciphy-materials
+
 Typewriter is a an experimental technique to acquire lineage
 tracing data. Find the publication [here](https://doi.org/10.1038/s41586-022-04922-8). This repository contains code written for basic analysis of the edited barcode sequences as well as code to simulate, process and analyze this data using phylogenetic inference software BEAST2. 
 
